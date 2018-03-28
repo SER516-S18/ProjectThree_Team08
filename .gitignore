@@ -1,0 +1,8 @@
+# Ignore class files
+*.class
+*.idea
+out
+*.iml
+*.DS_Store
+
+
