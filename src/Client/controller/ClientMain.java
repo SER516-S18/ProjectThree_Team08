@@ -1,4 +1,4 @@
-package SER516_Lab2_Client;
+package Client.controller;
 
 
 class ClientMain {

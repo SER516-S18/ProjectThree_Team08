@@ -1,7 +1,6 @@
-package SER516_Lab2_Server;
+package Server.controller;
 
 
-import java.awt.*;
 import java.io.IOException;
 
 class ServerMain {
