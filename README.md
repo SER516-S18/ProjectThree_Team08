@@ -5,8 +5,8 @@ How to run
 ## Build jar file
 
 ```bash
-$> git clone https://github.com/benas/web-socket-lab.git
-$> cd web-socket-lab
+$> git clone https://github.com/SER516/ProjectThree_Team08
+$> cd ProjectThree_Team08
 $> mvn package
 ```
 
