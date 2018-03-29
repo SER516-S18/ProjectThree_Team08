@@ -25,11 +25,14 @@ public class Client {
         Session session = client.connectToServer(ClientEndpoint.class, new URI(SERVER));
         System.out.println("You are connected to the server as client: " + user);
 
-        // repeatedly read a message and send it to the server (until quit)
+        // repeatedly read a message and send it to the server (until stop)
         do {
             message = scanner.nextLine();
             session.getBasicRemote().sendText(gson.toJson(new MessageBean(message, user)));
-        } while (!message.equalsIgnoreCase("quit"));
+        } while (!message.equalsIgnoreCase("stop"));
     }
 
 }
+
+
+
