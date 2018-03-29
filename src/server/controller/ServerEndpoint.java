@@ -1,8 +1,9 @@
-package Server.controller;
+package server.controller;
 
 import model.MessageBean;
 import model.MessageDecoder;
 import model.MessageEncoder;
+import utils.ConnectionConstants;
 
 import javax.websocket.*;
 
@@ -11,7 +12,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-@javax.websocket.server.ServerEndpoint(value = "/connect", encoders = MessageEncoder.class, decoders = MessageDecoder.class)
+@javax.websocket.server.ServerEndpoint(value = "/"+ ConnectionConstants.ENDPOINT_PATH, encoders = MessageEncoder.class, decoders = MessageDecoder.class)
 public class ServerEndpoint {
 
     static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());

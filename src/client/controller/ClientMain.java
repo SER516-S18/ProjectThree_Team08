@@ -1,4 +1,4 @@
-package Client.controller;
+package client.controller;
 
 
 class ClientMain {

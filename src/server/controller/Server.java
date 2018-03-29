@@ -1,4 +1,6 @@
-package Server.controller;
+package server.controller;
+
+import utils.ConnectionConstants;
 
 import javax.websocket.DeploymentException;
 
@@ -8,7 +10,7 @@ public class Server {
 
     public static void main(String[] args) {
 
-        org.glassfish.tyrus.server.Server server = new org.glassfish.tyrus.server.Server("localhost", 8025, "/ws", ServerEndpoint.class);
+        org.glassfish.tyrus.server.Server server = new org.glassfish.tyrus.server.Server(ConnectionConstants.HOSTNAME, ConnectionConstants.PORT, "/"+ConnectionConstants.ROOT_PATH, ServerEndpoint.class);
 
         try {
             server.start();

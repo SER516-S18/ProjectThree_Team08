@@ -1,4 +1,4 @@
-package Client.controller;
+package client.controller;
 
 
 import model.MessageBean;
@@ -8,7 +8,6 @@ import model.MessageEncoder;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
-
 
 @javax.websocket.ClientEndpoint(encoders = MessageEncoder.class, decoders = MessageDecoder.class)
 public class ClientEndpoint {
@@ -20,7 +19,7 @@ public class ClientEndpoint {
 
     @OnMessage
     public void onMessage(MessageBean message) {
-        System.out.println(String.format("In Client From the server:[%s] %s"+message.getSender() + message.getContent()));
+        System.out.println(String.format("In client From the server:[%s] %s"+message.getSender() + message.getContent()));
     }
 
 }
