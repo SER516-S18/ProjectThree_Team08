@@ -5,6 +5,11 @@ public class EmotionMessageBean {
 
     private AffectiveBean affective;
 
+    public EmotionMessageBean()
+    {
+        expressive = new ExpressiveBean();
+        affective = new AffectiveBean();
+    }
     public ExpressiveBean getExpressive() {
         return expressive;
     }
