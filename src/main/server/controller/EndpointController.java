@@ -1,19 +1,15 @@
-package server.controller;
+package main.server.controller;
 
-import model.EmotionMessageBean;
+import main.model.EmotionMessageBean;
 
 import javax.websocket.EncodeException;
 import javax.websocket.Session;
 import java.io.IOException;
-import java.util.Map;
-import java.util.Set;
-import java.util.logging.Handler;
 
-//This class has to be created first when the server ui or client ui is on and should be the first one to be invoked
+//This class has to be created first when the main.server ui or main.client ui is on and should be the first one to be invoked
 public class EndpointController {
 
     private static EndpointController endpointController = null;
-
 
     public static EndpointController getInstance() {
         if(endpointController == null)
@@ -22,7 +18,6 @@ public class EndpointController {
         }
         return endpointController;
     }
-
     public void updateExpBlink(boolean blink)
     {
             for (Session client : ServerEndpoint.clients)
@@ -31,7 +26,6 @@ public class EndpointController {
             }
 
     }
-
     public void updateExpRightWink(boolean rightWink)
     {
             for (Session client : ServerEndpoint.clients)
@@ -39,7 +33,6 @@ public class EndpointController {
                 ServerEndpoint.clientMessageMap.get(client.getId()).getExpressive().setRightWink(rightWink);
             }
     }
-
 
     public void updateExpLeftWink(boolean leftWink)
     {
@@ -49,7 +42,6 @@ public class EndpointController {
             }
     }
 
-
     public void updateExpLookingLeft(boolean lookingLeft)
     {
             for (Session client : ServerEndpoint.clients)
@@ -57,7 +49,6 @@ public class EndpointController {
                 ServerEndpoint.clientMessageMap.get(client.getId()).getExpressive().setLookingLeft(lookingLeft);
             }
     }
-
 
     public void updateExpLookingRight(boolean lookingRight)
     {
@@ -67,7 +58,7 @@ public class EndpointController {
             }
     }
 
-    //This method is invoked to send emotion message to client.
+    //This method is invoked to send emotion message to main.client.
     //Prerequiste : First update the message that you want to send and then call this method
     public void sendEmotionMessage()
     {

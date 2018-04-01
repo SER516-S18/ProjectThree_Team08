@@ -1,9 +1,9 @@
-package client.controller;
+package main.client.controller;
 
 
-import model.MessageBean;
-import model.MessageDecoder;
-import model.MessageEncoder;
+import main.model.EmotionMessageBean;
+import main.model.MessageDecoder;
+import main.model.MessageEncoder;
 
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -18,8 +18,8 @@ public class ClientEndpoint {
     }
 
     @OnMessage
-    public void onMessage(MessageBean message) {
-        System.out.println(String.format("In client From the server:[%s] %s"+message.getSender() + message.getContent()));
+    public void onMessage(EmotionMessageBean message) {
+        System.out.println("Message received from client"+message);
     }
 
 }

@@ -1,13 +1,13 @@
-package client.controller;
+package main.client.controller;
 
 import java.net.URI;
 import java.util.Scanner;
 import javax.websocket.Session;
 
 import com.google.gson.Gson;
-import model.MessageBean;
+import main.model.MessageBean;
 import org.glassfish.tyrus.client.ClientManager;
-import utils.ConnectionConstants;
+import main.utils.ConnectionConstants;
 
 public class Client {
 
@@ -17,15 +17,15 @@ public class Client {
         ClientManager client = ClientManager.createClient();
         String message;
 
-        // connect to server
+        // connect to main.server
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to client");
-        System.out.println("What's your client name?");
+        System.out.println("Welcome to main.client");
+        System.out.println("What's your main.client name?");
         String user = scanner.nextLine();
         Session session = client.connectToServer(ClientEndpoint.class, new URI(SERVER));
-        System.out.println("You are connected to the server as client: " + user);
+        System.out.println("You are connected to the main.server as main.client: " + user);
 
-        // repeatedly read a message and send it to the server (until stop)
+        // repeatedly read a message and send it to the main.server (until stop)
         do {
             message = scanner.nextLine();
             session.getBasicRemote().sendText(gson.toJson(new MessageBean(message, user)));

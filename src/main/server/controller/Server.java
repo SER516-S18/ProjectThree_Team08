@@ -1,6 +1,6 @@
-package server.controller;
+package main.server.controller;
 
-import utils.ConnectionConstants;
+import main.utils.ConnectionConstants;
 
 import javax.websocket.DeploymentException;
 
@@ -14,7 +14,7 @@ public class Server {
         org.glassfish.tyrus.server.Server server = new org.glassfish.tyrus.server.Server(ConnectionConstants.HOSTNAME, ConnectionConstants.PORT, "/"+ConnectionConstants.ROOT_PATH, ServerEndpoint.class);
         try {
             server.start();
-            System.out.println("Press any key to stop the server..");
+            System.out.println("Press any key to stop the main.server..");
             new Scanner(System.in).nextLine();
         } catch (DeploymentException e) {
             throw new RuntimeException(e);
@@ -22,5 +22,4 @@ public class Server {
             server.stop();
         }
     }
-
 }

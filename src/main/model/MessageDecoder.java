@@ -1,4 +1,4 @@
-package model;
+package main.model;
 
 import com.google.gson.Gson;
 
@@ -6,7 +6,7 @@ import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
 
-public class MessageDecoder implements Decoder.Text<MessageBean> {
+public class MessageDecoder implements Decoder.Text<EmotionMessageBean> {
 
     private static Gson gson = new Gson();
     @Override
@@ -18,8 +18,8 @@ public class MessageDecoder implements Decoder.Text<MessageBean> {
     }
 
     @Override
-    public MessageBean decode(final String textMessage) throws DecodeException {
-        return gson.fromJson(textMessage, MessageBean.class);
+    public EmotionMessageBean decode(final String textMessage) throws DecodeException {
+        return gson.fromJson(textMessage, EmotionMessageBean.class);
     }
 
     @Override

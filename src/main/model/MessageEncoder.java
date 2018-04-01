@@ -1,4 +1,4 @@
-package model;
+package main.model;
 
 import com.google.gson.Gson;
 
@@ -6,7 +6,7 @@ import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
 
-public class MessageEncoder implements Encoder.Text<MessageBean> {
+public class MessageEncoder implements Encoder.Text<EmotionMessageBean> {
     private static Gson gson = new Gson();
 
     @Override
@@ -18,7 +18,7 @@ public class MessageEncoder implements Encoder.Text<MessageBean> {
     }
 
     @Override
-    public String encode(final MessageBean message) throws EncodeException {
+    public String encode(final EmotionMessageBean message) throws EncodeException {
         return gson.toJson(message);
     }
 

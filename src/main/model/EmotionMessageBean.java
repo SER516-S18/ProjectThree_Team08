@@ -1,8 +1,9 @@
-package model;
+package main.model;
 
 public class EmotionMessageBean {
-    private ExpressiveBean expressive;
 
+    private ExpressiveBean expressive;
+    private String sender;
     private AffectiveBean affective;
 
     public EmotionMessageBean()
@@ -10,6 +11,7 @@ public class EmotionMessageBean {
         expressive = new ExpressiveBean();
         affective = new AffectiveBean();
     }
+
     public ExpressiveBean getExpressive() {
         return expressive;
     }
@@ -26,5 +28,20 @@ public class EmotionMessageBean {
         this.affective = affective;
     }
 
+    public String getSender() {
+        return sender;
+    }
 
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
+    @Override
+    public String toString() {
+        return "EmotionMessageBean{" +
+                "expressive=" + expressive +
+                ", sender='" + sender + '\'' +
+                ", affective=" + affective +
+                '}';
+    }
 }

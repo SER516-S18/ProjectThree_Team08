@@ -1,4 +1,4 @@
-package utils;
+package main.utils;
 
 public class ConnectionConstants {
     public static final String HOSTNAME = "localhost";

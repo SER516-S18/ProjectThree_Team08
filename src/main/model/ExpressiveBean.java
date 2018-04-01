@@ -1,4 +1,4 @@
-package model;
+package main.model;
 
 public class ExpressiveBean {
     private boolean blink;
@@ -100,5 +100,22 @@ public class ExpressiveBean {
 
     public void setRightSmirk(double rightSmirk) {
         this.rightSmirk = rightSmirk;
+    }
+
+    @Override
+    public String toString() {
+        return "ExpressiveBean{" +
+                "blink=" + blink +
+                ", rightWink=" + rightWink +
+                ", leftWink=" + leftWink +
+                ", lookingLeft=" + lookingLeft +
+                ", lookingRight=" + lookingRight +
+                ", raiseBrow=" + raiseBrow +
+                ", furrowBrow=" + furrowBrow +
+                ", smile=" + smile +
+                ", clench=" + clench +
+                ", leftSmirk=" + leftSmirk +
+                ", rightSmirk=" + rightSmirk +
+                '}';
     }
 }

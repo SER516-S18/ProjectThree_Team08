@@ -1,4 +1,4 @@
-package model;
+package main.model;
 
 public class AffectiveBean {
 
@@ -58,4 +58,15 @@ public class AffectiveBean {
         this.focus = focus;
     }
 
+    @Override
+    public String toString() {
+        return "AffectiveBean{" +
+                "interest=" + interest +
+                ", engagement=" + engagement +
+                ", stress=" + stress +
+                ", relaxation=" + relaxation +
+                ", excitement=" + excitement +
+                ", focus=" + focus +
+                '}';
+    }
 }

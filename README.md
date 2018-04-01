@@ -10,7 +10,7 @@ $> cd ProjectThree_Team08
 $> mvn package
 ```
 
-## Start the server
+## Start the main.server
 
 Open a terminal and run the following command in the `target` directory:
 
@@ -20,12 +20,12 @@ $> java -jar ProjectThree_Team08-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 _If you are on Windows, make sure to change the classpath separator to ; instead of :_
 
-## Launch a first client
+## Launch a first main.client
 
 Open a second terminal and run the following command in the `target` directory:
 
 ```bash
-$> java -cp "ProjectThree_Team08-1.0-SNAPSHOT.jar:lib/*" client.controller.Client
+$> java -cp "ProjectThree_Team08-1.0-SNAPSHOT.jar:lib/*" main.client.controller.Client
 ```
 
 _If you are on Windows, make sure to change the classpath separator to ; instead of :_
