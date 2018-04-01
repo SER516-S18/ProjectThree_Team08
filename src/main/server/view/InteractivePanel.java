@@ -22,7 +22,12 @@ import javax.swing.border.TitledBorder;
 
 public class InteractivePanel extends JPanel{
     
-    public InteractivePanel() {
+	JComboBox playerComboBox;
+	JCheckBox chckbxAutoReset;
+	JSpinner emoStateSpinner;
+	JButton btnSend;
+	
+	public InteractivePanel() {
         
         this.setBackground(Color.GRAY);
         this.setBorder(new TitledBorder(null, "Interactive", TitledBorder.LEADING, 
@@ -32,7 +37,7 @@ public class InteractivePanel extends JPanel{
         
         
         String[] playerItems = new String[] {"0", "1", "2"};
-        JComboBox playerComboBox = new JComboBox(playerItems);
+        playerComboBox = new JComboBox(playerItems);
         playerComboBox.setBounds(85, 30, 55, 25);
         this.add(playerComboBox);
         
@@ -48,14 +53,14 @@ public class InteractivePanel extends JPanel{
         emoStateLabel.setBounds(175, 29, 124, 25);
         this.add(emoStateLabel);
         
-        JCheckBox chckbxAutoReset = new JCheckBox("Auto Reset");
+        chckbxAutoReset = new JCheckBox("Auto Reset");
         chckbxAutoReset.setForeground(Color.WHITE);
         chckbxAutoReset.setBackground(Color.GRAY);
         chckbxAutoReset.setFont(new Font("Tahoma", Font.BOLD, 12));
         chckbxAutoReset.setBounds(175, 61, 101, 25);
         this.add(chckbxAutoReset);
         
-        JButton btnSend = new JButton("Send");
+        btnSend = new JButton("Send");
         btnSend.setForeground(Color.WHITE);
         btnSend.setBackground(Color.BLACK);
         btnSend.setContentAreaFilled(false);
@@ -69,7 +74,7 @@ public class InteractivePanel extends JPanel{
         btnSend.setBounds(302, 61, 107, 25);
         this.add(btnSend);
         
-        JSpinner emoStateSpinner = new JSpinner();
+        emoStateSpinner = new JSpinner();
         emoStateSpinner.setModel(new SpinnerNumberModel(0.25, 0.25, 100.00, 0.50));
         emoStateSpinner.setBounds(324, 29, 55, 25);
         this.add(emoStateSpinner);
