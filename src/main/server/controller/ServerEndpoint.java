@@ -1,7 +1,6 @@
 package main.server.controller;
 
 import main.model.EmotionMessageBean;
-import main.model.MessageBean;
 import main.model.MessageDecoder;
 import main.model.MessageEncoder;
 import main.utils.ConnectionConstants;
@@ -11,6 +10,11 @@ import javax.websocket.*;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * Web Socket Endpoint which handles the various lifecycle of connections with client.
+ * @author Balachandar Sampath
+ * @version 1.0
+ */
 @javax.websocket.server.ServerEndpoint(value = "/"+ ConnectionConstants.ENDPOINT_PATH, encoders = MessageEncoder.class, decoders = MessageDecoder.class)
 public class ServerEndpoint {
 

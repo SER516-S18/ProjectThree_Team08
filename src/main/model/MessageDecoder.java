@@ -5,7 +5,11 @@ import com.google.gson.Gson;
 import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
-
+/**
+ * Decoder which converts json text to java object.
+ * @author Balachandar Sampath
+ * @version 1.0
+ */
 public class MessageDecoder implements Decoder.Text<EmotionMessageBean> {
 
     private static Gson gson = new Gson();

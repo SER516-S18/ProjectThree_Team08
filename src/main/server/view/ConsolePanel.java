@@ -17,7 +17,10 @@ import javax.swing.border.TitledBorder;
  */
 
 public class ConsolePanel extends JPanel{
-    
+
+    JButton btnClearLog;
+    JTextPane consoleTextPane;
+
     public ConsolePanel() {
         this.setBackground(Color.GRAY);
         this.setBorder(new TitledBorder(null, "EmoEngine Log", TitledBorder.LEADING, 
@@ -26,7 +29,7 @@ public class ConsolePanel extends JPanel{
         this.setLayout(null);
         
         
-        JButton btnClearLog = new JButton("Clear Log");
+        btnClearLog = new JButton("Clear Log");
         btnClearLog.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
             	
@@ -39,7 +42,7 @@ public class ConsolePanel extends JPanel{
         btnClearLog.setOpaque(true);
         this.add(btnClearLog);
         
-        JTextPane consoleTextPane = new JTextPane();
+        consoleTextPane = new JTextPane();
         consoleTextPane.setEditable(false);
         consoleTextPane.setForeground(Color.WHITE);
         consoleTextPane.setText("Show Errors Here!");

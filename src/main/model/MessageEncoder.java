@@ -6,6 +6,11 @@ import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
 
+/**
+ * Encoder which converts java object to json.
+ * @author Balachandar Sampath
+ * @version 1.0
+ */
 public class MessageEncoder implements Encoder.Text<EmotionMessageBean> {
     private static Gson gson = new Gson();
 
