@@ -20,7 +20,17 @@ import javax.swing.border.TitledBorder;
 
 
 public class DetectionPanel extends JPanel{
-    
+	
+	JTextField timeTxtField;
+	JComboBox<String> upperfaceComboBox;
+	JSpinner upperfaceSpinner;
+	JComboBox<String> lowerfaceComboBox;
+	JComboBox<String> eyeComboBox;
+	JCheckBox chckbxReset;
+	JCheckBox chckbxActivate;
+	JComboBox<String> performanceMetricsComboBox;
+	JSpinner pfMetricSpinner;
+	
     public DetectionPanel() {
         this.setBackground(Color.GRAY);
         this.setBorder(new TitledBorder(null, "Detection", TitledBorder.LEADING, 
@@ -34,7 +44,7 @@ public class DetectionPanel extends JPanel{
         lblTime.setBounds(14, 24, 41, 33);
         this.add(lblTime);
         
-        JTextField timeTxtField = new JTextField();
+        timeTxtField = new JTextField();
         timeTxtField.setForeground(Color.WHITE);
         timeTxtField.setBackground(Color.DARK_GRAY);
         timeTxtField.setEditable(false);
@@ -56,11 +66,11 @@ public class DetectionPanel extends JPanel{
         this.add(lblUpperface);
         
         String[] upperfaceItems = new String[] {"Raise Brow", "Furrow Brow"};
-        JComboBox upperfaceComboBox = new JComboBox(upperfaceItems);
+        upperfaceComboBox = new JComboBox<>(upperfaceItems);
         upperfaceComboBox.setBounds(14, 98, 139, 25);
         this.add(upperfaceComboBox);
         
-        JSpinner upperfaceSpinner = new JSpinner();
+        upperfaceSpinner = new JSpinner();
         upperfaceSpinner.setModel(new SpinnerNumberModel(0.00, 0.00, 1.00, 0.1));
         upperfaceSpinner.setBackground(Color.WHITE);
         upperfaceSpinner.setBounds(161, 97, 55, 25);
@@ -74,15 +84,9 @@ public class DetectionPanel extends JPanel{
         
         String[] lowerfaceItems = new String[] {"Smile", "Clench","Smirk Left",
                                                 "Smirk Right","Laugh"};
-        JComboBox lowerfaceComboBox = new JComboBox(lowerfaceItems);
+        lowerfaceComboBox = new JComboBox<>(lowerfaceItems);
         lowerfaceComboBox.setBounds(250, 98, 123, 25);
         this.add(lowerfaceComboBox);
-        
-        JLabel lblEye = new JLabel("Eye:");
-        lblEye.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblEye.setForeground(Color.WHITE);
-        lblEye.setBounds(14, 134, 115, 33);
-        this.add(lblEye);
         
         JSpinner lowerfaceSpinner = new JSpinner();
         lowerfaceSpinner.setModel(new SpinnerNumberModel(0.00, 0.00, 1.00, 0.1));
@@ -90,18 +94,31 @@ public class DetectionPanel extends JPanel{
         lowerfaceSpinner.setBounds(383, 97, 52, 25);
         this.add(lowerfaceSpinner);
         
+        JLabel lblEye = new JLabel("Eye:");
+        lblEye.setFont(new Font("Tahoma", Font.BOLD, 12));
+        lblEye.setForeground(Color.WHITE);
+        lblEye.setBounds(14, 134, 115, 33);
+        this.add(lblEye);
+        
         String[] eyeItems = new String[] {"Blink", "Wink Left", 
                                             "Wink Right","Look Left","Look Right"};
-        JComboBox eyeComboBox = new JComboBox(eyeItems);
+        eyeComboBox = new JComboBox<>(eyeItems);
         eyeComboBox.setBounds(14, 163, 139, 25);
         this.add(eyeComboBox);
         
-        JCheckBox chckbxAcitvate = new JCheckBox("Auto Reset");
-        chckbxAcitvate.setForeground(Color.WHITE);
-        chckbxAcitvate.setFont(new Font("Tahoma", Font.BOLD, 12));
-        chckbxAcitvate.setBackground(Color.GRAY);
-        chckbxAcitvate.setBounds(294, 164, 95, 25);
-        this.add(chckbxAcitvate);
+        chckbxActivate = new JCheckBox("Activate");
+        chckbxActivate.setFont(new Font("Tahoma", Font.BOLD, 12));
+        chckbxActivate.setBackground(Color.GRAY);
+        chckbxActivate.setForeground(Color.WHITE);
+        chckbxActivate.setBounds(185, 164, 95, 25);
+        this.add(chckbxActivate);
+        
+        chckbxReset = new JCheckBox("Auto Reset");
+        chckbxReset.setForeground(Color.WHITE);
+        chckbxReset.setFont(new Font("Tahoma", Font.BOLD, 12));
+        chckbxReset.setBackground(Color.GRAY);
+        chckbxReset.setBounds(294, 164, 95, 25);
+        this.add(chckbxReset);
         
         JLabel lblPerformanceMetrics = new JLabel("Performance Metrics:");
         lblPerformanceMetrics.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -111,20 +128,15 @@ public class DetectionPanel extends JPanel{
         
         String[] pfMetricItems = new String[] {"Meditation", "EngagementBoredom", 
                                                 "ExcitementShortTerm","Frustration","ExcitementLongTerm"};
-        JComboBox performanceMetricsComboBox = new JComboBox(pfMetricItems);
+        
+        performanceMetricsComboBox = new JComboBox<>(pfMetricItems);
         performanceMetricsComboBox.setBounds(14, 229, 139, 25);
         this.add(performanceMetricsComboBox);
         
-        JSpinner pfMetricSpinner = new JSpinner();
+        pfMetricSpinner = new JSpinner();
         pfMetricSpinner.setModel(new SpinnerNumberModel(0.00, 0.00, 1.00, 0.1));
         pfMetricSpinner.setBounds(161, 229, 55, 25);
         this.add(pfMetricSpinner);
         
-        JCheckBox chckbxActivate = new JCheckBox("Activate");
-        chckbxActivate.setFont(new Font("Tahoma", Font.BOLD, 12));
-        chckbxActivate.setBackground(Color.GRAY);
-        chckbxActivate.setForeground(Color.WHITE);
-        chckbxActivate.setBounds(185, 164, 95, 25);
-        this.add(chckbxActivate);
     }
 }
