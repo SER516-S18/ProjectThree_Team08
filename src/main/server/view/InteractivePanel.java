@@ -22,7 +22,7 @@ import javax.swing.border.TitledBorder;
 
 public class InteractivePanel extends JPanel{
     
-	JComboBox playerComboBox;
+	JComboBox<String> playerComboBox;
 	JCheckBox chckbxAutoReset;
 	JSpinner emoStateSpinner;
 	JButton btnSend;
@@ -37,7 +37,7 @@ public class InteractivePanel extends JPanel{
         
         
         String[] playerItems = new String[] {"0", "1", "2"};
-        playerComboBox = new JComboBox(playerItems);
+        playerComboBox = new JComboBox<>(playerItems);
         playerComboBox.setBounds(85, 30, 55, 25);
         this.add(playerComboBox);
         
