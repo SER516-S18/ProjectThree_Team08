@@ -6,18 +6,20 @@ package main.model;
  * @version 1.0
  */
 public class ExpressiveBean {
+
+    private boolean lookingRight;
     private boolean blink;
     private boolean rightWink;
     private boolean leftWink;
     private boolean lookingLeft;
-    private boolean lookingRight;
 
-    private double raiseBrow;
-    private double furrowBrow;
+
+    private double eyeBrowRaise;
+    private double eyesOpen;
     private double smile;
     private double clench;
-    private double leftSmirk;
-    private double rightSmirk;
+    private double lookingUp;
+    private double lookingDown;
 
     public boolean isBlink() {
         return blink;
@@ -60,19 +62,19 @@ public class ExpressiveBean {
     }
 
     public double getRaiseBrow() {
-        return raiseBrow;
+        return eyeBrowRaise;
     }
 
     public void setRaiseBrow(double raiseBrow) {
-        this.raiseBrow = raiseBrow;
+        this.eyeBrowRaise = raiseBrow;
     }
 
-    public double getFurrowBrow() {
-        return furrowBrow;
+    public double getEyesOpen() {
+        return eyesOpen;
     }
 
-    public void setFurrowBrow(double furrowBrow) {
-        this.furrowBrow = furrowBrow;
+    public void setEyesOpen(double eyesOpen) {
+        this.eyesOpen = eyesOpen;
     }
 
     public double getSmile() {
@@ -91,36 +93,36 @@ public class ExpressiveBean {
         this.clench = clench;
     }
 
-    public double getLeftSmirk() {
-        return leftSmirk;
+    public double getLookingUp() {
+        return lookingUp;
     }
 
-    public void setLeftSmirk(double leftSmirk) {
-        this.leftSmirk = leftSmirk;
+    public void setLookingUp(double lookingUp) {
+        this.lookingUp = lookingUp;
     }
 
-    public double getRightSmirk() {
-        return rightSmirk;
+    public double getLookingDown() {
+        return lookingDown;
     }
 
-    public void setRightSmirk(double rightSmirk) {
-        this.rightSmirk = rightSmirk;
+    public void setLookingDown(double lookingDown) {
+        this.lookingDown = lookingDown;
     }
 
     @Override
     public String toString() {
         return "ExpressiveBean{" +
-                "blink=" + blink +
+                "lookingRight=" + lookingRight +
+                ", blink=" + blink +
                 ", rightWink=" + rightWink +
                 ", leftWink=" + leftWink +
                 ", lookingLeft=" + lookingLeft +
-                ", lookingRight=" + lookingRight +
-                ", raiseBrow=" + raiseBrow +
-                ", furrowBrow=" + furrowBrow +
+                ", eyeBrowRaise=" + eyeBrowRaise +
+                ", eyesOpen=" + eyesOpen +
                 ", smile=" + smile +
                 ", clench=" + clench +
-                ", leftSmirk=" + leftSmirk +
-                ", rightSmirk=" + rightSmirk +
+                ", lookingUp=" + lookingUp +
+                ", lookingDown=" + lookingDown +
                 '}';
     }
 }
