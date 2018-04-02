@@ -91,6 +91,7 @@ public class EndpointController {
                 sendEmotionMessage();
             }
         };
+        timer = new Timer();
         timer.scheduleAtFixedRate(toRepeatTask, 0,period);
     }
 
