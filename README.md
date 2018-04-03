@@ -10,12 +10,14 @@ $> cd ProjectThree_Team08
 $> mvn package
 ```
 
+Double click the below jars or run the following commands
+
 ## Start the main.server
 
 Open a terminal and run the following command in the `target` directory:
 
 ```bash
-$> java -jar ProjectThree_Team08-1.0-SNAPSHOT-jar-with-dependencies.jar
+$> java -jar ProjectThree_Team08-server.jar
 ```
 
 _If you are on Windows, make sure to change the classpath separator to ; instead of :_
@@ -25,9 +27,8 @@ _If you are on Windows, make sure to change the classpath separator to ; instead
 Open a second terminal and run the following command in the `target` directory:
 
 ```bash
-$> java -cp "ProjectThree_Team08-1.0-SNAPSHOT.jar:lib/*" main.client.controller.Client
+$> java -jar ProjectThree_Team08-client.jar
 ```
 
-_If you are on Windows, make sure to change the classpath separator to ; instead of :_
 
 
