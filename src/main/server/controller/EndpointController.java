@@ -7,9 +7,10 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-//This class has to be created first when the main.server ui or main.client ui is on and should be the first one to be invoked
+
 /**
  * Controller which acts as a interface between server and UIController.
+ * This class has to be created first when the main.server ui or main.client ui is on and should be the first one to be invoked
  * @author Balachandar Sampath
  * @version 1.0
  */
