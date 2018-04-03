@@ -1,11 +1,13 @@
 package main.model;
 
+import java.util.Observable;
+
 /**
  * Bean which stores the emotion message to be sent to client.
  * @author Balachandar Sampath
  * @version 1.0
  */
-public class EmotionMessageBean {
+public class EmotionMessageBean extends Observable{
 
     private ExpressiveBean expressive;
     private String sender;

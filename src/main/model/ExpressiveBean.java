@@ -7,7 +7,7 @@ import java.util.Observable;
  * @author Balachandar Sampath
  * @version 1.0
  */
-public class ExpressiveBean extends Observable{
+public class ExpressiveBean{
 
 
     private boolean blink;
