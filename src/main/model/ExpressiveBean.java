@@ -7,12 +7,13 @@ package main.model;
  */
 public class ExpressiveBean {
 
-    private boolean lookingRight;
+
     private boolean blink;
     private boolean rightWink;
     private boolean leftWink;
-    private boolean lookingLeft;
 
+    private double lookingRight;
+    private double lookingLeft;
     private double eyeBrowRaise;
     private double eyesOpen;
     private double smile;
@@ -44,19 +45,19 @@ public class ExpressiveBean {
         this.leftWink = leftWink;
     }
 
-    public boolean isLookingLeft() {
+    public double isLookingLeft() {
         return lookingLeft;
     }
 
-    public void setLookingLeft(boolean lookingLeft) {
+    public void setLookingLeft(double lookingLeft) {
         this.lookingLeft = lookingLeft;
     }
 
-    public boolean isLookingRight() {
+    public double isLookingRight() {
         return lookingRight;
     }
 
-    public void setLookingRight(boolean lookingRight) {
+    public void setLookingRight(double lookingRight) {
         this.lookingRight = lookingRight;
     }
 
