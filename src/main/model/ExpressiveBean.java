@@ -1,11 +1,13 @@
 package main.model;
 
+import java.util.Observable;
+
 /**
  * Bean which stores the emotion message to be sent to client.
  * @author Balachandar Sampath
  * @version 1.0
  */
-public class ExpressiveBean {
+public class ExpressiveBean extends Observable{
 
 
     private boolean blink;
@@ -112,10 +114,10 @@ public class ExpressiveBean {
     @Override
     public String toString() {
         return "ExpressiveBean{" +
-                "lookingRight=" + lookingRight +
                 ", blink=" + blink +
                 ", rightWink=" + rightWink +
                 ", leftWink=" + leftWink +
+                "lookingRight=" + lookingRight +
                 ", lookingLeft=" + lookingLeft +
                 ", eyeBrowRaise=" + eyeBrowRaise +
                 ", eyesOpen=" + eyesOpen +
