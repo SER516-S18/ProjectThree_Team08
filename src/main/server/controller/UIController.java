@@ -12,22 +12,18 @@ import main.server.view.InteractivePanel;
  * @version 1.0
  */
 public class UIController {
-    private static UIController uiController=null;
     private ConsolePanel consolePanel;
     private DetectionPanel detectionPanel;
     private InteractivePanel interactivePanel;
 
+    private UIController() {}
+
+    private static class SingletonHolder {
+        public static final UIController uiController = new UIController();
+    }
     public static UIController getInstance()
     {
-        if(uiController==null)
-        {
-            uiController = new UIController();
-        }
-        return uiController;
-    }
-
-    public static void setUiController(UIController uiController) {
-        UIController.uiController = uiController;
+        return SingletonHolder.uiController;
     }
 
     public void setDetectionPanel(DetectionPanel detectionPanel) {

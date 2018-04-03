@@ -16,21 +16,24 @@ import java.util.TimerTask;
  */
 public class EndpointController {
 
-    private static EndpointController endpointController = null;
     private static EmotionMessageBean emotionMessageBean = null;
     private Timer timer = new Timer("Timer");
+
+    private EndpointController() { }
+
+    //This will support lazy initialisation of endpointController
+    private static class SingletonHolder {
+        public static final EndpointController endpointController = new EndpointController();
+    }
+    public static EndpointController getInstance()
+    {
+        return SingletonHolder.endpointController;
+    }
     /**
      * Returns an instance of the class
      *
      * @return EndpointController
      */
-    public static EndpointController getInstance() {
-        if(endpointController == null)
-        {
-            endpointController = new EndpointController();
-        }
-        return endpointController;
-    }
     //private boolean blink;
     public void updateExpBlink(boolean blink)
     {
