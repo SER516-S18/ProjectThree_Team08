@@ -13,7 +13,6 @@ public class ExpressiveBean {
     private boolean leftWink;
     private boolean lookingLeft;
 
-
     private double eyeBrowRaise;
     private double eyesOpen;
     private double smile;

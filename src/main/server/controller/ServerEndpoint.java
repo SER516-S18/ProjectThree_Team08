@@ -19,7 +19,6 @@ import java.util.*;
 public class ServerEndpoint {
 
     public static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
-    public static Map<String, EmotionMessageBean> clientMessageMap = Collections.synchronizedMap(new HashMap<String,EmotionMessageBean>());
 
     @OnOpen
     public void onOpen(Session session) throws IOException {
@@ -27,8 +26,6 @@ public class ServerEndpoint {
         EndpointController endpointController = EndpointController.getInstance();
         System.out.println(String.format("%s connected with us", session.getId()));
         clients.add(session);
-        // Create a EmotionBean here and lock it with respect to the session/main.client
-        clientMessageMap.put(session.getId(),new EmotionMessageBean());
     }
 
     @OnMessage
