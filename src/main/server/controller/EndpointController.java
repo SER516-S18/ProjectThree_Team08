@@ -2,7 +2,6 @@ package main.server.controller;
 
 import main.model.EmotionMessageBean;
 import main.server.view.ConsolePanel;
-
 import javax.websocket.EncodeException;
 import javax.websocket.Session;
 import java.io.IOException;
@@ -148,7 +147,6 @@ public class EndpointController {
             EndpointController.getInstance().emotionMessageBean.getAffective().setExcitement(excitement);
         }
     }
-
     //private double focus;
     public void updateFocus(double focus) {
         for(Session client : ServerEndpoint.clients)
