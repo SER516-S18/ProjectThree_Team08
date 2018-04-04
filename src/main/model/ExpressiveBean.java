@@ -23,6 +23,27 @@ public class ExpressiveBean{
     private double lookingUp;
     private double lookingDown;
 
+    public ExpressiveBean(){}
+
+    /**
+     * Copy constructor
+     *
+     * @param bean
+     */
+    public ExpressiveBean(ExpressiveBean bean) {
+        lookingRight = bean.lookingRight;
+        blink = bean.blink;
+        rightWink = bean.rightWink;
+        leftWink = bean.leftWink;
+        lookingLeft = bean.lookingLeft;
+        eyeBrowRaise = bean.eyeBrowRaise;
+        eyesOpen = bean.eyesOpen;
+        smile = bean.smile;
+        clench = bean.clench;
+        lookingUp = bean.lookingUp;
+        lookingDown = bean.lookingDown;
+    }
+
     public boolean isBlink() {
         return blink;
     }
@@ -47,7 +68,7 @@ public class ExpressiveBean{
         this.leftWink = leftWink;
     }
 
-    public double isLookingLeft() {
+    public double getLookingLeft() {
         return lookingLeft;
     }
 
@@ -55,7 +76,7 @@ public class ExpressiveBean{
         this.lookingLeft = lookingLeft;
     }
 
-    public double isLookingRight() {
+    public double getLookingRight() {
         return lookingRight;
     }
 
@@ -126,5 +147,20 @@ public class ExpressiveBean{
                 ", lookingUp=" + lookingUp +
                 ", lookingDown=" + lookingDown +
                 '}';
+    }
+
+    public boolean equals(ExpressiveBean bean){
+
+        return  lookingRight == bean.lookingRight &&
+                blink == bean.blink &&
+                rightWink == bean.rightWink &&
+                leftWink == bean.leftWink &&
+                lookingLeft == bean.lookingLeft &&
+                eyeBrowRaise == bean.eyeBrowRaise &&
+                eyesOpen == bean.eyesOpen &&
+                smile == bean.smile &&
+                clench == bean.clench &&
+                lookingUp == bean.lookingUp &&
+                lookingDown == bean.lookingDown;
     }
 }
