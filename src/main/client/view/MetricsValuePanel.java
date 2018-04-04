@@ -2,6 +2,10 @@ package main.client.view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 /**
  * Panel to display color for the graph plot representing effects in form of boxes. And display the time difference
@@ -16,7 +20,9 @@ public class MetricsValuePanel extends JPanel {
     private ColorBox relaxation;
     private ColorBox excitement;
     private ColorBox focus;
-    private JLabel displayLength;
+    private JTextPane displayLength;
+    private JButton setLength;
+    private Color colors[] = new Color[] {Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE, Color.PINK, Color.ORANGE};
 
     public MetricsValuePanel(){
         this.setLayout(null);
@@ -25,30 +31,86 @@ public class MetricsValuePanel extends JPanel {
         interest.setBoxColor(0);
         interest.setEmotionName("Interest");
         interest.setBounds(35,15,150,150);
+        interest.getDropdown().addItemListener(
+                new ItemListener() {
+                    @Override
+                    public void itemStateChanged(ItemEvent e) {
+                        if(e.getStateChange() == ItemEvent.SELECTED){
+                            interest.getDropdown().setBackground(colors[interest.getDropdown().getSelectedIndex()]);
+                            interest.setBackground(colors[interest.getDropdown().getSelectedIndex()]);
+                        }
+                    }
+                }
+        );
+
         this.add(interest);
 
         engagement = new ColorBox();
         engagement.setEmotionName("Engagement");
         engagement.setBoxColor(1);
         engagement.setBounds(190,15,150,150);
+        engagement.getDropdown().addItemListener(
+                new ItemListener() {
+                    @Override
+                    public void itemStateChanged(ItemEvent e) {
+                        if(e.getStateChange() == ItemEvent.SELECTED){
+                            engagement.getDropdown().setBackground(colors[engagement.getDropdown().getSelectedIndex()]);
+                            engagement.setBackground(colors[engagement.getDropdown().getSelectedIndex()]);
+                        }
+                    }
+                }
+        );
         this.add(engagement);
 
         stress = new ColorBox();
         stress.setEmotionName("Stress");
         stress.setBoxColor(2);
         stress.setBounds(35,170,150,150);
+        stress.getDropdown().addItemListener(
+                new ItemListener() {
+                    @Override
+                    public void itemStateChanged(ItemEvent e) {
+                        if(e.getStateChange() == ItemEvent.SELECTED){
+                            stress.getDropdown().setBackground(colors[stress.getDropdown().getSelectedIndex()]);
+                            stress.setBackground(colors[stress.getDropdown().getSelectedIndex()]);
+                        }
+                    }
+                }
+        );
         this.add(stress);
 
         relaxation = new ColorBox();
         relaxation.setEmotionName("Relaxation");
         relaxation.setBoxColor(3);
         relaxation.setBounds(190,170,150,150);
+        relaxation.getDropdown().addItemListener(
+                new ItemListener() {
+                    @Override
+                    public void itemStateChanged(ItemEvent e) {
+                        if(e.getStateChange() == ItemEvent.SELECTED){
+                            relaxation.getDropdown().setBackground(colors[relaxation.getDropdown().getSelectedIndex()]);
+                            relaxation.setBackground(colors[relaxation.getDropdown().getSelectedIndex()]);
+                        }
+                    }
+                }
+        );
         this.add(relaxation);
 
         excitement = new ColorBox();
         excitement.setEmotionName("Excitement");
         excitement.setBoxColor(4);
         excitement.setBounds(35,325,150,150);
+        excitement.getDropdown().addItemListener(
+                new ItemListener() {
+                    @Override
+                    public void itemStateChanged(ItemEvent e) {
+                        if(e.getStateChange() == ItemEvent.SELECTED){
+                            excitement.getDropdown().setBackground(colors[excitement.getDropdown().getSelectedIndex()]);
+                            excitement.setBackground(colors[excitement.getDropdown().getSelectedIndex()]);
+                        }
+                    }
+                }
+        );
         this.add(excitement);
 
 
@@ -56,24 +118,42 @@ public class MetricsValuePanel extends JPanel {
         focus.setEmotionName("Focus");
         focus.setBoxColor(5);
         focus.setBounds(190,325,150,150);
+        focus.getDropdown().addItemListener(
+                new ItemListener() {
+                    @Override
+                    public void itemStateChanged(ItemEvent e) {
+                        if(e.getStateChange() == ItemEvent.SELECTED){
+                            focus.getDropdown().setBackground(colors[focus.getDropdown().getSelectedIndex()]);
+                            focus.setBackground(colors[focus.getDropdown().getSelectedIndex()]);
+                        }
+                    }
+                }
+        );
         this.add(focus);
 
         JLabel title = new JLabel();
         title.setText("Display Length:");
-        title.setBounds(70,495,140,30);
+        title.setBounds(50,495,140,30);
         this.add(title);
 
-        displayLength = new JLabel("1", SwingConstants.CENTER);
+        displayLength = new JTextPane();
+        displayLength.setText("1");
         displayLength.setOpaque(true);
         displayLength.setBackground(Color.GRAY);
-        displayLength.setBounds(165,495,50,30);
+        displayLength.setBounds(145,495,50,30);
         this.add(displayLength);
 
-        JLabel unit = new JLabel("Seconds", SwingConstants.CENTER);
-        unit.setOpaque(true);
-        unit.setBackground(Color.GRAY);
-        unit.setBounds(230,495,70,30);
-        this.add(unit);
+        setLength = new JButton();
+        setLength.setText("Seconds");
+        setLength.setOpaque(true);
+        setLength.setBackground(Color.GRAY);
+        setLength.setBounds(210,495,100,30);
+        setLength.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+
+            }
+        });
+        this.add(setLength);
     }
 
     /**
@@ -119,9 +199,9 @@ public class MetricsValuePanel extends JPanel {
     }
 
     /**
-     * Public method to set the display length as per data received by the client.
+     * Public method to get the display length as per data entered by the user. Default is set to 1.
      */
-    public void setDisplayLength(int length){
-        displayLength.setText(""+length);
+    public String getDisplayLength(){
+        return displayLength.getText();
     }
 }

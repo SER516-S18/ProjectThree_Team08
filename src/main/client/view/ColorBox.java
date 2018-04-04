@@ -2,8 +2,6 @@ package main.client.view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 /**
  * Panel box to display an effect so that user can select a color for it. Also see the updated color in form of changed
@@ -26,17 +24,6 @@ public class ColorBox extends JPanel{
 
         dropdown = new JComboBox<>(colorList);
         dropdown.setBorder(BorderFactory.createEmptyBorder());
-        dropdown.addItemListener(
-                new ItemListener() {
-                    @Override
-                    public void itemStateChanged(ItemEvent e) {
-                        if(e.getStateChange() == ItemEvent.SELECTED){
-                            dropdown.setBackground(colors[dropdown.getSelectedIndex()]);
-                            setBackground(colors[dropdown.getSelectedIndex()]);
-                        }
-                    }
-                }
-        );
         this.add(dropdown, grid);
 
         emotionName = new JLabel();
@@ -68,5 +55,9 @@ public class ColorBox extends JPanel{
     public void setBoxColor(int index){
         dropdown.setSelectedIndex(index);
         setBackground(colors[index]);
+    }
+
+    public JComboBox<String> getDropdown() {
+        return dropdown;
     }
 }
