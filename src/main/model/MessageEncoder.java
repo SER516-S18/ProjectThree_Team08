@@ -22,6 +22,12 @@ public class MessageEncoder implements Encoder.Text<EmotionMessageBean> {
     public void destroy() {
     }
 
+    /**
+     *
+     * @param message is converted to json string
+     * @return converted json string from the received message object
+     * @throws EncodeException
+     */
     @Override
     public String encode(final EmotionMessageBean message) throws EncodeException {
         return gson.toJson(message);

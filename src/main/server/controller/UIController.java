@@ -18,9 +18,14 @@ public class UIController {
 
     private UIController() {}
 
+    // Inner class SingletonHolder to support lazy initialisation of class
     private static class SingletonHolder {
         public static final UIController uiController = new UIController();
     }
+    /**
+     * Returns an instance of the class
+     * @return UIController
+     */
     public static UIController getInstance()
     {
         return SingletonHolder.uiController;
