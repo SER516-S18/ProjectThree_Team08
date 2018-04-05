@@ -26,15 +26,16 @@ public class EndpointController {
         public static final EndpointController endpointController = new EndpointController();
     }
 
-    public static EndpointController getInstance()
-    {
-        return SingletonHolder.endpointController;
-    }
     /**
      * Returns an instance of the class
      *
      * @return EndpointController
      */
+    public static EndpointController getInstance()
+    {
+        return SingletonHolder.endpointController;
+    }
+
 
     public void updateExpBlink(boolean blink)
     {
@@ -155,12 +156,18 @@ public class EndpointController {
         }
     }
 
+    /**
+     * This method is to send the message only once
+     */
     public void sendOnce()
     {
         sendEmotionMessage();
     }
 
-
+    /**
+     * This method is called to send message in certain given intervals of time
+     * @param intervals This interval tells the value of intervals between sending messages to client from server
+     */
     public void sendInIntervals(double intervals)
     {
         long period = (long)(intervals * 1000L);
@@ -174,13 +181,17 @@ public class EndpointController {
         timer.scheduleAtFixedRate(toRepeatTask, 0,period);
     }
 
+    /**
+     * This method is to stop the message sending
+     */
     public void stop()
     {
         timer.cancel();
     }
 
-    //This method is invoked to send emotion message to main.client.
-    //Prerequiste : First update the message that you want to send and then call this method
+    /**
+     * This method is invoked to send emotion message
+     */
     public void sendEmotionMessage()
     {
         emotionMessageBean = new EmotionMessageBean();

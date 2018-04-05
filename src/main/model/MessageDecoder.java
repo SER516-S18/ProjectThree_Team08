@@ -21,6 +21,12 @@ public class MessageDecoder implements Decoder.Text<EmotionMessageBean> {
     public void destroy() {
     }
 
+    /**
+     *
+     * @param textMessage this message in json text will be converted to object
+     * @return emotionmessagebean object
+     * @throws DecodeException
+     */
     @Override
     public EmotionMessageBean decode(final String textMessage) throws DecodeException {
         return gson.fromJson(textMessage, EmotionMessageBean.class);
