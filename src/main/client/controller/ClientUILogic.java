@@ -2,25 +2,24 @@ package main.client.controller;
 
 import java.awt.event.*;
 
+import javax.swing.JTextField;
+
 /**
  * Client GUI logic
  * @author Jason Rice
  * @version 1.0
  */
 public class ClientUILogic {
-	private ActionListener openServerActionListener;
-	private ActionListener startServerActionListener;
+	public ActionListener openServerActionListener;
+	public ActionListener startServerConnectionActionListener;
 	
-	public ClientUILogic(){
-		initializeOpenServerActionListener();
-		initializeStartServerActionListener();
-	}
+	public ClientUILogic(){}
 	
 	/**
 	 * Handles the OpenServer menu item logic.
 	 */
 	public void initializeOpenServerActionListener(){
-		this.openServerActionListener = new ActionListener(){
+		openServerActionListener = new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				System.out.println("Open Server action performed.");
@@ -29,30 +28,16 @@ public class ClientUILogic {
 	}
 	
 	/**
-	 * Handles the StartServer menu item logic.
+	 * Handles the Start connection logic.
 	 */
-	public void initializeStartServerActionListener(){
-		this.startServerActionListener = new ActionListener(){
+	public void initializeStartServerConnectionActionListener(JTextField ip, JTextField port){
+		startServerConnectionActionListener = new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				System.out.println("Start Server Action Performed.");
+				System.out.println("ip address: " + ip.getText());
+				System.out.println("port: " + port.getText());
 			}
 		};
-	}
-	
-	/**
-	 * Get the Open Server Action Listener.
-	 * @return ActionListener
-	 */
-	public ActionListener getOpenServerActionListener(){
-		return this.openServerActionListener;
-	}
-	
-	/**
-	 * Get the Start Server Action Listener.
-	 * @return ActionListener
-	 */
-	public ActionListener getStartServerActionListener(){
-		return this.startServerActionListener;
 	}
 }

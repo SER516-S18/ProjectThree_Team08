@@ -19,6 +19,7 @@ public class ClientWindow extends JFrame{
 	private JPanel facePanelArea;
 	private JPanel expressionGraphPanelArea;
 	private JPanel expressionsTab;
+	private JPanel serverConnectionPanel;
 	ClientUILogic clientUILogic;
 	
 	/**
@@ -37,6 +38,7 @@ public class ClientWindow extends JFrame{
 		this.add(this.clientPanel);
 		
 		initializeMenuBar();
+		initializeServerConnectionPanel();
 		initializeTabbedPane();
 		
 		this.pack();
@@ -100,18 +102,27 @@ public class ClientWindow extends JFrame{
 		JMenu menu = new JMenu("Menu");
 		
 		JMenuItem openServer = new JMenuItem("Open Server");
-		openServer.addActionListener(this.clientUILogic.getOpenServerActionListener());
+		this.clientUILogic.initializeOpenServerActionListener();
+		openServer.addActionListener(this.clientUILogic.openServerActionListener);
 		menu.add(openServer);
-		
-		JMenuItem startServer = new JMenuItem("Start Server");
-		startServer.addActionListener(this.clientUILogic.getStartServerActionListener());
-		menu.add(startServer);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(menu);
 		this.menuBar = menuBar;
 		
 		this.setJMenuBar(this.menuBar);
+	}
+	
+	/**
+	 * Sets the Servers Connection panel area.
+	 */
+	public void initializeServerConnectionPanel(){
+		JPanel serverConnectionPanel = new JPanel(new BorderLayout());
+		serverConnectionPanel.setBackground(Color.GRAY);
+		serverConnectionPanel.setBorder(BorderFactory.createTitledBorder("Server Connection"));
+		serverConnectionPanel.setPreferredSize(new Dimension(500, 50));
+		this.serverConnectionPanel = serverConnectionPanel;
+		this.clientPanel.add(this.serverConnectionPanel, BorderLayout.NORTH);
 	}
 	
 	/**
@@ -144,5 +155,13 @@ public class ClientWindow extends JFrame{
 	 */
 	public void addExpressionGraphPanel(JPanel panel){
 		this.expressionGraphPanelArea.add(panel, BorderLayout.CENTER);
+	}
+	
+	/**
+	 * Add the Server Connection Panel to the client.
+	 * @param panel
+	 */
+	public void addServerConnectionPanel(JPanel panel){
+		this.serverConnectionPanel.add(panel, BorderLayout.CENTER);
 	}
 }
