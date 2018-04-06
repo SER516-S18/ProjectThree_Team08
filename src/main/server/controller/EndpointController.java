@@ -195,7 +195,7 @@ public class EndpointController {
     public void sendEmotionMessage()
     {
         emotionMessageBean = new EmotionMessageBean();
-        UIController.getInstance().updateMessageBeanFromUI(emotionMessageBean);
+        emotionMessageBean = UIController.getInstance().updateMessageBeanFromUI();
         for (Session client : ServerEndpoint.clients) {
             // do not resend the message to its sender
             try {

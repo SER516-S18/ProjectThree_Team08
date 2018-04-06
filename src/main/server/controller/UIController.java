@@ -13,7 +13,7 @@ import main.server.view.InteractivePanel;
  */
 public class UIController {
     private ConsolePanel consolePanel;
-    private DetectionPanel detectionPanel;
+    private static DetectionPanel detectionPanel;
     private static InteractivePanel interactivePanel;
 
     private UIController() {}
@@ -31,8 +31,8 @@ public class UIController {
         return SingletonHolder.uiController;
     }
 
-    public void setDetectionPanel(DetectionPanel detectionPanel) {
-        this.detectionPanel = detectionPanel;
+    public static void setDetectionPanel(DetectionPanel detectionPanelObj) {
+        detectionPanel = detectionPanelObj;
     }
 
     public static void setInteractivePanel(InteractivePanel interactivePanelObj) {
@@ -44,8 +44,10 @@ public class UIController {
     }
 
     // get the values from various parts of UI(spinner, text fields,..) and update in message bean
-    public void updateMessageBeanFromUI(EmotionMessageBean emotionMessageBean) {
-
+    public EmotionMessageBean updateMessageBeanFromUI() {
+    	// TODO: @RHYTHM: Needs to update the logic here. 
+    	// Set the values read from UI to messageBean 
+    	return null;
     }
 
 	public static void updateSendButtonText(boolean autoResetSelected) {
