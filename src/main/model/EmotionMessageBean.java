@@ -12,6 +12,7 @@ public class EmotionMessageBean extends Observable{
     private ExpressiveBean expressive;
     private String sender;
     private AffectiveBean affective;
+    private double clockTick;
 
     public EmotionMessageBean()
     {
@@ -43,12 +44,17 @@ public class EmotionMessageBean extends Observable{
         this.sender = sender;
     }
 
+    public void setClockTick(float clockTick) { this.clockTick = clockTick; }
+
+    public double getClockTick() { return this.clockTick; }
+
     @Override
     public String toString() {
         return "EmotionMessageBean{" +
                 "expressive=" + expressive +
                 ", sender='" + sender + '\'' +
                 ", affective=" + affective +
+                ", clock=" + clockTick +
                 '}';
     }
 }

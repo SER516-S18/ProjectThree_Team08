@@ -26,7 +26,7 @@ import main.server.controller.UIController;
 
 
 public class DetectionPanel extends JPanel{
-	
+
 	private JTextField timeTxtField;
 	private JComboBox<String> upperfaceComboBox;
 	private JSpinner upperfaceSpinner;
@@ -45,6 +45,8 @@ public class DetectionPanel extends JPanel{
 	private boolean isActivated;
 	private String pfMetricSelectedItem;
 	private double pfMetricSelectedValue;
+	private double timeTxtFieldVal;
+
 	
     public DetectionPanel() {
         this.setBackground(Color.GRAY);
@@ -63,7 +65,7 @@ public class DetectionPanel extends JPanel{
         timeTxtField.setForeground(Color.WHITE);
         timeTxtField.setBackground(Color.DARK_GRAY);
         timeTxtField.setEditable(false);
-        timeTxtField.setText("29.25");
+        timeTxtField.setText("0");
         timeTxtField.setBounds(53, 29, 50, 25);
         this.add(timeTxtField);
         timeTxtField.setColumns(10);
@@ -314,5 +316,14 @@ public class DetectionPanel extends JPanel{
 	public DetectionPanel getDetectionPanel() {
 		return this;
 	}
-    
+
+    public void setTimeTxtField(double clockTick) {
+        this.timeTxtFieldVal = clockTick;
+        timeTxtField.setText(Double.toString (this.timeTxtFieldVal));
+    }
+
+    public double getTimeTextField() {
+        return  timeTxtFieldVal;
+    }
+
 }

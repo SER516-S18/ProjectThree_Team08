@@ -30,7 +30,7 @@ public class InteractivePanel extends JPanel{
 	private JCheckBox chckbxAutoReset;
 	private JSpinner emoStateSpinner;
 	private static JButton btnSend;
-	private int playerValue;
+	private static int playerValue;
 	private boolean isAutoReset = false;
 	private static double emoStateTimeInterval;
 	
@@ -60,6 +60,7 @@ public class InteractivePanel extends JPanel{
         playerLabel.setForeground(Color.WHITE);
         playerLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
         playerLabel.setBounds(14, 29, 55, 25);
+        setPlayerValue (0);
         this.add(playerLabel);
         
         JLabel emoStateLabel = new JLabel("<html>EmoState Interval:</html>");
@@ -90,11 +91,12 @@ public class InteractivePanel extends JPanel{
         btnSend.setContentAreaFilled(false);
         btnSend.setOpaque(true);
         btnSend.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-            	InteractivePanel interactivePanel = new InteractivePanel(
-            				getPlayerValue(), isAutoReset(), getEmoStateTimeInterval());
-            	UIController.setInteractivePanel(interactivePanel);
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            	UIController.setInteractivePanel(getInteractivePanel());
             	UIController.updateSendButtonText();
+            	UIController.updateDetectionTime(getEmoStateTimeInterval ());
             }
         });
         btnSend.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -104,6 +106,8 @@ public class InteractivePanel extends JPanel{
         emoStateSpinner = new JSpinner();
         emoStateSpinner.setModel(new SpinnerNumberModel(0.25, 0.25, 100.00, 0.50));
         emoStateSpinner.setBounds(324, 29, 55, 25);
+        setEmoStateTimeInterval(0.25);
+
         ChangeListener emoStateChangeListener = new ChangeListener() {
 			
 			@Override
@@ -116,10 +120,8 @@ public class InteractivePanel extends JPanel{
         this.add(emoStateSpinner);
     }
 	
-	public InteractivePanel(int playerVal, boolean isAutoResetChecked, double emoStateValue) {
-		playerValue = playerVal;
-		isAutoReset = isAutoResetChecked;
-		emoStateTimeInterval = emoStateValue;
+	public InteractivePanel getInteractivePanel() {
+		return this;
 	}
 
 	public static int getPlayerValue() {

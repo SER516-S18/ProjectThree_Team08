@@ -5,10 +5,13 @@ import main.server.view.ConsolePanel;
 import main.server.view.DetectionPanel;
 import main.server.view.InteractivePanel;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Controller which acts as a interface between EndpointController and view(UI).
  * This class has to be created first when the main.server ui or main.client ui is on and should be the first one to be invoked
- * @author Balachandar Sampath, Rhythm Sharma
+ * @author Balachandar Sampath, Rhythm Sharma, Aashita Priya
  * @version 1.0
  */
 public class UIController {
@@ -65,5 +68,29 @@ public class UIController {
 			interactivePanel.updateSendBtnText("Stop");
 		}
 	}
+
+	public static void updateDetectionTime(double emoStateInterval) {
+        double detectionTime = detectionPanel.getTimeTextField ();
+        double[] newDetectionTime = new double[1];
+
+        if(interactivePanel.isAutoReset()) {
+            detectionTime += emoStateInterval;
+            detectionPanel.setTimeTxtField (detectionTime);
+        } else {
+            double finalDetectionTime = detectionTime;
+            TimerTask timerTask = new TimerTask () {
+                @Override
+                public void run() {
+                    newDetectionTime[0] = finalDetectionTime + emoStateInterval;
+                    detectionPanel.setTimeTxtField (finalDetectionTime);
+                }
+            };
+
+            Timer timer = new Timer ();
+            long delay = 0;
+            long intervalPeriod = (long) (emoStateInterval * 1000);
+            timer.scheduleAtFixedRate (timerTask, delay, intervalPeriod);
+        }
+    }
 
 }
