@@ -24,6 +24,10 @@ public class EmotionMessageBean extends Observable{
         return expressive;
     }
 
+    /**
+     *
+     * @param expressive
+     */
     public void setExpressive(ExpressiveBean expressive) {
         this.expressive = expressive;
     }
@@ -32,6 +36,10 @@ public class EmotionMessageBean extends Observable{
         return affective;
     }
 
+    /**
+     *
+     * @param affective
+     */
     public void setAffective(AffectiveBean affective) {
         this.affective = affective;
     }
@@ -40,10 +48,18 @@ public class EmotionMessageBean extends Observable{
         return sender;
     }
 
+    /**
+     *
+     * @param sender
+     */
     public void setSender(String sender) {
         this.sender = sender;
     }
 
+    /**
+     *
+     * @param clockTick
+     */
     public void setClockTick(float clockTick) { this.clockTick = clockTick; }
 
     public double getClockTick() { return this.clockTick; }

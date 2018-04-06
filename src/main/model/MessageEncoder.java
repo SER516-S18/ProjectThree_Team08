@@ -14,6 +14,10 @@ import javax.websocket.EndpointConfig;
 public class MessageEncoder implements Encoder.Text<EmotionMessageBean> {
     private static Gson gson = new Gson();
 
+    /**
+     *
+     * @param config
+     */
     @Override
     public void init(final EndpointConfig config) {
     }

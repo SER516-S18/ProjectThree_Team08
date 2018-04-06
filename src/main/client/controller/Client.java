@@ -15,6 +15,7 @@ public class Client {
     private static Gson gson = new Gson();
     public static void main(String[] args) throws Exception {
         ClientManager client = ClientManager.createClient();
+        ClientInitUI.initialiseGUI();
         String message;
 
         // connect to main.server

@@ -108,7 +108,7 @@
                         <appendAssemblyId>false</appendAssemblyId>
                         <archive>
                             <manifest>
-                                <mainClass>main.client.controller.ClientMain</mainClass>
+                                <mainClass>main.client.controller.Client</mainClass>
                             </manifest>
                         </archive>
                         <descriptorRefs>

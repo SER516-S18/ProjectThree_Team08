@@ -10,7 +10,7 @@ import main.client.view.MetricsValuePanel;
  * @author 
  * @version 1.1
  */
-class ClientMain {
+class ClientInitUI {
 
 	/**
 	 * Initialize the client GUI
@@ -31,14 +31,6 @@ class ClientMain {
 		} catch(Exception exception){
 			System.out.println(exception.getMessage());
 		}
-	}
-
-	/**
-	 * Main
-	 * @param args
-	 */
-	public static void main(String[] args){
-		initialiseGUI();
 	}
 
 

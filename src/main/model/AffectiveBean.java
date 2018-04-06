@@ -15,10 +15,15 @@ public class AffectiveBean {
     private double excitement;
     private double focus;
 
+
     public double getInterest() {
         return interest;
     }
 
+    /**
+     *
+     * @param interest
+     */
     public void setInterest(double interest) {
         this.interest = interest;
     }
@@ -27,6 +32,10 @@ public class AffectiveBean {
         return engagement;
     }
 
+    /**
+     *
+     * @param engagement
+     */
     public void setEngagement(double engagement) {
         this.engagement = engagement;
     }
@@ -35,6 +44,10 @@ public class AffectiveBean {
         return stress;
     }
 
+    /**
+     *
+     * @param stress
+     */
     public void setStress(double stress) {
         this.stress = stress;
     }
@@ -43,6 +56,10 @@ public class AffectiveBean {
         return relaxation;
     }
 
+    /**
+     *
+     * @param relaxation
+     */
     public void setRelaxation(double relaxation) {
         this.relaxation = relaxation;
     }
@@ -51,6 +68,10 @@ public class AffectiveBean {
         return excitement;
     }
 
+    /**
+     *
+     * @param excitement
+     */
     public void setExcitement(double excitement) {
         this.excitement = excitement;
     }
@@ -59,6 +80,10 @@ public class AffectiveBean {
         return focus;
     }
 
+    /**
+     *
+     * @param focus
+     */
     public void setFocus(double focus) {
         this.focus = focus;
     }

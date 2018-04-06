@@ -59,6 +59,7 @@ public class ServerEndpoint {
     /**
      * This method is called when there is connection error
      * @param session This is the first parameter to onError method and holds client session
+     * @param throwable
      */
     @OnError
     public void onError(Session session, Throwable throwable) {

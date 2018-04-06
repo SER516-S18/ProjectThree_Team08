@@ -37,6 +37,10 @@ public class EndpointController {
     }
 
 
+    /**
+     *
+     * @param blink
+     */
     public void updateExpBlink(boolean blink)
     {
             for (Session client : ServerEndpoint.clients)
@@ -45,6 +49,10 @@ public class EndpointController {
             }
     }
 
+    /**
+     *
+     * @param rightWink
+     */
     public void updateExpRightWink(boolean rightWink)
     {
             for (Session client : ServerEndpoint.clients)
@@ -53,6 +61,10 @@ public class EndpointController {
             }
     }
 
+    /**
+     *
+     * @param leftWink
+     */
     public void updateExpLeftWink(boolean leftWink)
     {
             for (Session client : ServerEndpoint.clients)
@@ -61,6 +73,10 @@ public class EndpointController {
             }
     }
 
+    /**
+     *
+     * @param lookingLeft
+     */
     public void updateExpLookingLeft(double lookingLeft)
     {
             for (Session client : ServerEndpoint.clients)
@@ -69,6 +85,10 @@ public class EndpointController {
             }
     }
 
+    /**
+     *
+     * @param lookingRight
+     */
     public void updateExpLookingRight(double lookingRight)
     {
             for (Session client : ServerEndpoint.clients)
@@ -77,7 +97,10 @@ public class EndpointController {
             }
     }
 
-
+    /**
+     *
+     * @param eyeBrowRaise
+     */
     public void updateEyeBrowRaise(double eyeBrowRaise)
     {
         for(Session client : ServerEndpoint.clients)
@@ -86,6 +109,10 @@ public class EndpointController {
         }
     }
 
+    /**
+     *
+     * @param eyesOpen
+     */
     public void updateEyesOpen(double eyesOpen)
     {
         for(Session client : ServerEndpoint.clients) {
@@ -93,6 +120,10 @@ public class EndpointController {
         }
     }
 
+    /**
+     *
+     * @param smile
+     */
     public void updateSmile(double smile)
     {
         for(Session client : ServerEndpoint.clients) {
@@ -100,55 +131,90 @@ public class EndpointController {
         }
     }
 
+    /**
+     *
+     * @param clench
+     */
     public void updateClench(double clench) {
         for(Session client : ServerEndpoint.clients) {
             EndpointController.getInstance().emotionMessageBean.getExpressive().setClench(clench);
         }
     }
 
+    /**
+     *
+     * @param lookingUp
+     */
     public void updateLookingUp(double lookingUp) {
         for(Session client : ServerEndpoint.clients) {
             EndpointController.getInstance().emotionMessageBean.getExpressive().setLookingUp(lookingUp);
         }
     }
 
+    /**
+     *
+     * @param lookingDown
+     */
     public void updateLookingDown(double lookingDown) {
         for(Session client : ServerEndpoint.clients) {
             EndpointController.getInstance().emotionMessageBean.getExpressive().setLookingDown(lookingDown);
         }
     }
 
+    /**
+     *
+     * @param interest
+     */
     public void updateInterest(double interest) {
         for(Session client : ServerEndpoint.clients) {
             EndpointController.getInstance().emotionMessageBean.getAffective().setInterest(interest);
         }
     }
 
+    /**
+     *
+     * @param engagement
+     */
     public void updateEngagement(double engagement) {
         for(Session client : ServerEndpoint.clients) {
             EndpointController.getInstance().emotionMessageBean.getAffective().setEngagement(engagement);
         }
     }
 
+    /**
+     *
+     * @param stress
+     */
     public void updateStress(double stress) {
         for(Session client : ServerEndpoint.clients) {
             EndpointController.getInstance().emotionMessageBean.getAffective().setStress(stress);
         }
     }
 
+    /**
+     *
+     * @param relaxation
+     */
     public void updateRelaxation(double relaxation) {
         for(Session client : ServerEndpoint.clients) {
             EndpointController.getInstance().emotionMessageBean.getAffective().setRelaxation(relaxation);
         }
     }
 
-
+    /**
+     *
+     * @param excitement
+     */
     public void updateExcitement(double excitement) {
         for(Session client : ServerEndpoint.clients) {
             EndpointController.getInstance().emotionMessageBean.getAffective().setExcitement(excitement);
         }
     }
 
+    /**
+     *
+     * @param focus
+     */
     public void updateFocus(double focus) {
         for(Session client : ServerEndpoint.clients)
         {
@@ -194,9 +260,10 @@ public class EndpointController {
      */
     public void sendEmotionMessage()
     {
-        //emotionMessageBean = new EmotionMessageBean();
+        //Reintialisation emotion for resetting data
+        this.emotionMessageBean = new EmotionMessageBean();
 
-        emotionMessageBean = UIController.getInstance().updateMessageBeanFromUI();
+        UIController.getInstance().updateMessageBeanFromUI();
         for (Session client : ServerEndpoint.clients) {
             // do not resend the message to its sender
             try {

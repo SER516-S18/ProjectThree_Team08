@@ -13,6 +13,11 @@ import javax.websocket.EndpointConfig;
 public class MessageDecoder implements Decoder.Text<EmotionMessageBean> {
 
     private static Gson gson = new Gson();
+
+    /**
+     *
+     * @param config
+     */
     @Override
     public void init(final EndpointConfig config) {
     }
@@ -24,7 +29,7 @@ public class MessageDecoder implements Decoder.Text<EmotionMessageBean> {
     /**
      *
      * @param textMessage this message in json text will be converted to object
-     * @return emotionmessagebean object
+     * @return EmotionMessageBean object
      * @throws DecodeException
      */
     @Override
@@ -32,6 +37,11 @@ public class MessageDecoder implements Decoder.Text<EmotionMessageBean> {
         return gson.fromJson(textMessage, EmotionMessageBean.class);
     }
 
+    /**
+     *
+     * @param s
+     * @return
+     */
     @Override
     public boolean willDecode(final String s) {
         return true;

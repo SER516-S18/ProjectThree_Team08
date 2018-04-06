@@ -8,7 +8,7 @@ import java.awt.EventQueue;
  * @version 1.0
  */
 
-public class ServerMain {
+public class ServerInitUI {
 
     public static void initializeGUI() {
         EventQueue.invokeLater(new Runnable() {

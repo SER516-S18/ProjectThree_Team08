@@ -2,6 +2,8 @@
 
 How to run
 
+Have Maven installed in your machine.
+For reference https://maven.apache.org/install.html
 ## Build jar file
 
 ```bash

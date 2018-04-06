@@ -48,6 +48,10 @@ public class ExpressiveBean{
         return blink;
     }
 
+    /**
+     *
+     * @param blink
+     */
     public void setBlink(boolean blink) {
         this.blink = blink;
     }
@@ -56,6 +60,10 @@ public class ExpressiveBean{
         return rightWink;
     }
 
+    /**
+     *
+     * @param rightWink
+     */
     public void setRightWink(boolean rightWink) {
         this.rightWink = rightWink;
     }
@@ -64,6 +72,10 @@ public class ExpressiveBean{
         return leftWink;
     }
 
+    /**
+     *
+     * @param leftWink
+     */
     public void setLeftWink(boolean leftWink) {
         this.leftWink = leftWink;
     }
@@ -72,6 +84,10 @@ public class ExpressiveBean{
         return lookingLeft;
     }
 
+    /**
+     *
+     * @param lookingLeft
+     */
     public void setLookingLeft(double lookingLeft) {
         this.lookingLeft = lookingLeft;
     }
@@ -80,6 +96,10 @@ public class ExpressiveBean{
         return lookingRight;
     }
 
+    /**
+     *
+     * @param lookingRight
+     */
     public void setLookingRight(double lookingRight) {
         this.lookingRight = lookingRight;
     }
@@ -88,6 +108,10 @@ public class ExpressiveBean{
         return eyeBrowRaise;
     }
 
+    /**
+     *
+     * @param raiseBrow
+     */
     public void setRaiseBrow(double raiseBrow) {
         this.eyeBrowRaise = raiseBrow;
     }
@@ -96,6 +120,10 @@ public class ExpressiveBean{
         return eyesOpen;
     }
 
+    /**
+     *
+     * @param eyesOpen
+     */
     public void setEyesOpen(double eyesOpen) {
         this.eyesOpen = eyesOpen;
     }
@@ -104,6 +132,10 @@ public class ExpressiveBean{
         return smile;
     }
 
+    /**
+     *
+     * @param smile
+     */
     public void setSmile(double smile) {
         this.smile = smile;
     }
@@ -112,6 +144,10 @@ public class ExpressiveBean{
         return clench;
     }
 
+    /**
+     *
+     * @param clench
+     */
     public void setClench(double clench) {
         this.clench = clench;
     }
@@ -120,6 +156,10 @@ public class ExpressiveBean{
         return lookingUp;
     }
 
+    /**
+     *
+     * @param lookingUp
+     */
     public void setLookingUp(double lookingUp) {
         this.lookingUp = lookingUp;
     }
@@ -128,6 +168,10 @@ public class ExpressiveBean{
         return lookingDown;
     }
 
+    /**
+     *
+     * @param lookingDown
+     */
     public void setLookingDown(double lookingDown) {
         this.lookingDown = lookingDown;
     }
@@ -149,6 +193,11 @@ public class ExpressiveBean{
                 '}';
     }
 
+    /**
+     *
+     * @param bean
+     * @return
+     */
     public boolean equals(ExpressiveBean bean){
 
         return  lookingRight == bean.lookingRight &&

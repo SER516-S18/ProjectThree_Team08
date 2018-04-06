@@ -35,25 +35,38 @@ public class UIController {
         return SingletonHolder.uiController;
     }
 
+    /**
+     *
+     * @param detectionPanelObj
+     */
     public static void setDetectionPanel(DetectionPanel detectionPanelObj) {
         detectionPanel = detectionPanelObj;
     }
 
+    /**
+     *
+     * @param interactivePanelObj
+     */
     public static void setInteractivePanel(InteractivePanel interactivePanelObj) {
         interactivePanel = interactivePanelObj;
     }
 
+    /**
+     *
+     * @param consolePanel
+     */
     public void setConsolePanel(ConsolePanel consolePanel) {
         this.consolePanel = consolePanel;
     }
 
     // get the values from various parts of UI(spinner, text fields,..) and update in message bean
-    public EmotionMessageBean updateMessageBeanFromUI() {
+    public void updateMessageBeanFromUI() {
     	// TODO: @RHYTHM: Needs to update the logic here. 
     	// Set the values read from UI to messageBean
-        EmotionMessageBean messageBean = new EmotionMessageBean ();
-        Double time = messageBean.getClockTick (); //Append this time to message
-    	return messageBean;
+      //  Double time = emotionMessageBean.getClockTick (); //Append this time to message
+
+        //From Bala : Can access eyewink data from this.detectionPanel and pls dont access the bean directly from here and use the below line to update the bean for low coupling and soc
+        //EndpointController.getInstance().updateExpLeftWink();
     }
 
 	public static void updateSendButtonText(boolean autoResetSelected) {
