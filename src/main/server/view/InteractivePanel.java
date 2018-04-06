@@ -33,6 +33,7 @@ public class InteractivePanel extends JPanel{
 	private static int playerValue;
 	private boolean isAutoReset = false;
 	private static double emoStateTimeInterval;
+	private String btnSendValue;
 	
 	public InteractivePanel() {
         
@@ -95,7 +96,8 @@ public class InteractivePanel extends JPanel{
             public void actionPerformed(ActionEvent e) {
 
             	UIController.setInteractivePanel(getInteractivePanel());
-            	UIController.updateSendButtonText();
+            	UIController.updateSendButtonText(btnSend.getText ());
+            	System.out.println (btnSend.getText ());
             	UIController.updateDetectionTime(getEmoStateTimeInterval ());
             }
         });
@@ -149,7 +151,11 @@ public class InteractivePanel extends JPanel{
 	}
 	
 	public void updateSendBtnText(String sendBtnText) {
+		this.btnSendValue = sendBtnText;
 		btnSend.setText(sendBtnText);
 	}
-	
+
+	public String getBtnSendValue() {
+		return btnSendValue;
+	}
 }

@@ -18,6 +18,7 @@ public class UIController {
     private ConsolePanel consolePanel;
     private static DetectionPanel detectionPanel;
     private static InteractivePanel interactivePanel;
+    private static boolean run = true;
 
     private UIController() {}
 
@@ -49,48 +50,72 @@ public class UIController {
     // get the values from various parts of UI(spinner, text fields,..) and update in message bean
     public EmotionMessageBean updateMessageBeanFromUI() {
     	// TODO: @RHYTHM: Needs to update the logic here. 
-    	// Set the values read from UI to messageBean 
-    	return null;
+    	// Set the values read from UI to messageBean
+        EmotionMessageBean messageBean = new EmotionMessageBean ();
+        Double time = messageBean.getClockTick (); //Append this time to message
+    	return messageBean;
     }
 
 	public static void updateSendButtonText(boolean autoResetSelected) {
 		String sendBtnText;
 		if(autoResetSelected) {
 			sendBtnText = "Start";
+			System.out.println ("start");
 		} else {
 			sendBtnText = "Send";
+			System.out.println ("send");
 		}
 		interactivePanel.updateSendBtnText(sendBtnText);
 	}
 
-	public static void updateSendButtonText() {
+	public static void updateSendButtonText(String presentText) {
 		if(interactivePanel.isAutoReset()) {
-			interactivePanel.updateSendBtnText("Stop");
+		    if("start".equalsIgnoreCase (presentText)) {
+                interactivePanel.updateSendBtnText("Stop");
+            } else {
+                interactivePanel.updateSendBtnText("Start");
+            }
+
 		}
 	}
 
 	public static void updateDetectionTime(double emoStateInterval) {
-        double detectionTime = detectionPanel.getTimeTextField ();
-        double[] newDetectionTime = new double[1];
 
-        if(interactivePanel.isAutoReset()) {
+        if(!interactivePanel.isAutoReset()) {
+            double detectionTime = detectionPanel.getTimeTextField ();
             detectionTime += emoStateInterval;
             detectionPanel.setTimeTxtField (detectionTime);
+
         } else {
-            double finalDetectionTime = detectionTime;
+            if("start".equalsIgnoreCase (interactivePanel.getBtnSendValue ())) {
+                run = false;
+            } else {
+                run = true;
+            }
+
+            Timer timer = new Timer ();
+
             TimerTask timerTask = new TimerTask () {
+                double detectionTime, newDetectionTime;
                 @Override
                 public void run() {
-                    newDetectionTime[0] = finalDetectionTime + emoStateInterval;
-                    detectionPanel.setTimeTxtField (finalDetectionTime);
+                    if(run) {
+                        detectionTime = detectionPanel.getTimeTextField ();
+                        newDetectionTime = detectionTime + emoStateInterval;
+                        detectionPanel.setTimeTxtField (newDetectionTime);
+                    } else {
+                        timer.cancel();
+                        timer.purge();
+                    }
                 }
             };
 
-            Timer timer = new Timer ();
             long delay = 0;
             long intervalPeriod = (long) (emoStateInterval * 1000);
             timer.scheduleAtFixedRate (timerTask, delay, intervalPeriod);
+
         }
+
     }
 
 }
