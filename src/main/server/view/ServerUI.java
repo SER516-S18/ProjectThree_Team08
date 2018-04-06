@@ -1,5 +1,7 @@
 package main.server.view;
 
+import main.server.controller.UIController;
+
 import java.awt.Color;
 
 import javax.swing.JFrame;
@@ -23,11 +25,12 @@ public class ServerUI extends JFrame{
         
         InteractivePanel intPanel = new InteractivePanel();
         this.getContentPane().add(intPanel);
-        
+        UIController.getInstance().setInteractivePanel(intPanel);
         DetectionPanel detPanel = new DetectionPanel();
         this.getContentPane().add(detPanel);
-        
+        UIController.getInstance().setDetectionPanel(detPanel);
         ConsolePanel conPanel = new ConsolePanel();
         this.getContentPane().add(conPanel);
+        UIController.getInstance().setConsolePanel(conPanel);
     }
 }

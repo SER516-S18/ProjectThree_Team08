@@ -11,13 +11,15 @@ public class Server {
 
     public static void main(String[] args) {
 
+        // Initialise the server
+        EndpointController endpointController = EndpointController.getInstance();
+        UIController uiController = UIController.getInstance();
+
         // Initilaise the gui
         ServerMain serverMain = new ServerMain();
         serverMain.initializeGUI();
 
-        // Initialise the server
-        EndpointController endpointController = EndpointController.getInstance();
-        UIController uiController = UIController.getInstance();
+
         org.glassfish.tyrus.server.Server server = new org.glassfish.tyrus.server.Server(ConnectionConstants.HOSTNAME, ConnectionConstants.PORT, "/"+ConnectionConstants.ROOT_PATH, ServerEndpoint.class);
         try {
             server.start();
