@@ -15,8 +15,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This panel displays the face and handles facial expressions
+ * @author Ejaz Saifudeen
+ * @version 1.1
+ */
 public class ExpressivePanel extends JPanel {
 
+    private static final String faceLayoutPath = "images/faceLayout.png";
     private List<IExpressive> shapes = new ArrayList<>();
     private LeftEye leftEye = new LeftEye();
     private RightEye rightEye = new RightEye();
@@ -32,6 +38,10 @@ public class ExpressivePanel extends JPanel {
     BufferedImage img = null;
     ExpressiveBean bean = null;
 
+    /**
+     * Constructor adds all shapes to a list and reads the facelayout image
+     * to a buffered image
+     */
     public ExpressivePanel(){
         shapes.add(leftEye);
         shapes.add(rightEye);
@@ -44,7 +54,7 @@ public class ExpressivePanel extends JPanel {
         shapes.add(mouth);
         shapes.add(smile);
         shapes.add(clench);
-        File f = new File("C:\\Users\\Ejaz\\Desktop\\face1.png");
+        File f = new File(faceLayoutPath);
 
         try {
             img = ImageIO.read(f);
@@ -53,6 +63,10 @@ public class ExpressivePanel extends JPanel {
         }
     }
 
+    /**
+     * This method is responsible for drawing all the shapes
+     * @param g Graphics object
+     */
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
@@ -71,6 +85,10 @@ public class ExpressivePanel extends JPanel {
         }
     }
 
+    /**
+     * Affects facial features based on the received bean
+     * @param b ExpressiveBean object
+     */
     public void Affect(ExpressiveBean b){
 
         if(bean == null || !bean.equals(b)){
@@ -125,9 +143,5 @@ public class ExpressivePanel extends JPanel {
             Graphics2D g2 =(Graphics2D)getGraphics();
             paintComponent(g2);
         }
-
-
     }
-
-
 }
