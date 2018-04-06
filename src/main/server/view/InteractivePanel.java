@@ -13,19 +13,26 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import main.server.controller.UIController;
 
 /**
  * Class for creating controls for interaction panel.
- * @author Akash Sharma
+ * @author Akash Sharma, Rhythm Sharma
  * @version 1.0
  */
 
 public class InteractivePanel extends JPanel{
     
-	JComboBox<String> playerComboBox;
-	JCheckBox chckbxAutoReset;
-	JSpinner emoStateSpinner;
-	JButton btnSend;
+	private JComboBox<String> playerComboBox;
+	private JCheckBox chckbxAutoReset;
+	private JSpinner emoStateSpinner;
+	private static JButton btnSend;
+	private int playerValue;
+	private boolean isAutoReset = false;
+	private static double emoStateTimeInterval;
 	
 	public InteractivePanel() {
         
@@ -39,6 +46,14 @@ public class InteractivePanel extends JPanel{
         String[] playerItems = new String[] {"0", "1", "2"};
         playerComboBox = new JComboBox<>(playerItems);
         playerComboBox.setBounds(85, 30, 55, 25);
+        playerComboBox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JComboBox<String> changedObj = (JComboBox<String>) e.getSource();
+				setPlayerValue(Integer.valueOf(changedObj.getSelectedItem().toString()));
+			}
+		});
         this.add(playerComboBox);
         
         JLabel playerLabel = new JLabel("Player");
@@ -58,6 +73,15 @@ public class InteractivePanel extends JPanel{
         chckbxAutoReset.setBackground(Color.GRAY);
         chckbxAutoReset.setFont(new Font("Tahoma", Font.BOLD, 12));
         chckbxAutoReset.setBounds(175, 61, 101, 25);
+        chckbxAutoReset.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JCheckBox changedObj = (JCheckBox) e.getSource();
+				setAutoReset(changedObj.isSelected());
+				UIController.updateSendButtonText(changedObj.isSelected());
+			}
+		});
         this.add(chckbxAutoReset);
         
         btnSend = new JButton("Send");
@@ -67,7 +91,10 @@ public class InteractivePanel extends JPanel{
         btnSend.setOpaque(true);
         btnSend.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-            	
+            	InteractivePanel interactivePanel = new InteractivePanel(
+            				getPlayerValue(), isAutoReset(), getEmoStateTimeInterval());
+            	UIController.setInteractivePanel(interactivePanel);
+            	UIController.updateSendButtonText();
             }
         });
         btnSend.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -77,6 +104,50 @@ public class InteractivePanel extends JPanel{
         emoStateSpinner = new JSpinner();
         emoStateSpinner.setModel(new SpinnerNumberModel(0.25, 0.25, 100.00, 0.50));
         emoStateSpinner.setBounds(324, 29, 55, 25);
+        ChangeListener emoStateChangeListener = new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				JSpinner changedObj = (JSpinner) e.getSource();
+				setEmoStateTimeInterval(Double.valueOf(changedObj.getValue().toString()));
+			}
+		};
+        emoStateSpinner.addChangeListener(emoStateChangeListener);
         this.add(emoStateSpinner);
     }
+	
+	public InteractivePanel(int playerVal, boolean isAutoResetChecked, double emoStateValue) {
+		playerValue = playerVal;
+		isAutoReset = isAutoResetChecked;
+		emoStateTimeInterval = emoStateValue;
+	}
+
+	public static int getPlayerValue() {
+		return playerValue;
+	}
+
+	public void setPlayerValue(int playerValue) {
+		this.playerValue = playerValue;
+	}
+
+	public boolean isAutoReset() {
+		return isAutoReset;
+	}
+
+	public void setAutoReset(boolean isAutoReset) {
+		this.isAutoReset = isAutoReset;
+	}
+
+	public static double getEmoStateTimeInterval() {
+		return emoStateTimeInterval;
+	}
+
+	public void setEmoStateTimeInterval(double emoStateTimeInterval) {
+		this.emoStateTimeInterval = emoStateTimeInterval;
+	}
+	
+	public void updateSendBtnText(String sendBtnText) {
+		btnSend.setText(sendBtnText);
+	}
+	
 }

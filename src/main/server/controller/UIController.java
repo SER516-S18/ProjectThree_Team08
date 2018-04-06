@@ -8,13 +8,13 @@ import main.server.view.InteractivePanel;
 /**
  * Controller which acts as a interface between EndpointController and view(UI).
  * This class has to be created first when the main.server ui or main.client ui is on and should be the first one to be invoked
- * @author Balachandar Sampath
+ * @author Balachandar Sampath, Rhythm Sharma
  * @version 1.0
  */
 public class UIController {
     private ConsolePanel consolePanel;
     private DetectionPanel detectionPanel;
-    private InteractivePanel interactivePanel;
+    private static InteractivePanel interactivePanel;
 
     private UIController() {}
 
@@ -35,8 +35,8 @@ public class UIController {
         this.detectionPanel = detectionPanel;
     }
 
-    public void setInteractivePanel(InteractivePanel interactivePanel) {
-        this.interactivePanel = interactivePanel;
+    public static void setInteractivePanel(InteractivePanel interactivePanelObj) {
+        interactivePanel = interactivePanelObj;
     }
 
     public void setConsolePanel(ConsolePanel consolePanel) {
@@ -47,5 +47,21 @@ public class UIController {
     public void updateMessageBeanFromUI(EmotionMessageBean emotionMessageBean) {
 
     }
+
+	public static void updateSendButtonText(boolean autoResetSelected) {
+		String sendBtnText;
+		if(autoResetSelected) {
+			sendBtnText = "Start";
+		} else {
+			sendBtnText = "Send";
+		}
+		interactivePanel.updateSendBtnText(sendBtnText);
+	}
+
+	public static void updateSendButtonText() {
+		if(interactivePanel.isAutoReset()) {
+			interactivePanel.updateSendBtnText("Stop");
+		}
+	}
 
 }
