@@ -77,7 +77,7 @@ public class ClientWindow extends JFrame{
 		expressionGraphPanelArea.setBorder(BorderFactory.createTitledBorder("Expression Plot"));
 		facePanelArea.setBackground(Color.GRAY);
 		this.expressionGraphPanelArea = expressionGraphPanelArea;
-		
+
 		JPanel expressionsTab = new JPanel();
 		expressionsTab.add(this.facePanelArea);
 		expressionsTab.add(this.expressionGraphPanelArea);
@@ -146,6 +146,7 @@ public class ClientWindow extends JFrame{
 	 * @param panel
 	 */
 	public void addFacePanel(JPanel panel){
+
 		this.facePanelArea.add(panel, BorderLayout.CENTER);
 	}
 	
