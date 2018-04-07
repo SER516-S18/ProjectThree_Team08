@@ -17,7 +17,7 @@ import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-import main.model.AffectiveBean;
+import main.model.ExpressiveBean;
 
 /**
  * Graph Panel to display line graph in graph tab
@@ -26,15 +26,14 @@ import main.model.AffectiveBean;
  */
 
 public class ExpressionLineGraph extends JPanel{
-    final private int channelNumber = 6;
     private TimeSeries[] metricValues;
     private ChartPanel chartPanel;
     private JFreeChart chart;
     private int frequency = 1;
-    public ExpressionLineGraph(String title) {
+    public ExpressionLineGraph(int type) {
 
 
-        XYDataset dataSet = createDataSet(channelNumber);
+        XYDataset dataSet = createDataSet(type);
         chart = createChart(dataSet);
         chartPanel = new ChartPanel(chart);
         chartPanel.addComponentListener(new ChartSizeListener());
