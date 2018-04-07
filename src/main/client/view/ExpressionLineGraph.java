@@ -1,5 +1,6 @@
 package main.client.view;
 
+import main.model.ExpressiveBean;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -30,8 +31,6 @@ public class ExpressionLineGraph extends JPanel{
     private ChartPanel chartPanel;
     private JFreeChart chart;
     private int frequency = 1;
-    private Color colorList[] = new Color[] { Color.RED, Color.GREEN, Color.YELLOW,
-            Color.BLUE, Color.PINK };
     public ExpressionLineGraph(String title) {
 
 
@@ -48,14 +47,19 @@ public class ExpressionLineGraph extends JPanel{
     /**
      * Public method to continuously update the values for the channels in graph
      */
-    public void updateMetric(AffectiveBean bean){
+    public void updateMetric(ExpressiveBean bean){
         Millisecond current = new Millisecond();
-        metricValues[0].addOrUpdate(current,bean.getInterest());
-        metricValues[1].addOrUpdate(current,bean.getEngagement());
-        metricValues[2].addOrUpdate(current,bean.getStress());
-        metricValues[3].addOrUpdate(current,bean.getRelaxation());
-        metricValues[4].addOrUpdate(current,bean.getExcitement());
-        metricValues[5].addOrUpdate(current,bean.getFocus());
+        //metricValues[0].addOrUpdate(current,bean.isBlink());
+        //metricValues[1].addOrUpdate(current,bean.isRightWink());
+        //metricValues[2].addOrUpdate(current,bean.isLeftWink());
+        metricValues[3].addOrUpdate(current,bean.getLookingLeft());
+        metricValues[4].addOrUpdate(current,bean.getLookingRight());
+        metricValues[5].addOrUpdate(current,bean.getRaiseBrow());
+        metricValues[6].addOrUpdate(current,bean.getEyesOpen());
+        metricValues[7].addOrUpdate(current,bean.getSmile());
+        metricValues[8].addOrUpdate(current,bean.getClench());
+        metricValues[9].addOrUpdate(current,bean.getLookingUp());
+        metricValues[10].addOrUpdate(current,bean.getLookingDown());
         NumberAxis n = (NumberAxis) chart.getXYPlot().getDomainAxis();
 //        n.pan(0.01);
     }
@@ -73,7 +77,7 @@ public class ExpressionLineGraph extends JPanel{
         final XYPlot plot = chart.getXYPlot();
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
         for (int i = 0; i < dataSet.getSeriesCount()-1; i++) {
-            renderer.setSeriesPaint(i,colorList[i]);
+            renderer.setSeriesPaint(i,Color.orange);
         }
 
         NumberAxis domain = (NumberAxis) plot.getDomainAxis();
