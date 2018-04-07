@@ -29,7 +29,7 @@ public class ExpressionGraphPanel extends JPanel {
             c.fill = GridBagConstraints.CENTER;
             c.gridx = 0;
             c.gridy = i;
-            ExpressionLineGraph graph=new ExpressionLineGraph("random");
+            ExpressionLineGraph graph=new ExpressionLineGraph(i);
             exp.add(graph, c);
             c.ipadx=0;
             c.ipady=0;
