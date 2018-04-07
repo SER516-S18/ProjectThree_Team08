@@ -10,125 +10,288 @@ import java.util.TimerTask;
 
 /**
  * Controller which acts as a interface between EndpointController and view(UI).
- * This class has to be created first when the main.server ui or main.client ui is on and should be the first one to be invoked
+ * This class has to be created first when the main.server ui or main.client ui
+ * is on and should be the first one to be invoked
+ * 
  * @author Balachandar Sampath, Rhythm Sharma, Aashita Priya
  * @version 1.0
  */
 public class UIController {
-    private ConsolePanel consolePanel;
-    private static DetectionPanel detectionPanel;
-    private static InteractivePanel interactivePanel;
-    private static boolean run = true;
+	private ConsolePanel consolePanel;
+	private static DetectionPanel detectionPanel;
+	private static InteractivePanel interactivePanel;
+	private static boolean run = true;
 
-    private UIController() {}
+	private UIController() {
+	}
 
-    // Inner class SingletonHolder to support lazy initialisation of class
-    private static class SingletonHolder {
-        public static final UIController uiController = new UIController();
-    }
-    /**
-     * Returns an instance of the class
-     * @return UIController
-     */
-    public static UIController getInstance()
-    {
-        return SingletonHolder.uiController;
-    }
+	// Inner class SingletonHolder to support lazy initialisation of class
+	private static class SingletonHolder {
+		public static final UIController uiController = new UIController();
+	}
 
-    /**
-     *
-     * @param detectionPanelObj
-     */
-    public static void setDetectionPanel(DetectionPanel detectionPanelObj) {
-        detectionPanel = detectionPanelObj;
-    }
+	/**
+	 * Returns an instance of the class
+	 * 
+	 * @return UIController
+	 */
+	public static UIController getInstance() {
+		return SingletonHolder.uiController;
+	}
 
-    /**
-     *
-     * @param interactivePanelObj
-     */
-    public static void setInteractivePanel(InteractivePanel interactivePanelObj) {
-        interactivePanel = interactivePanelObj;
-    }
+	/**
+	 *
+	 * @param detectionPanelObj
+	 */
+	public static void setDetectionPanel(DetectionPanel detectionPanelObj) {
+		detectionPanel = detectionPanelObj;
+	}
 
-    /**
-     *
-     * @param consolePanel
-     */
-    public void setConsolePanel(ConsolePanel consolePanel) {
-        this.consolePanel = consolePanel;
-    }
+	/**
+	 *
+	 * @param interactivePanelObj
+	 */
+	public static void setInteractivePanel(InteractivePanel interactivePanelObj) {
+		interactivePanel = interactivePanelObj;
+	}
 
-    // get the values from various parts of UI(spinner, text fields,..) and update in message bean
-    public void updateMessageBeanFromUI() {
-    	// TODO: @RHYTHM: Needs to update the logic here. 
-    	// Set the values read from UI to messageBean
-      //  Double time = emotionMessageBean.getClockTick (); //Append this time to message
+	/**
+	 *
+	 * @param consolePanel
+	 */
+	public void setConsolePanel(ConsolePanel consolePanel) {
+		this.consolePanel = consolePanel;
+	}
 
-        //From Bala : Can access eyewink data from this.detectionPanel and pls dont access the bean directly from here and use the below line to update the bean for low coupling and soc
-        //EndpointController.getInstance().updateExpLeftWink();
-    }
+	public void updateMessageBeanFromUI() {
 
+		this.updateUpperfaceMetrics();
+		this.updateLowerfaceMetrics();
+		this.updatePerformanceMetrics();
+		this.updateEyeStateMetric();
+	}
+
+	/**
+	 * This method is updating the model attributes for eye state
+	 * */
+	
+	private void updateEyeStateMetric() {
+		String[] eyeStateMetric = {"Blink", "Wink Left", "Wink Right"};
+		for(String str : eyeStateMetric) {
+			if(detectionPanel.getEyeStateSelectedItem().equalsIgnoreCase(str)) {
+				
+				switch(str) {
+					case "Blink" :
+						EndpointController.getInstance().updateExpBlink(true);
+						break;
+					case "Wink Left" :
+						EndpointController.getInstance().updateExpLeftWink(true);
+						break;
+					case "Wink Right" :
+						EndpointController.getInstance().updateExpRightWink(true);
+						break;
+				}
+				
+			} else if(str.equalsIgnoreCase("Blink")) {
+				EndpointController.getInstance().updateExpBlink(false);
+			} else if (str.equalsIgnoreCase("Wink Left")) {
+				EndpointController.getInstance().updateExpLeftWink(false);
+			} else if (str.equalsIgnoreCase("Wink Right")) {
+				EndpointController.getInstance().updateExpRightWink(false);
+			}
+		}
+	}
+
+	/**
+	 * This method is updating the model attributes for performance metric
+	 * */
+	private void updatePerformanceMetrics() {
+		String[] pfMetrics = { "Interest", "Engagement", "Stress", "Excitement", "Relaxation", "Focus" };
+		System.out.println("In UIController, in updatePerformanceMetrics ::::::   " + detectionPanel.getPfMetricSelectedValue());
+		for (String str : pfMetrics) {
+			if (detectionPanel.getPfMetricSelectedItem().equalsIgnoreCase(str)) {
+				
+				switch(str) {
+					case "Interest" :
+						EndpointController.getInstance().updateInterest(detectionPanel.getPfMetricSelectedValue());
+						break;
+					case "Engagement" :
+						EndpointController.getInstance().updateEngagement(detectionPanel.getPfMetricSelectedValue());
+						break;
+					case "Stress" :
+						EndpointController.getInstance().updateStress(detectionPanel.getPfMetricSelectedValue());
+						break;
+					case "Excitement" :
+						EndpointController.getInstance().updateExcitement(detectionPanel.getPfMetricSelectedValue());
+						break;
+					case "Relaxation" :
+						EndpointController.getInstance().updateRelaxation(detectionPanel.getPfMetricSelectedValue());
+						break;
+					case "Focus" :
+						EndpointController.getInstance().updateFocus(detectionPanel.getPfMetricSelectedValue());
+						break;
+				}
+				
+			} else if (str.equalsIgnoreCase("Interest")) {
+				EndpointController.getInstance().updateInterest(0.00);
+			} else if (str.equalsIgnoreCase("Engagement")) {
+				EndpointController.getInstance().updateEngagement(0.00);
+			} else if (str.equalsIgnoreCase("Stress")) {
+				EndpointController.getInstance().updateStress(0.00);
+			} else if (str.equalsIgnoreCase("Excitement")) {
+				EndpointController.getInstance().updateExcitement(0.00);
+			} else if (str.equalsIgnoreCase("Relaxation")) {
+				EndpointController.getInstance().updateRelaxation(0.00);
+			} else if (str.equalsIgnoreCase("Focus")) {
+				EndpointController.getInstance().updateFocus(0.00);
+			}
+
+		}
+	}
+
+	/**
+	 * This method is updating the model attributes for lowerface
+	 * */
+	private void updateLowerfaceMetrics() {
+		String[] lowerfaceMetrics = {"Smile", "Clench"};
+		for(String str : lowerfaceMetrics) {
+			if(detectionPanel.getLowerfaceSelectedItem().equalsIgnoreCase(str)) {
+				
+				switch(str) {
+					case "Smile" :
+						EndpointController.getInstance().updateSmile(detectionPanel.getLowerfaceSelectedValue());
+						break;
+					case "Clench" :
+						EndpointController.getInstance().updateClench(detectionPanel.getLowerfaceSelectedValue());
+						break;
+				}
+				
+			} else if(str.equalsIgnoreCase("Smile")) {
+				EndpointController.getInstance().updateSmile(0.00);
+			} else if(str.equalsIgnoreCase("Clench")) {
+				EndpointController.getInstance().updateClench(0.00);
+			}
+		}
+	}
+
+	/**
+	 * This method is updating the model attributes for upperface
+	 * */
+	private void updateUpperfaceMetrics() {
+		String[] upperfaceMetrics = {"Raise Brow", "Open Eyes", "Look Left", "Look Right",
+									"Look Up", "Look Down"};
+		for(String str : upperfaceMetrics) {
+			if(detectionPanel.getUpperfaceSelectedItem().equalsIgnoreCase(str)) {
+				
+				switch(str) {
+					case "Raise Brow" :
+						EndpointController.getInstance().updateEyeBrowRaise(detectionPanel.getUpperfaceSelectedValue());
+						break;
+					case "Open Eyes" :
+						EndpointController.getInstance().updateEyesOpen(detectionPanel.getUpperfaceSelectedValue());
+						break;
+					case "Look Left" :
+						EndpointController.getInstance().updateExpLookingLeft(detectionPanel.getUpperfaceSelectedValue());
+						break;
+					case "Look Right" :
+						EndpointController.getInstance().updateExpLookingRight(detectionPanel.getUpperfaceSelectedValue());
+						break;
+					case "Look Up" :
+						EndpointController.getInstance().updateLookingUp(detectionPanel.getUpperfaceSelectedValue());
+						break;
+					case "Look Down" :
+						EndpointController.getInstance().updateLookingDown(detectionPanel.getUpperfaceSelectedValue());
+						break;
+				}
+				
+			} else if (str.equalsIgnoreCase("Raise Brow")) {
+				EndpointController.getInstance().updateEyeBrowRaise(0.00);
+			} else if (str.equalsIgnoreCase("Open Eyes")) {
+				EndpointController.getInstance().updateEyesOpen(0.00);
+			} else if (str.equalsIgnoreCase("Look Left")) {
+				EndpointController.getInstance().updateExpLookingLeft(0.00);
+			} else if (str.equalsIgnoreCase("Look Right")) {
+				EndpointController.getInstance().updateExpLookingRight(0.00);
+			} else if (str.equalsIgnoreCase("Look Up")) {
+				EndpointController.getInstance().updateLookingUp(0.00);
+			} else if (str.equalsIgnoreCase("Look Down")) {
+				EndpointController.getInstance().updateLookingDown(0.00);
+			}
+		}
+	}
+
+	/**
+	 * This method is updating the send button text on server when autoReset is
+	 * checked/unchecked
+	 * */
 	public static void updateSendButtonText(boolean autoResetSelected) {
 		String sendBtnText;
-		if(autoResetSelected) {
+		if (autoResetSelected) {
 			sendBtnText = "Start";
-			System.out.println ("start");
 		} else {
 			sendBtnText = "Send";
-			System.out.println ("send");
 		}
 		interactivePanel.updateSendBtnText(sendBtnText);
 	}
 
+	/**
+     * This method is to update Send Button Text depending upon 
+     * AutoReset Value and running state of server 
+     */
 	public static void updateSendButtonText(String presentText) {
-		if(interactivePanel.isAutoReset()) {
-		    if("start".equalsIgnoreCase (presentText)) {
-                interactivePanel.updateSendBtnText("Stop");
-            } else {
-                interactivePanel.updateSendBtnText("Start");
-            }
+		if (interactivePanel.isAutoReset()) {
+			if ("start".equalsIgnoreCase(presentText)) {
+				interactivePanel.updateSendBtnText("Stop");
+			} else {
+				interactivePanel.updateSendBtnText("Start");
+			}
 
 		}
 	}
 
+	/**
+     * This method is to update time in detection Panel
+     */
 	public static void updateDetectionTime(double emoStateInterval) {
 
-        if(!interactivePanel.isAutoReset()) {
-            double detectionTime = detectionPanel.getTimeTextField ();
-            detectionTime += emoStateInterval;
-            detectionPanel.setTimeTxtField (detectionTime);
+		if (!interactivePanel.isAutoReset()) {
+			double detectionTime = detectionPanel.getTimeTextField();
+			detectionTime += emoStateInterval;
+			detectionPanel.setTimeTxtField(detectionTime);
+			EmotionMessageBean.setClockTick(detectionTime);
+			
+		} else {
+			if ("start".equalsIgnoreCase(interactivePanel.getBtnSendValue())) {
+				run = false;
+			} else {
+				run = true;
+			}
 
-        } else {
-            if("start".equalsIgnoreCase (interactivePanel.getBtnSendValue ())) {
-                run = false;
-            } else {
-                run = true;
-            }
+			Timer timer = new Timer();
 
-            Timer timer = new Timer ();
+			TimerTask timerTask = new TimerTask() {
+				double detectionTime, newDetectionTime;
 
-            TimerTask timerTask = new TimerTask () {
-                double detectionTime, newDetectionTime;
-                @Override
-                public void run() {
-                    if(run) {
-                        detectionTime = detectionPanel.getTimeTextField ();
-                        newDetectionTime = detectionTime + emoStateInterval;
-                        detectionPanel.setTimeTxtField (newDetectionTime);
-                    } else {
-                        timer.cancel();
-                        timer.purge();
-                    }
-                }
-            };
+				@Override
+				public void run() {
+					if (run) {
+						detectionTime = detectionPanel.getTimeTextField();
+						newDetectionTime = detectionTime + emoStateInterval;
+						detectionPanel.setTimeTxtField(newDetectionTime);
+						EmotionMessageBean.setClockTick(detectionTime);
+					} else {
+						timer.cancel();
+						timer.purge();
+					}
+				}
+			};
 
-            long delay = 0;
-            long intervalPeriod = (long) (emoStateInterval * 1000);
-            timer.scheduleAtFixedRate (timerTask, delay, intervalPeriod);
+			long delay = 0;
+			long intervalPeriod = (long) (emoStateInterval * 1000);
+			timer.scheduleAtFixedRate(timerTask, delay, intervalPeriod);
 
-        }
+		}
 
-    }
+	}
 
 }

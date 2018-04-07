@@ -47,7 +47,9 @@ public class DetectionPanel extends JPanel{
 	private double pfMetricSelectedValue;
 	private double timeTxtFieldVal;
 
-	
+	/**
+	 * Constructor adding the DetectionPanel to the server UI
+	 * */
     public DetectionPanel() {
         this.setBackground(Color.GRAY);
         this.setBorder(new TitledBorder(null, "Detection", TitledBorder.LEADING, 
@@ -82,9 +84,11 @@ public class DetectionPanel extends JPanel{
         lblUpperface.setBounds(14, 68, 139, 33);
         this.add(lblUpperface);
         
-        String[] upperfaceItems = new String[] {"Raise Brow", "Open Eyes"};
+        String[] upperfaceItems = new String[] {"Raise Brow", "Open Eyes",
+        		"Look Left", "Look Right", "Look Up", "Look Down"};
         upperfaceComboBox = new JComboBox<>(upperfaceItems);
         upperfaceComboBox.setBounds(14, 98, 139, 25);
+        setUpperfaceSelectedItem(upperfaceItems[0]);
         upperfaceComboBox.addActionListener(new ActionListener() {
 			
 			@Override
@@ -101,6 +105,7 @@ public class DetectionPanel extends JPanel{
         upperfaceSpinner.setModel(new SpinnerNumberModel(0.00, 0.00, 1.00, 0.1));
         upperfaceSpinner.setBackground(Color.WHITE);
         upperfaceSpinner.setBounds(161, 97, 55, 25);
+        setUpperfaceSelectedValue(0.00);
         ChangeListener upperfaceSpinnerListener = new ChangeListener() {
 			
 			@Override
@@ -122,6 +127,7 @@ public class DetectionPanel extends JPanel{
         String[] lowerfaceItems = new String[] {"Smile", "Clench"};
         lowerfaceComboBox = new JComboBox<>(lowerfaceItems);
         lowerfaceComboBox.setBounds(250, 98, 123, 25);
+        setLowerfaceSelectedItem(lowerfaceItems[0]);
         lowerfaceComboBox.addActionListener(new ActionListener() {
 			
 			@Override
@@ -137,6 +143,7 @@ public class DetectionPanel extends JPanel{
         lowerfaceSpinner.setModel(new SpinnerNumberModel(0.00, 0.00, 1.00, 0.1));
         lowerfaceSpinner.setForeground(Color.WHITE);
         lowerfaceSpinner.setBounds(383, 97, 52, 25);
+        setLowerfaceSelectedValue(0.00);
         ChangeListener lowerfaceSpinnerListener = new ChangeListener() {
 			
 			@Override
@@ -155,10 +162,10 @@ public class DetectionPanel extends JPanel{
         lblEye.setBounds(14, 134, 115, 33);
         this.add(lblEye);
         
-        String[] eyeItems = new String[] {"Blink", "Wink Left", "Wink Right",
-        		"Look Left", "Look Right", "Look Up", "Look Down"};
+        String[] eyeItems = new String[] {"Blink", "Wink Left", "Wink Right"};
         eyeComboBox = new JComboBox<>(eyeItems);
         eyeComboBox.setBounds(14, 163, 139, 25);
+        setEyeStateSelectedItem(eyeItems[0]);
         eyeComboBox.addActionListener(new ActionListener() {
 			
 			@Override
@@ -175,6 +182,7 @@ public class DetectionPanel extends JPanel{
         chckbxActivate.setBackground(Color.GRAY);
         chckbxActivate.setForeground(Color.WHITE);
         chckbxActivate.setBounds(185, 164, 95, 25);
+        setActivated(false);
         chckbxActivate.addActionListener(new ActionListener() {
 			
 			@Override
@@ -191,6 +199,7 @@ public class DetectionPanel extends JPanel{
         chckbxReset.setFont(new Font("Tahoma", Font.BOLD, 12));
         chckbxReset.setBackground(Color.GRAY);
         chckbxReset.setBounds(294, 164, 95, 25);
+        setResetChecked(false);
         chckbxReset.addActionListener(new ActionListener() {
 			
 			@Override
@@ -213,6 +222,7 @@ public class DetectionPanel extends JPanel{
         
         performanceMetricsComboBox = new JComboBox<>(pfMetricItems);
         performanceMetricsComboBox.setBounds(14, 229, 139, 25);
+        setPfMetricSelectedItem(pfMetricItems[0]);
         performanceMetricsComboBox.addActionListener(new ActionListener() {
 			
 			@Override
@@ -227,6 +237,7 @@ public class DetectionPanel extends JPanel{
         pfMetricSpinner = new JSpinner();
         pfMetricSpinner.setModel(new SpinnerNumberModel(0.00, 0.00, 1.00, 0.1));
         pfMetricSpinner.setBounds(161, 229, 55, 25);
+        setPfMetricSelectedValue(0.00);
         ChangeListener pfMetricChangeListener = new ChangeListener() {
 			
 			@Override

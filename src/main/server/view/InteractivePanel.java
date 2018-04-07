@@ -35,6 +35,9 @@ public class InteractivePanel extends JPanel{
 	private static double emoStateTimeInterval;
 	private String btnSendValue;
 	
+	/**
+	 * Constructor is adding the interactivePanel to server UI 
+	 * */
 	public InteractivePanel() {
         
         this.setBackground(Color.GRAY);
@@ -97,7 +100,6 @@ public class InteractivePanel extends JPanel{
 
             	UIController.setInteractivePanel(getInteractivePanel());
             	UIController.updateSendButtonText(btnSend.getText ());
-            	System.out.println (btnSend.getText ());
             	UIController.updateDetectionTime(getEmoStateTimeInterval ());
             }
         });
