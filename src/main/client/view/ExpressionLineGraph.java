@@ -36,7 +36,6 @@ public class ExpressionLineGraph extends JPanel{
         XYDataset dataSet = createDataSet(type);
         chart = createChart(dataSet);
         chartPanel = new ChartPanel(chart);
-        chartPanel.addComponentListener(new ChartSizeListener());
         chartPanel.setMouseZoomable(true , true);
         chartPanel.setPreferredSize(new Dimension(580, 45));
         this.setLayout(new BorderLayout());
@@ -110,22 +109,6 @@ public class ExpressionLineGraph extends JPanel{
         return dataSet;
     }
 
-    private void setMaximumPlots(int maxPlots){
 
-        int maxItemAge = (1000/frequency)*maxPlots;
-
-        for(int i = 0; i < channelNumber; i++){
-            metricValues[i].setMaximumItemAge(maxItemAge);
-        }
-    }
-
-    private class ChartSizeListener extends ComponentAdapter  {
-
-        public void componentResized(ComponentEvent ev) {
-
-            int maxPlots = chartPanel.getWidth()/15;
-            setMaximumPlots(maxPlots);
-        }
-    }
 
 }
