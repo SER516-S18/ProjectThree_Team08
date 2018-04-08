@@ -69,6 +69,7 @@ public class ExpressiveBean{
      * @param rightWink
      */
     public void setRightWink(boolean rightWink) {
+
         this.rightWink = rightWink;
     }
 
@@ -81,6 +82,7 @@ public class ExpressiveBean{
      * @param leftWink
      */
     public void setLeftWink(boolean leftWink) {
+
         this.leftWink = leftWink;
     }
 
@@ -93,6 +95,7 @@ public class ExpressiveBean{
      * @param lookingLeft
      */
     public void setLookingLeft(double lookingLeft) {
+
         this.lookingLeft = lookingLeft;
     }
 
@@ -105,6 +108,7 @@ public class ExpressiveBean{
      * @param lookingRight
      */
     public void setLookingRight(double lookingRight) {
+
         this.lookingRight = lookingRight;
     }
 
@@ -117,6 +121,7 @@ public class ExpressiveBean{
      * @param raiseBrow
      */
     public void setRaiseBrow(double raiseBrow) {
+
         this.eyeBrowRaise = raiseBrow;
     }
 
@@ -129,6 +134,7 @@ public class ExpressiveBean{
      * @param eyesOpen
      */
     public void setEyesOpen(double eyesOpen) {
+
         this.eyesOpen = eyesOpen;
     }
 
@@ -165,6 +171,7 @@ public class ExpressiveBean{
      * @param lookingUp
      */
     public void setLookingUp(double lookingUp) {
+
         this.lookingUp = lookingUp;
     }
 
@@ -177,6 +184,7 @@ public class ExpressiveBean{
      * @param lookingDown
      */
     public void setLookingDown(double lookingDown) {
+
         this.lookingDown = lookingDown;
     }
 

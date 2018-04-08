@@ -191,7 +191,8 @@ public class EndpointController {
 	 * @param focus value of focus
 	 */
 	public void updateFocus(double focus) {
-		EndpointController.getInstance().emotionMessageBean.getAffective().setFocus(focus);
+		EndpointController.getInstance().emotionMessageBean.
+				getAffective().setFocus(focus);
 	}
 
 	/**

@@ -26,7 +26,8 @@ import javax.swing.text.StyledDocument;
 public class ConsolePanel extends JPanel{
 
     JButton btnClearLog;
-    private final static Logger LOGGER = Logger.getLogger(ConsolePanel.class.getName());
+    private final static Logger LOGGER = Logger.getLogger(
+            ConsolePanel.class.getName());
     private static JTextPane consoleTextPane = null;
 
     /**
@@ -67,7 +68,8 @@ public class ConsolePanel extends JPanel{
         btnClearLog = new JButton("Clear Log");
         btnClearLog.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-            	consoleTextPane.setText("");
+
+                consoleTextPane.setText("");
             }
         });
         btnClearLog.setBounds(140, 119, 171, 25);

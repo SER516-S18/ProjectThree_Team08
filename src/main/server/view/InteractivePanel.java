@@ -57,7 +57,8 @@ public class InteractivePanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JComboBox<String> changedObj = (JComboBox<String>) e.getSource();
-				setPlayerValue(Integer.valueOf(changedObj.getSelectedItem().toString()));
+				setPlayerValue(Integer.valueOf(changedObj.
+						getSelectedItem().toString()));
 			}
 		});
         this.add(playerComboBox);
@@ -124,7 +125,8 @@ public class InteractivePanel extends JPanel{
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				JSpinner changedObj = (JSpinner) e.getSource();
-				setEmoStateTimeInterval(Double.valueOf(changedObj.getValue().toString()));
+				setEmoStateTimeInterval(Double.valueOf(changedObj.
+						getValue().toString()));
 			}
 		};
         emoStateSpinner.addChangeListener(emoStateChangeListener);

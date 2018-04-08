@@ -112,8 +112,10 @@ public class UIController {
 	 * This method is updating the model attributes for performance metric
 	 * */
 	private void updatePerformanceMetrics() {
-		String[] pfMetrics = { "Interest", "Engagement", "Stress", "Excitement", "Relaxation", "Focus" };
-		System.out.println("In UIController, in updatePerformanceMetrics ::::::   " + detectionPanel.getPfMetricSelectedValue());
+		String[] pfMetrics = { "Interest", "Engagement", "Stress", "Excitement",
+				"Relaxation", "Focus" };
+		System.out.println("In UIController, in updatePerformanceMetrics ::::::   " +
+				detectionPanel.getPfMetricSelectedValue());
 		for (String str : pfMetrics) {
 			if (detectionPanel.getPfMetricSelectedItem().equalsIgnoreCase(str)) {
 				

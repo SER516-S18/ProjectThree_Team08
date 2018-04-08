@@ -26,6 +26,7 @@ public class AffectiveBean {
      * @param interest
      */
     public void setInterest(double interest) {
+
         this.interest = interest;
     }
 
@@ -38,6 +39,7 @@ public class AffectiveBean {
      * @param engagement
      */
     public void setEngagement(double engagement) {
+
         this.engagement = engagement;
     }
 
@@ -62,6 +64,7 @@ public class AffectiveBean {
      * @param relaxation
      */
     public void setRelaxation(double relaxation) {
+
         this.relaxation = relaxation;
     }
 
@@ -74,6 +77,7 @@ public class AffectiveBean {
      * @param excitement
      */
     public void setExcitement(double excitement) {
+
         this.excitement = excitement;
     }
 
@@ -90,7 +94,8 @@ public class AffectiveBean {
     }
 
     /**
-     * This method is used to generate a Stringified version of the class properties
+     * This method is used to generate a Stringified version of
+     * the class properties
      *
      */
     @Override

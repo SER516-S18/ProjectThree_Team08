@@ -33,7 +33,7 @@ public class MessageEncoder implements Encoder.Text<EmotionMessageBean> {
      * @throws EncodeException
      */
     @Override
-    public String encode(final EmotionMessageBean message) throws EncodeException {
+    public String encode(final EmotionMessageBean message) {
         return gson.toJson(message);
     }
 

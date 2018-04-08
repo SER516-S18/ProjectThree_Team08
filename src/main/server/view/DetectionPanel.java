@@ -249,7 +249,8 @@ public class DetectionPanel extends JPanel{
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				JSpinner changedObj = (JSpinner) e.getSource();
-				setPfMetricSelectedValue(Double.valueOf(changedObj.getValue().toString()));
+				setPfMetricSelectedValue(Double.valueOf(changedObj.
+						getValue().toString()));
 				UIController.setDetectionPanel(getDetectionPanel());
 			}
 		};

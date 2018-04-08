@@ -20,7 +20,8 @@ public class Server {
 
 
         org.glassfish.tyrus.server.Server server = new
-                org.glassfish.tyrus.server.Server(ConnectionConstants.HOSTNAME, ConnectionConstants.PORT, "/"+ConnectionConstants.ROOT_PATH, ServerEndpoint.class);
+                org.glassfish.tyrus.server.Server(ConnectionConstants.HOSTNAME,
+                ConnectionConstants.PORT, "/"+ConnectionConstants.ROOT_PATH, ServerEndpoint.class);
         try {
             server.start();
             System.out.println("Press 1 to sendOnce, \n 2 to sendInIntervals " +

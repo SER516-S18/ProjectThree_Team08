@@ -33,7 +33,7 @@ public class MessageDecoder implements Decoder.Text<EmotionMessageBean> {
      * @throws DecodeException
      */
     @Override
-    public EmotionMessageBean decode(final String textMessage) throws DecodeException {
+    public EmotionMessageBean decode(final String textMessage) {
         return gson.fromJson(textMessage, EmotionMessageBean.class);
     }
 
