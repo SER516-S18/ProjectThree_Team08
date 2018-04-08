@@ -25,14 +25,16 @@ public class UIController {
 	private UIController() {
 	}
 
-	// Inner class SingletonHolder to support lazy initialisation of class
+	/**
+	 * Inner class SingletonHolder to support lazy initialisation of class
+	 *
+	 */
 	private static class SingletonHolder {
 		public static final UIController uiController = new UIController();
 	}
 
 	/**
 	 * Returns an instance of the class
-	 * 
 	 * @return UIController
 	 */
 	public static UIController getInstance() {
@@ -40,29 +42,33 @@ public class UIController {
 	}
 
 	/**
-	 *
-	 * @param detectionPanelObj
+	 * Sets the Detection Panel value for the class Property
+	 * @param detectionPanelObj Detection Panel object on the server UI
 	 */
 	public static void setDetectionPanel(DetectionPanel detectionPanelObj) {
 		detectionPanel = detectionPanelObj;
 	}
 
 	/**
-	 *
-	 * @param interactivePanelObj
+	 * Sets the Interactive Panel value for the class Property
+	 * @param interactivePanelObj Interactive Panel object on the server UI
 	 */
 	public static void setInteractivePanel(InteractivePanel interactivePanelObj) {
 		interactivePanel = interactivePanelObj;
 	}
 
 	/**
-	 *
-	 * @param consolePanel
+	 * Sets the Console Panel value for the class Property
+	 * @param consolePanel the console panel on the server UI
 	 */
 	public void setConsolePanel(ConsolePanel consolePanel) {
 		this.consolePanel = consolePanel;
 	}
 
+	/**
+	 * Updates the message bean taking values from the UI
+	 * 
+	 */
 	public void updateMessageBeanFromUI() {
 
 		this.updateUpperfaceMetrics();
@@ -223,6 +229,8 @@ public class UIController {
 	/**
 	 * This method is updating the send button text on server when autoReset is
 	 * checked/unchecked
+	 * @param autoResetSelected boolean flag states if auto reset is
+	 *                             selected in interactive panel
 	 * */
 	public static void updateSendButtonText(boolean autoResetSelected) {
 		String sendBtnText;
@@ -236,7 +244,8 @@ public class UIController {
 
 	/**
      * This method is to update Send Button Text depending upon 
-     * AutoReset Value and running state of server 
+     * AutoReset Value and running state of server
+	 * @param presentText the value/text on the Send Button
      */
 	public static void updateSendButtonText(String presentText) {
 		if (interactivePanel.isAutoReset()) {
@@ -251,6 +260,8 @@ public class UIController {
 
 	/**
      * This method is to update time in detection Panel
+	 * @param emoStateInterval gives the value of the Emo State set in
+	 *                            the interactive panel
      */
 	public static void updateDetectionTime(double emoStateInterval) {
 
