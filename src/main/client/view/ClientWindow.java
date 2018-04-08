@@ -49,45 +49,46 @@ public class ClientWindow extends JFrame{
 		metricsValuesPanelArea.setPreferredSize(new Dimension(400, 550));
 		metricsValuesPanelArea.setBorder(BorderFactory.createTitledBorder("Affective Values"));
 		metricsValuesPanelArea.setBackground(Color.GRAY);
-		this.metricsValuesPanelArea = metricsValuesPanelArea;
 		
 		JPanel metricsGraphPanelArea = new JPanel(new BorderLayout());
 		metricsGraphPanelArea.setPreferredSize(new Dimension(800, 550));
 		metricsGraphPanelArea.setBorder(BorderFactory.createTitledBorder("Affective Plot"));
 		metricsGraphPanelArea.setBackground(Color.GRAY);
-		this.metricsGraphPanelArea = metricsGraphPanelArea;
 		
 		JPanel metricsTab = new JPanel(new BorderLayout());
-		metricsTab.add(this.metricsValuesPanelArea, BorderLayout.WEST);
-		metricsTab.add(this.metricsGraphPanelArea, BorderLayout.CENTER);
 		metricsTab.setOpaque(false);
-		this.metricsTab = metricsTab;
 		
 		JPanel facePanelArea = new JPanel(new BorderLayout());
 		facePanelArea.setPreferredSize(new Dimension(500, 550));
 		facePanelArea.setBorder(BorderFactory.createTitledBorder("Expression Avatar"));
 		facePanelArea.setBackground(Color.GRAY);
-		this.facePanelArea = facePanelArea;
 		
 		JPanel expressionGraphPanelArea = new JPanel(new BorderLayout());
 		expressionGraphPanelArea.setPreferredSize(new Dimension(700, 550));
 		expressionGraphPanelArea.setBorder(BorderFactory.createTitledBorder("Expression Plot"));
 		expressionGraphPanelArea.setBackground(Color.GRAY);
-		this.expressionGraphPanelArea = expressionGraphPanelArea;
-
+	
 		JPanel expressionsTab = new JPanel(new BorderLayout());
-		expressionsTab.add(this.facePanelArea, BorderLayout.WEST);
-		expressionsTab.add(this.expressionGraphPanelArea, BorderLayout.CENTER);
 		expressionsTab.setOpaque(false);
-		this.expressionsTab = expressionsTab;
 		
 		JTabbedPane clientTabbedPane = new JTabbedPane();
-		clientTabbedPane.addTab("Expressions", this.expressionsTab);
-		clientTabbedPane.addTab("Metrics", this.metricsTab);
 		clientTabbedPane.setOpaque(true);
 		clientTabbedPane.setBackground(Color.LIGHT_GRAY);
+	
+		this.metricsValuesPanelArea = metricsValuesPanelArea;
+		this.metricsGraphPanelArea = metricsGraphPanelArea;
+		this.facePanelArea = facePanelArea;
+		this.expressionGraphPanelArea = expressionGraphPanelArea;
+		this.metricsTab = metricsTab;
+		this.expressionsTab = expressionsTab;
 		this.clientTabbedPane = clientTabbedPane;
 		
+		metricsTab.add(this.metricsValuesPanelArea, BorderLayout.WEST);
+		metricsTab.add(this.metricsGraphPanelArea, BorderLayout.CENTER);
+		expressionsTab.add(this.facePanelArea, BorderLayout.WEST);
+		expressionsTab.add(this.expressionGraphPanelArea, BorderLayout.CENTER);
+		clientTabbedPane.addTab("Expressions", this.expressionsTab);
+		clientTabbedPane.addTab("Metrics", this.metricsTab);
 		this.clientPanel.add(this.clientTabbedPane, BorderLayout.CENTER);
 	}
 	
@@ -117,6 +118,7 @@ public class ClientWindow extends JFrame{
 		serverConnectionPanel.setBackground(Color.GRAY);
 		serverConnectionPanel.setBorder(BorderFactory.createTitledBorder("Server Connection"));
 		serverConnectionPanel.setPreferredSize(new Dimension(500, 60));
+		
 		this.serverConnectionPanel = serverConnectionPanel;
 		this.clientPanel.add(this.serverConnectionPanel, BorderLayout.NORTH);
 	}
