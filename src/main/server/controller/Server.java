@@ -19,10 +19,12 @@ public class Server {
         ServerInitUI.initializeGUI();
 
 
-        org.glassfish.tyrus.server.Server server = new org.glassfish.tyrus.server.Server(ConnectionConstants.HOSTNAME, ConnectionConstants.PORT, "/"+ConnectionConstants.ROOT_PATH, ServerEndpoint.class);
+        org.glassfish.tyrus.server.Server server = new
+                org.glassfish.tyrus.server.Server(ConnectionConstants.HOSTNAME, ConnectionConstants.PORT, "/"+ConnectionConstants.ROOT_PATH, ServerEndpoint.class);
         try {
             server.start();
-            System.out.println("Press 1 to sendOnce, \n 2 to sendInIntervals \n 3 to stop \n 4 to exit from server ");
+            System.out.println("Press 1 to sendOnce, \n 2 to sendInIntervals " +
+                    "\n 3 to stop \n 4 to exit from server ");
             int input = Integer.parseInt(new Scanner(System.in).nextLine());
             while(input!=4) {
                 switch (input)
@@ -37,7 +39,8 @@ public class Server {
                         EndpointController.getInstance().stop();
                         break;
                 }
-                System.out.println("Press 1 to sendOnce, \n 2 to sendInIntervals \n 3 to stop \n 4 to exit from server ");
+                System.out.println("Press 1 to sendOnce, \n 2 to sendInIntervals " +
+                        "\n 3 to stop \n 4 to exit from server ");
                 input = Integer.parseInt(new Scanner(System.in).nextLine());
             }
         } catch (DeploymentException e) {

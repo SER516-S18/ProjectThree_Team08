@@ -9,6 +9,12 @@ import main.model.EmotionMessageBean;
 import org.glassfish.tyrus.client.ClientManager;
 import main.utils.ConnectionConstants;
 
+/**
+ * Client
+ * @author Jason Rice
+ * @version 1.0
+ */
+
 public class Client {
 
     public static final String SERVER = "ws://"+ ConnectionConstants.HOSTNAME+":"+ConnectionConstants.PORT+"/"+ConnectionConstants.ROOT_PATH+"/"+ConnectionConstants.ENDPOINT_PATH;

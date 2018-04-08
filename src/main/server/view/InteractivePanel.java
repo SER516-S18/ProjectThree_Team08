@@ -41,8 +41,10 @@ public class InteractivePanel extends JPanel{
 	public InteractivePanel() {
         
         this.setBackground(Color.GRAY);
-        this.setBorder(new TitledBorder(null, "Interactive", TitledBorder.LEADING, 
-                        TitledBorder.TOP, new Font("Tahoma", Font.BOLD, 12), null));
+        this.setBorder(new TitledBorder(null, "Interactive",
+				TitledBorder.LEADING,
+                        TitledBorder.TOP, new Font("Tahoma",
+				Font.BOLD, 12), null));
         this.setBounds(11, 11, 474, 104);
         this.setLayout(null);
         
@@ -112,7 +114,8 @@ public class InteractivePanel extends JPanel{
         this.add(btnSend);
         
         emoStateSpinner = new JSpinner();
-        emoStateSpinner.setModel(new SpinnerNumberModel(0.25, 0.25, 100.00, 0.50));
+        emoStateSpinner.setModel(new SpinnerNumberModel(0.25,
+				0.25, 100.00, 0.50));
         emoStateSpinner.setBounds(324, 29, 55, 25);
         setEmoStateTimeInterval(0.25);
 

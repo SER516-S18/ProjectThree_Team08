@@ -119,22 +119,28 @@ public class UIController {
 				
 				switch(str) {
 					case "Interest" :
-						EndpointController.getInstance().updateInterest(detectionPanel.getPfMetricSelectedValue());
+						EndpointController.getInstance().updateInterest(
+								detectionPanel.getPfMetricSelectedValue());
 						break;
 					case "Engagement" :
-						EndpointController.getInstance().updateEngagement(detectionPanel.getPfMetricSelectedValue());
+						EndpointController.getInstance().updateEngagement(
+								detectionPanel.getPfMetricSelectedValue());
 						break;
 					case "Stress" :
-						EndpointController.getInstance().updateStress(detectionPanel.getPfMetricSelectedValue());
+						EndpointController.getInstance().updateStress(
+								detectionPanel.getPfMetricSelectedValue());
 						break;
 					case "Excitement" :
-						EndpointController.getInstance().updateExcitement(detectionPanel.getPfMetricSelectedValue());
+						EndpointController.getInstance().updateExcitement(
+								detectionPanel.getPfMetricSelectedValue());
 						break;
 					case "Relaxation" :
-						EndpointController.getInstance().updateRelaxation(detectionPanel.getPfMetricSelectedValue());
+						EndpointController.getInstance().updateRelaxation(
+								detectionPanel.getPfMetricSelectedValue());
 						break;
 					case "Focus" :
-						EndpointController.getInstance().updateFocus(detectionPanel.getPfMetricSelectedValue());
+						EndpointController.getInstance().updateFocus(
+								detectionPanel.getPfMetricSelectedValue());
 						break;
 				}
 				
@@ -165,10 +171,12 @@ public class UIController {
 				
 				switch(str) {
 					case "Smile" :
-						EndpointController.getInstance().updateSmile(detectionPanel.getLowerfaceSelectedValue());
+						EndpointController.getInstance().updateSmile(
+								detectionPanel.getLowerfaceSelectedValue());
 						break;
 					case "Clench" :
-						EndpointController.getInstance().updateClench(detectionPanel.getLowerfaceSelectedValue());
+						EndpointController.getInstance().updateClench(
+								detectionPanel.getLowerfaceSelectedValue());
 						break;
 				}
 				
@@ -191,22 +199,28 @@ public class UIController {
 				
 				switch(str) {
 					case "Raise Brow" :
-						EndpointController.getInstance().updateEyeBrowRaise(detectionPanel.getUpperfaceSelectedValue());
+						EndpointController.getInstance().updateEyeBrowRaise(
+								detectionPanel.getUpperfaceSelectedValue());
 						break;
 					case "Open Eyes" :
-						EndpointController.getInstance().updateEyesOpen(detectionPanel.getUpperfaceSelectedValue());
+						EndpointController.getInstance().updateEyesOpen(
+								detectionPanel.getUpperfaceSelectedValue());
 						break;
 					case "Look Left" :
-						EndpointController.getInstance().updateExpLookingLeft(detectionPanel.getUpperfaceSelectedValue());
+						EndpointController.getInstance().updateExpLookingLeft(
+								detectionPanel.getUpperfaceSelectedValue());
 						break;
 					case "Look Right" :
-						EndpointController.getInstance().updateExpLookingRight(detectionPanel.getUpperfaceSelectedValue());
+						EndpointController.getInstance().updateExpLookingRight(
+								detectionPanel.getUpperfaceSelectedValue());
 						break;
 					case "Look Up" :
-						EndpointController.getInstance().updateLookingUp(detectionPanel.getUpperfaceSelectedValue());
+						EndpointController.getInstance().updateLookingUp(
+								detectionPanel.getUpperfaceSelectedValue());
 						break;
 					case "Look Down" :
-						EndpointController.getInstance().updateLookingDown(detectionPanel.getUpperfaceSelectedValue());
+						EndpointController.getInstance().updateLookingDown(
+								detectionPanel.getUpperfaceSelectedValue());
 						break;
 				}
 				

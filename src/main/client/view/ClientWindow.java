@@ -94,7 +94,7 @@ public class ClientWindow extends JFrame{
 	
 	/**
 	 * Sets the menu bar of the client.
-	 * @param menuBar
+	 *
 	 */
 	public void initializeMenuBar(){
 		JMenu menu = new JMenu("Menu");
@@ -128,6 +128,7 @@ public class ClientWindow extends JFrame{
 	 * @param panel
 	 */
 	public void addMetricsValuesPanel(JPanel panel){
+
 		this.metricsValuesPanelArea.add(panel, BorderLayout.CENTER);
 	}
 	
@@ -136,6 +137,7 @@ public class ClientWindow extends JFrame{
 	 * @param panel
 	 */
 	public void addMetricsGraphPanel(JPanel panel){
+
 		this.metricsGraphPanelArea.add(panel, BorderLayout.CENTER);
 	}
 	
@@ -153,6 +155,7 @@ public class ClientWindow extends JFrame{
 	 * @param panel
 	 */
 	public void addExpressionGraphPanel(JPanel panel){
+
 		this.expressionGraphPanelArea.add(panel, BorderLayout.CENTER);
 	}
 	
@@ -161,6 +164,7 @@ public class ClientWindow extends JFrame{
 	 * @param panel
 	 */
 	public void addServerConnectionPanel(JPanel panel){
+
 		this.serverConnectionPanel.add(panel, BorderLayout.CENTER);
 	}
 }

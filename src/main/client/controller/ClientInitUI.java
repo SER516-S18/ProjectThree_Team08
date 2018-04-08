@@ -4,7 +4,7 @@ import main.client.view.*;
 
 /**
  * Client Main
- * @author 
+ * @author Jason Rice
  * @version 1.1
  */
 class ClientInitUI {

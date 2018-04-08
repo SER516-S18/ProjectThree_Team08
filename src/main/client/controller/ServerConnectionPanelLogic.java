@@ -76,6 +76,8 @@ public class ServerConnectionPanelLogic implements Observer{
 
 	/**
 	 * update the fields in the SeverConnectionPanel.
+	 * @param observable
+	 * @param arg
 	 */
 	@Override
 	public void update(Observable observable, Object arg) {

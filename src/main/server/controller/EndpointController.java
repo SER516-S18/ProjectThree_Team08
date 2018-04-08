@@ -28,7 +28,8 @@ public class EndpointController {
 	 *
 	 */
 	private static class SingletonHolder {
-		public static final EndpointController endpointController = new EndpointController();
+		public static final EndpointController
+				endpointController = new EndpointController();
 	}
 
 	/**
@@ -37,6 +38,7 @@ public class EndpointController {
 	 * @return EndpointController
 	 */
 	public static EndpointController getInstance() {
+
 		return SingletonHolder.endpointController;
 	}
 
@@ -45,7 +47,8 @@ public class EndpointController {
 	 * @param blink If blink is set
 	 */
 	public void updateExpBlink(boolean blink) {
-		EndpointController.getInstance().emotionMessageBean.getExpressive().setBlink(blink);
+		EndpointController.getInstance().emotionMessageBean.
+				getExpressive().setBlink(blink);
 	}
 
 	/**
@@ -53,7 +56,8 @@ public class EndpointController {
 	 * @param rightWink If right wink is set
 	 */
 	public void updateExpRightWink(boolean rightWink) {
-		EndpointController.getInstance().emotionMessageBean.getExpressive().setRightWink(rightWink);
+		EndpointController.getInstance().emotionMessageBean.
+				getExpressive().setRightWink(rightWink);
 	}
 
 	/**
@@ -61,7 +65,8 @@ public class EndpointController {
 	 * @param leftWink If left wink is set
 	 */
 	public void updateExpLeftWink(boolean leftWink) {
-		EndpointController.getInstance().emotionMessageBean.getExpressive().setLeftWink(leftWink);
+		EndpointController.getInstance().emotionMessageBean.
+				getExpressive().setLeftWink(leftWink);
 	}
 
 	/**
@@ -69,7 +74,8 @@ public class EndpointController {
 	 * @param lookingLeft value of looking left
 	 */
 	public void updateExpLookingLeft(double lookingLeft) {
-		EndpointController.getInstance().emotionMessageBean.getExpressive().setLookingLeft(lookingLeft);
+		EndpointController.getInstance().emotionMessageBean.
+				getExpressive().setLookingLeft(lookingLeft);
 	}
 
 	/**
@@ -77,7 +83,8 @@ public class EndpointController {
 	 * @param lookingRight value of looking right
 	 */
 	public void updateExpLookingRight(double lookingRight) {
-		EndpointController.getInstance().emotionMessageBean.getExpressive().setLookingRight(lookingRight);
+		EndpointController.getInstance().emotionMessageBean.
+				getExpressive().setLookingRight(lookingRight);
 	}
 
 	/**
@@ -85,7 +92,8 @@ public class EndpointController {
 	 * @param eyeBrowRaise value of eye brow raise
 	 */
 	public void updateEyeBrowRaise(double eyeBrowRaise) {
-		EndpointController.getInstance().emotionMessageBean.getExpressive().setRaiseBrow(eyeBrowRaise);
+		EndpointController.getInstance().emotionMessageBean.
+				getExpressive().setRaiseBrow(eyeBrowRaise);
 	}
 
 	/**
@@ -93,7 +101,8 @@ public class EndpointController {
 	 * @param eyesOpen value of looking eyes open
 	 */
 	public void updateEyesOpen(double eyesOpen) {
-		EndpointController.getInstance().emotionMessageBean.getExpressive().setEyesOpen(eyesOpen);
+		EndpointController.getInstance().emotionMessageBean.
+				getExpressive().setEyesOpen(eyesOpen);
 	}
 
 	/**
@@ -101,7 +110,8 @@ public class EndpointController {
 	 * @param smile value of smile
 	 */
 	public void updateSmile(double smile) {
-		EndpointController.getInstance().emotionMessageBean.getExpressive().setSmile(smile);
+		EndpointController.getInstance().emotionMessageBean.
+				getExpressive().setSmile(smile);
 	}
 
 	/**
@@ -109,7 +119,8 @@ public class EndpointController {
 	 * @param clench value of clench
 	 */
 	public void updateClench(double clench) {
-		EndpointController.getInstance().emotionMessageBean.getExpressive().setClench(clench);
+		EndpointController.getInstance().emotionMessageBean.
+				getExpressive().setClench(clench);
 	}
 
 	/**
@@ -117,7 +128,8 @@ public class EndpointController {
 	 * @param lookingUp value of looking up
 	 */
 	public void updateLookingUp(double lookingUp) {
-		EndpointController.getInstance().emotionMessageBean.getExpressive().setLookingUp(lookingUp);
+		EndpointController.getInstance().emotionMessageBean.
+				getExpressive().setLookingUp(lookingUp);
 	}
 
 	/**
@@ -125,7 +137,8 @@ public class EndpointController {
 	 * @param lookingDown value of looking down
 	 */
 	public void updateLookingDown(double lookingDown) {
-		EndpointController.getInstance().emotionMessageBean.getExpressive().setLookingDown(lookingDown);
+		EndpointController.getInstance().emotionMessageBean.
+				getExpressive().setLookingDown(lookingDown);
 	}
 
 	/**
@@ -133,7 +146,8 @@ public class EndpointController {
 	 * @param interest value of interest
 	 */
 	public void updateInterest(double interest) {
-		EndpointController.getInstance().emotionMessageBean.getAffective().setInterest(interest);
+		EndpointController.getInstance().emotionMessageBean.
+				getAffective().setInterest(interest);
 	}
 
 	/**
@@ -141,7 +155,8 @@ public class EndpointController {
 	 * @param engagement value of engagement
 	 */
 	public void updateEngagement(double engagement) {
-		EndpointController.getInstance().emotionMessageBean.getAffective().setEngagement(engagement);
+		EndpointController.getInstance().emotionMessageBean.
+				getAffective().setEngagement(engagement);
 	}
 
 	/**
@@ -149,7 +164,8 @@ public class EndpointController {
 	 * @param stress value of stress
 	 */
 	public void updateStress(double stress) {
-		EndpointController.getInstance().emotionMessageBean.getAffective().setStress(stress);
+		EndpointController.getInstance().emotionMessageBean.
+				getAffective().setStress(stress);
 	}
 
 	/**
@@ -157,7 +173,8 @@ public class EndpointController {
 	 * @param relaxation value of relaxation
 	 */
 	public void updateRelaxation(double relaxation) {
-		EndpointController.getInstance().emotionMessageBean.getAffective().setRelaxation(relaxation);
+		EndpointController.getInstance().emotionMessageBean.
+				getAffective().setRelaxation(relaxation);
 	}
 
 	/**
@@ -165,7 +182,8 @@ public class EndpointController {
 	 * @param excitement value of excitement
 	 */
 	public void updateExcitement(double excitement) {
-		EndpointController.getInstance().emotionMessageBean.getAffective().setExcitement(excitement);
+		EndpointController.getInstance().emotionMessageBean.
+				getAffective().setExcitement(excitement);
 	}
 
 	/**

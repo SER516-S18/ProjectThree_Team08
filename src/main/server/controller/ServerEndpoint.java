@@ -15,14 +15,17 @@ import java.util.*;
  * @author Balachandar Sampath
  * @version 1.0
  */
-@javax.websocket.server.ServerEndpoint(value = "/"+ ConnectionConstants.ENDPOINT_PATH, encoders = MessageEncoder.class, decoders = MessageDecoder.class)
+@javax.websocket.server.ServerEndpoint(value = "/"+ ConnectionConstants.ENDPOINT_PATH,
+        encoders = MessageEncoder.class, decoders = MessageDecoder.class)
 public class ServerEndpoint {
 
-    public static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
+    public static Set<Session> clients =
+            Collections.synchronizedSet(new HashSet<Session>());
 
     /**
      * This method is called when connection opens
-     * @param session This is the first parameter to onOpen method and holds client session
+     * @param session This is the first parameter to onOpen method and
+     *                holds client session
      */
     @OnOpen
     public void onOpen(Session session) {
@@ -32,8 +35,10 @@ public class ServerEndpoint {
 
     /**
      * This method is called when connection opens
-     * @param message This is the first parameter to onMessage method and holds the message object received
-     * @param session This is the second parameter to onMessage method and holds client session
+     * @param message This is the first parameter to onMessage
+     *                method and holds the message object received
+     * @param session This is the second parameter to onMessage
+     *                method and holds client session
      */
     @OnMessage
     public void onMessage(EmotionMessageBean message, Session session) {
@@ -45,16 +50,19 @@ public class ServerEndpoint {
     }
     /**
      * This method is called when connection closes
-     * @param session This is the first parameter to onClose method and holds client session
+     * @param session This is the first parameter to onClose method
+     *                and holds client session
      */
     @OnClose
     public void onClose(Session session) {
-        System.out.println(String.format("%s disconnected the connection", session.getId()));
+        System.out.println(String.format("%s disconnected the connection",
+                session.getId()));
         clients.remove(session);
     }
     /**
      * This method is called when there is connection error
-     * @param session This is the first parameter to onError method and holds client session
+     * @param session This is the first parameter to onError method
+     *                and holds client session
      * @param throwable
      */
     @OnError

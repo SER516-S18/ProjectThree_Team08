@@ -53,8 +53,10 @@ public class DetectionPanel extends JPanel{
 	 * */
     public DetectionPanel() {
         this.setBackground(Color.GRAY);
-        this.setBorder(new TitledBorder(null, "Detection", TitledBorder.LEADING, 
-                        TitledBorder.TOP, new Font("Tahoma", Font.BOLD, 12), null));
+        this.setBorder(new TitledBorder(null, "Detection",
+				TitledBorder.LEADING,
+                        TitledBorder.TOP, new Font("Tahoma",
+				Font.BOLD, 12), null));
         this.setBounds(11, 130, 474, 267);
         this.setLayout(null);
         
@@ -103,7 +105,8 @@ public class DetectionPanel extends JPanel{
         this.add(upperfaceComboBox);
         
         upperfaceSpinner = new JSpinner();
-        upperfaceSpinner.setModel(new SpinnerNumberModel(0.00, 0.00, 1.00, 0.1));
+        upperfaceSpinner.setModel(new SpinnerNumberModel(0.00, 0.00,
+				1.00, 0.1));
         upperfaceSpinner.setBackground(Color.WHITE);
         upperfaceSpinner.setBounds(161, 97, 55, 25);
         setUpperfaceSelectedValue(0.00);
@@ -141,7 +144,8 @@ public class DetectionPanel extends JPanel{
         this.add(lowerfaceComboBox);
         
         JSpinner lowerfaceSpinner = new JSpinner();
-        lowerfaceSpinner.setModel(new SpinnerNumberModel(0.00, 0.00, 1.00, 0.1));
+        lowerfaceSpinner.setModel(new SpinnerNumberModel(0.00, 0.00,
+				1.00, 0.1));
         lowerfaceSpinner.setForeground(Color.WHITE);
         lowerfaceSpinner.setBounds(383, 97, 52, 25);
         setLowerfaceSelectedValue(0.00);
@@ -236,7 +240,8 @@ public class DetectionPanel extends JPanel{
         this.add(performanceMetricsComboBox);
         
         pfMetricSpinner = new JSpinner();
-        pfMetricSpinner.setModel(new SpinnerNumberModel(0.00, 0.00, 1.00, 0.1));
+        pfMetricSpinner.setModel(new SpinnerNumberModel(0.00, 0.00,
+				1.00, 0.1));
         pfMetricSpinner.setBounds(161, 229, 55, 25);
         setPfMetricSelectedValue(0.00);
         ChangeListener pfMetricChangeListener = new ChangeListener() {

@@ -11,6 +11,7 @@ public class ClientWindowLogic {
 	
 	/**
 	 * Handles the OpenServer menu item logic.
+	 *
 	 */
 	public ActionListener generateOpenServerActionListener(){
 		return new ActionListener(){

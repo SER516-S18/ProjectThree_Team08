@@ -56,8 +56,10 @@ public class ConsolePanel extends JPanel{
     
     public ConsolePanel() {
         this.setBackground(Color.GRAY);
-        this.setBorder(new TitledBorder(null, "EmoEngine Log", TitledBorder.LEADING, 
-                        TitledBorder.TOP, new Font("Tahoma", Font.BOLD, 12), Color.BLACK));
+        this.setBorder(new TitledBorder(null, "EmoEngine Log",
+                TitledBorder.LEADING,
+                        TitledBorder.TOP, new Font("Tahoma", Font.BOLD,
+                12), Color.BLACK));
         this.setBounds(11, 408, 474, 152);
         this.setLayout(null);
         
