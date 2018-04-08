@@ -15,17 +15,29 @@ class ClientInitUI {
 	public static void initialiseGUI()
 	{
 		try{
-			ClientUILogic clientUILogic = new ClientUILogic();
+			ClientWindow window = new ClientWindow();
 			ExpressivePanel expressivePanel = new ExpressivePanel();
 			ExpressionGraphPanel expressionGraphPanel = new ExpressionGraphPanel();
 			MetricGraphPanel metricGraphPanel = new MetricGraphPanel();
 			MetricsValuePanel metricsValuePanel = new MetricsValuePanel();
+			ServerConnectionPanel serverConnectionPanel = new ServerConnectionPanel();
 			
-			ClientWindow window = new ClientWindow(clientUILogic);
+			ClientWindowLogic clientWindowLogic = new ClientWindowLogic();
+			window.openServer.addActionListener(clientWindowLogic.generateOpenServerActionListener());
+			
+			ServerConnectionPanelLogic serverConnectionPanelLogic = new ServerConnectionPanelLogic(
+					serverConnectionPanel.ipAddressTextField, serverConnectionPanel.portTextField, 
+					serverConnectionPanel.startStopButton, serverConnectionPanel.timeStampValueLabel);
+			
+			serverConnectionPanel.startStopButton.addActionListener(
+					serverConnectionPanelLogic.generateStartServerConnectionActionListener());
+			
 			window.addFacePanel(expressivePanel);
 			window.addExpressionGraphPanel(expressionGraphPanel);
 			window.addMetricsGraphPanel(metricGraphPanel);
 			window.addMetricsValuesPanel(metricsValuePanel);
+			window.addServerConnectionPanel(serverConnectionPanel);
+			window.pack();
 			window.setVisible(true);
 		} catch(Exception exception){
 			System.out.println(exception.getMessage());

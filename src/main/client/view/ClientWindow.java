@@ -2,12 +2,12 @@ package main.client.view;
 
 import java.awt.*;
 import javax.swing.*;
-import main.client.controller.ClientUILogic;
+import main.client.controller.ClientWindowLogic;
 
 /**
  * Graphical User Interface (GUI) for the client window.
  * @author Jason Rice
- * @version 1.1
+ * @version 1.2
  */
 public class ClientWindow extends JFrame{
 	private JMenuBar menuBar;
@@ -20,13 +20,12 @@ public class ClientWindow extends JFrame{
 	private JPanel expressionGraphPanelArea;
 	private JPanel expressionsTab;
 	private JPanel serverConnectionPanel;
-	ClientUILogic clientUILogic;
+	public JMenuItem openServer;
 	
 	/**
 	 * Create the Client Window.
 	 */
-	public ClientWindow(ClientUILogic clientUILogic){
-		this.clientUILogic = clientUILogic;
+	public ClientWindow(){
 		this.setTitle("Client");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocation(200,200);
@@ -40,8 +39,6 @@ public class ClientWindow extends JFrame{
 		initializeMenuBar();
 		initializeServerConnectionPanel();
 		initializeTabbedPane();
-		
-		this.pack();
 	}
 
 	/**
@@ -60,9 +57,9 @@ public class ClientWindow extends JFrame{
 		metricsGraphPanelArea.setBackground(Color.GRAY);
 		this.metricsGraphPanelArea = metricsGraphPanelArea;
 		
-		JPanel metricsTab = new JPanel();
-		metricsTab.add(this.metricsValuesPanelArea);
-		metricsTab.add(this.metricsGraphPanelArea);
+		JPanel metricsTab = new JPanel(new BorderLayout());
+		metricsTab.add(this.metricsValuesPanelArea, BorderLayout.WEST);
+		metricsTab.add(this.metricsGraphPanelArea, BorderLayout.CENTER);
 		metricsTab.setOpaque(false);
 		this.metricsTab = metricsTab;
 		
@@ -78,9 +75,9 @@ public class ClientWindow extends JFrame{
 		facePanelArea.setBackground(Color.GRAY);
 		this.expressionGraphPanelArea = expressionGraphPanelArea;
 
-		JPanel expressionsTab = new JPanel();
-		expressionsTab.add(this.facePanelArea);
-		expressionsTab.add(this.expressionGraphPanelArea);
+		JPanel expressionsTab = new JPanel(new BorderLayout());
+		expressionsTab.add(this.facePanelArea, BorderLayout.WEST);
+		expressionsTab.add(this.expressionGraphPanelArea, BorderLayout.CENTER);
 		expressionsTab.setOpaque(false);
 		this.expressionsTab = expressionsTab;
 		
@@ -102,9 +99,8 @@ public class ClientWindow extends JFrame{
 		JMenu menu = new JMenu("Menu");
 		
 		JMenuItem openServer = new JMenuItem("Open Server");
-		this.clientUILogic.initializeOpenServerActionListener();
-		openServer.addActionListener(this.clientUILogic.openServerActionListener);
-		menu.add(openServer);
+		this.openServer = openServer;
+		menu.add(this.openServer);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(menu);
@@ -120,7 +116,7 @@ public class ClientWindow extends JFrame{
 		JPanel serverConnectionPanel = new JPanel(new BorderLayout());
 		serverConnectionPanel.setBackground(Color.GRAY);
 		serverConnectionPanel.setBorder(BorderFactory.createTitledBorder("Server Connection"));
-		serverConnectionPanel.setPreferredSize(new Dimension(500, 50));
+		serverConnectionPanel.setPreferredSize(new Dimension(500, 60));
 		this.serverConnectionPanel = serverConnectionPanel;
 		this.clientPanel.add(this.serverConnectionPanel, BorderLayout.NORTH);
 	}
