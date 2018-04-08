@@ -44,6 +44,10 @@ public class ExpressiveBean{
         lookingDown = bean.lookingDown;
     }
 
+    /**
+     * Setters/Getters for class properties
+     *
+     */
     public boolean isBlink() {
         return blink;
     }
@@ -194,9 +198,9 @@ public class ExpressiveBean{
     }
 
     /**
-     *
+     * Checks if the parameter bean is equal to the Expressive bean
      * @param bean
-     * @return
+     * @return boolean value based on comparison
      */
     public boolean equals(ExpressiveBean bean){
 

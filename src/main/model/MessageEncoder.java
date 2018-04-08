@@ -16,7 +16,7 @@ public class MessageEncoder implements Encoder.Text<EmotionMessageBean> {
 
     /**
      *
-     * @param config
+     * @param config End Point Configuration
      */
     @Override
     public void init(final EndpointConfig config) {

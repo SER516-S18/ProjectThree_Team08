@@ -127,6 +127,11 @@ public class InteractivePanel extends JPanel{
         emoStateSpinner.addChangeListener(emoStateChangeListener);
         this.add(emoStateSpinner);
     }
+
+	/**
+	 * Getter Setters for class properties
+	 *
+	 */
 	
 	public InteractivePanel getInteractivePanel() {
 		return this;

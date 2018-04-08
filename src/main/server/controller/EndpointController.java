@@ -23,7 +23,10 @@ public class EndpointController {
 	private EndpointController() {
 	}
 
-	// This will support lazy initialisation of endpointController
+	/**
+	 * This will support lazy initialisation of endpointController
+	 *
+	 */
 	private static class SingletonHolder {
 		public static final EndpointController endpointController = new EndpointController();
 	}
@@ -38,136 +41,136 @@ public class EndpointController {
 	}
 
 	/**
-	 *
-	 * @param blink
+	 * Updates blink in the message bean for the expression
+	 * @param blink If blink is set
 	 */
 	public void updateExpBlink(boolean blink) {
 		EndpointController.getInstance().emotionMessageBean.getExpressive().setBlink(blink);
 	}
 
 	/**
-	 *
-	 * @param rightWink
+	 * Updates right wink in the message bean for the expression
+	 * @param rightWink If right wink is set
 	 */
 	public void updateExpRightWink(boolean rightWink) {
 		EndpointController.getInstance().emotionMessageBean.getExpressive().setRightWink(rightWink);
 	}
 
 	/**
-	 *
-	 * @param leftWink
+	 * Updates left wink in the message bean for the expression
+	 * @param leftWink If left wink is set
 	 */
 	public void updateExpLeftWink(boolean leftWink) {
 		EndpointController.getInstance().emotionMessageBean.getExpressive().setLeftWink(leftWink);
 	}
 
 	/**
-	 *
-	 * @param lookingLeft
+	 * Updates looking left in the message bean for the expression
+	 * @param lookingLeft value of looking left
 	 */
 	public void updateExpLookingLeft(double lookingLeft) {
 		EndpointController.getInstance().emotionMessageBean.getExpressive().setLookingLeft(lookingLeft);
 	}
 
 	/**
-	 *
-	 * @param lookingRight
+	 * Updates looking right in the message bean for the expression
+	 * @param lookingRight value of looking right
 	 */
 	public void updateExpLookingRight(double lookingRight) {
 		EndpointController.getInstance().emotionMessageBean.getExpressive().setLookingRight(lookingRight);
 	}
 
 	/**
-	 *
-	 * @param eyeBrowRaise
+	 * Updates eye brow raise in the message bean for the expression
+	 * @param eyeBrowRaise value of eye brow raise
 	 */
 	public void updateEyeBrowRaise(double eyeBrowRaise) {
 		EndpointController.getInstance().emotionMessageBean.getExpressive().setRaiseBrow(eyeBrowRaise);
 	}
 
 	/**
-	 *
-	 * @param eyesOpen
+	 * Updates eyes open in the message bean for the expression
+	 * @param eyesOpen value of looking eyes open
 	 */
 	public void updateEyesOpen(double eyesOpen) {
 		EndpointController.getInstance().emotionMessageBean.getExpressive().setEyesOpen(eyesOpen);
 	}
 
 	/**
-	 *
-	 * @param smile
+	 * Updates smile in the message bean for the expression
+	 * @param smile value of smile
 	 */
 	public void updateSmile(double smile) {
 		EndpointController.getInstance().emotionMessageBean.getExpressive().setSmile(smile);
 	}
 
 	/**
-	 *
-	 * @param clench
+	 * Updates clench in the message bean for the expression
+	 * @param clench value of clench
 	 */
 	public void updateClench(double clench) {
 		EndpointController.getInstance().emotionMessageBean.getExpressive().setClench(clench);
 	}
 
 	/**
-	 *
-	 * @param lookingUp
+	 * Updates looking up in the message bean for the expression
+	 * @param lookingUp value of looking up
 	 */
 	public void updateLookingUp(double lookingUp) {
 		EndpointController.getInstance().emotionMessageBean.getExpressive().setLookingUp(lookingUp);
 	}
 
 	/**
-	 *
-	 * @param lookingDown
+	 * Updates looking down in the message bean for the expression
+	 * @param lookingDown value of looking down
 	 */
 	public void updateLookingDown(double lookingDown) {
 		EndpointController.getInstance().emotionMessageBean.getExpressive().setLookingDown(lookingDown);
 	}
 
 	/**
-	 *
-	 * @param interest
+	 * Updates interest parameter in the message bean for the expression
+	 * @param interest value of interest
 	 */
 	public void updateInterest(double interest) {
 		EndpointController.getInstance().emotionMessageBean.getAffective().setInterest(interest);
 	}
 
 	/**
-	 *
-	 * @param engagement
+	 * Updates engagement parameter in the message bean for the expression
+	 * @param engagement value of engagement
 	 */
 	public void updateEngagement(double engagement) {
 		EndpointController.getInstance().emotionMessageBean.getAffective().setEngagement(engagement);
 	}
 
 	/**
-	 *
-	 * @param stress
+	 * Updates stress parameter in the message bean for the expression
+	 * @param stress value of stress
 	 */
 	public void updateStress(double stress) {
 		EndpointController.getInstance().emotionMessageBean.getAffective().setStress(stress);
 	}
 
 	/**
-	 *
-	 * @param relaxation
+	 * Updates relaxation parameter in the message bean for the expression
+	 * @param relaxation value of relaxation
 	 */
 	public void updateRelaxation(double relaxation) {
 		EndpointController.getInstance().emotionMessageBean.getAffective().setRelaxation(relaxation);
 	}
 
 	/**
-	 *
-	 * @param excitement
+	 * Updates excitement parameter in the message bean for the expression
+	 * @param excitement value of excitement
 	 */
 	public void updateExcitement(double excitement) {
 		EndpointController.getInstance().emotionMessageBean.getAffective().setExcitement(excitement);
 	}
 
 	/**
-	 *
-	 * @param focus
+	 * Updates focus parameter in the message bean for the expression
+	 * @param focus value of focus
 	 */
 	public void updateFocus(double focus) {
 		EndpointController.getInstance().emotionMessageBean.getAffective().setFocus(focus);
@@ -175,6 +178,7 @@ public class EndpointController {
 
 	/**
 	 * This method is to send the message only once
+	 *
 	 */
 	public void sendOnce() {
 		sendEmotionMessage();
@@ -201,6 +205,7 @@ public class EndpointController {
 
 	/**
 	 * This method is to stop the message sending
+	 *
 	 */
 	public void stop() {
 		timer.cancel();
@@ -208,6 +213,7 @@ public class EndpointController {
 
 	/**
 	 * This method is invoked to send emotion message
+	 *
 	 */
 	public void sendEmotionMessage() {
 		// Reintialisation emotion for resetting data

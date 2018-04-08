@@ -49,6 +49,7 @@ public class DetectionPanel extends JPanel{
 
 	/**
 	 * Constructor adding the DetectionPanel to the server UI
+	 *
 	 * */
     public DetectionPanel() {
         this.setBackground(Color.GRAY);
@@ -252,6 +253,10 @@ public class DetectionPanel extends JPanel{
         
     }
 
+	/**
+	 * Getter/Setters for all the class properties
+	 *
+	 */
 	public String getUpperfaceSelectedItem() {
 		return upperfaceSelectedItem;
 	}

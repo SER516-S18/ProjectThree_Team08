@@ -20,6 +20,11 @@ public class EmotionMessageBean extends Observable{
         affective = new AffectiveBean();
     }
 
+    /**
+     * Getter/Setter for class properties
+     *
+     */
+
     public ExpressiveBean getExpressive() {
         return expressive;
     }
@@ -58,7 +63,7 @@ public class EmotionMessageBean extends Observable{
 
     /**
      *
-     * @param clockTick
+     * @param clockTickVal
      */
     public static void setClockTick(double clockTickVal) {
     	clockTick = clockTickVal;
@@ -68,6 +73,10 @@ public class EmotionMessageBean extends Observable{
     	return clockTick; 
     }
 
+    /**
+     * This method is used to generate a Stringified version of the class properties
+     *
+     */
     @Override
     public String toString() {
         return "EmotionMessageBean{" +

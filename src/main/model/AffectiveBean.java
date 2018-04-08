@@ -2,6 +2,7 @@ package main.model;
 
 /**
  * Bean which stores the emotion message to be sent to client.
+ * Setter Getter for class properties included
  * @author Balachandar Sampath
  * @version 1.0
  */
@@ -88,6 +89,10 @@ public class AffectiveBean {
         this.focus = focus;
     }
 
+    /**
+     * This method is used to generate a Stringified version of the class properties
+     *
+     */
     @Override
     public String toString() {
         return "AffectiveBean{" +
