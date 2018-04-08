@@ -72,7 +72,7 @@ public class ClientWindow extends JFrame{
 		JPanel expressionGraphPanelArea = new JPanel(new BorderLayout());
 		expressionGraphPanelArea.setPreferredSize(new Dimension(700, 550));
 		expressionGraphPanelArea.setBorder(BorderFactory.createTitledBorder("Expression Plot"));
-		facePanelArea.setBackground(Color.GRAY);
+		expressionGraphPanelArea.setBackground(Color.GRAY);
 		this.expressionGraphPanelArea = expressionGraphPanelArea;
 
 		JPanel expressionsTab = new JPanel(new BorderLayout());
