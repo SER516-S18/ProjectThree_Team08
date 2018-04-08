@@ -25,9 +25,7 @@ public class ServerEndpoint {
      * @param session This is the first parameter to onOpen method and holds client session
      */
     @OnOpen
-    public void onOpen(Session session) throws IOException {
-        // Get session and WebSocket connection
-        EndpointController endpointController = EndpointController.getInstance();
+    public void onOpen(Session session) {
         System.out.println(String.format("%s connected with us", session.getId()));
         clients.add(session);
     }
@@ -38,8 +36,7 @@ public class ServerEndpoint {
      * @param session This is the second parameter to onMessage method and holds client session
      */
     @OnMessage
-    public void onMessage(EmotionMessageBean message, Session session) throws IOException, EncodeException {
-        // Handle new messages
+    public void onMessage(EmotionMessageBean message, Session session) {
         String user = (String) session.getUserProperties().get("user");
         if (user == null) {
             session.getUserProperties().put("user", message.getSender());
@@ -51,8 +48,7 @@ public class ServerEndpoint {
      * @param session This is the first parameter to onClose method and holds client session
      */
     @OnClose
-    public void onClose(Session session) throws IOException {
-        // WebSocket connection closes
+    public void onClose(Session session) {
         System.out.println(String.format("%s disconnected the connection", session.getId()));
         clients.remove(session);
     }

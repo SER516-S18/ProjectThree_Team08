@@ -67,7 +67,7 @@ public class UIController {
 
 	/**
 	 * Updates the message bean taking values from the UI
-	 * 
+	 *
 	 */
 	public void updateMessageBeanFromUI() {
 
