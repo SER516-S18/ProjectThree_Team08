@@ -13,14 +13,40 @@ import javax.swing.border.TitledBorder;
 /**
  * Class for creating controls for console panel.
  * @author Akash Sharma
+ * @author Aayushi Shah
  * @version 1.0
  */
 
 public class ConsolePanel extends JPanel{
 
     JButton btnClearLog;
-    JTextPane consoleTextPane;
+    private final static Logger LOGGER = Logger.getLogger(ConsolePanel.class.getName());
+    private static JTextPane consoleTextPane = null;
 
+    /**
+	 *  Sets the layout of messages
+	 * @param Message 
+	 */
+	public static void setMessage(String message) {
+
+		try
+		{
+			consoleTextPane.setContentType("text/html");
+			StyledDocument doc = (StyledDocument) consoleTextPane.getDocument();
+			SimpleAttributeSet keyWord = new SimpleAttributeSet();
+			StyleConstants.setForeground(keyWord, Color.RED);
+			StyleConstants.setFontFamily(keyWord, "Times New Roman");
+			StyleConstants.setFontSize(keyWord, 13);
+
+			doc.insertString(0,new Date()+"Message: "+message +"\n",keyWord );
+		}
+		catch(Exception ex) 
+		{ 
+			LOGGER.log(Level.SEVERE,"Exception while adding Error Message.", ex); 
+		}
+
+	}
+    
     public ConsolePanel() {
         this.setBackground(Color.GRAY);
         this.setBorder(new TitledBorder(null, "EmoEngine Log", TitledBorder.LEADING, 
@@ -32,7 +58,7 @@ public class ConsolePanel extends JPanel{
         btnClearLog = new JButton("Clear Log");
         btnClearLog.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-            	
+            	consoleTextPane.setText("");
             }
         });
         btnClearLog.setBounds(140, 119, 171, 25);
@@ -45,7 +71,6 @@ public class ConsolePanel extends JPanel{
         consoleTextPane = new JTextPane();
         consoleTextPane.setEditable(false);
         consoleTextPane.setForeground(Color.WHITE);
-        consoleTextPane.setText("Show Errors Here!");
         consoleTextPane.setBackground(Color.DARK_GRAY);
         consoleTextPane.setBounds(10, 26, 454, 86);
         this.add(consoleTextPane);
