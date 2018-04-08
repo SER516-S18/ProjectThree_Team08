@@ -20,7 +20,7 @@ import main.server.controller.UIController;
 
 /**
  * Class for creating controls for interaction panel.
- * @author Akash Sharma, Rhythm Sharma
+ * @author Akash Sharma, Rhythm Sharma, Aayushi Shah
  * @version 1.0
  */
 
@@ -101,6 +101,10 @@ public class InteractivePanel extends JPanel{
             	UIController.setInteractivePanel(getInteractivePanel());
             	UIController.updateSendButtonText(btnSend.getText ());
             	UIController.updateDetectionTime(getEmoStateTimeInterval ());
+		if(btnSend.getText().toLowerCase().equals("start"))
+            		ConsolePanel.setMessage("Data is not being send");
+            	else
+            		ConsolePanel.setMessage("Data is now being send");
             }
         });
         btnSend.setFont(new Font("Tahoma", Font.PLAIN, 12));
