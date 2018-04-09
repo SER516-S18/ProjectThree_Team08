@@ -56,8 +56,6 @@ public class ExpressionGraphPanel extends JPanel {
             c.gridy = i;
             ExpressionLineGraph graph=new ExpressionLineGraph(type);
             exp.add(graph, c);
-            //JLabel label1=new JLabel(type);
-            //exp.add(label1, c);
             c.ipadx=0;
             c.ipady=0;
             c.gridx = 1;
