@@ -1,6 +1,10 @@
 package main.client.controller;
 
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 import main.client.view.*;
+import main.model.EmotionMessageBean;
 
 /**
  * Client Main
@@ -8,7 +12,6 @@ import main.client.view.*;
  * @version 1.1
  */
 class ClientInitUI {
-
 	/**
 	 * Initialize the client GUI
 	 */
@@ -22,15 +25,20 @@ class ClientInitUI {
 			MetricsValuePanel metricsValuePanel = new MetricsValuePanel();
 			ServerConnectionPanel serverConnectionPanel = new ServerConnectionPanel();
 			
+			EmotionMessageBean emotionMessageBean = new EmotionMessageBean();
+			ClientEndpoint clientEndPoint = new ClientEndpoint(emotionMessageBean);
+			
 			ClientWindowLogic clientWindowLogic = new ClientWindowLogic();
 			window.openServer.addActionListener(clientWindowLogic.generateOpenServerActionListener());
 			
 			ServerConnectionPanelLogic serverConnectionPanelLogic = new ServerConnectionPanelLogic(
-					serverConnectionPanel.ipAddressTextField, serverConnectionPanel.portTextField, 
-					serverConnectionPanel.startStopButton, serverConnectionPanel.timeStampValueLabel);
-			
+					clientEndPoint, emotionMessageBean, serverConnectionPanel.ipAddressTextField, 
+					serverConnectionPanel.portTextField, serverConnectionPanel.startStopButton, 
+					serverConnectionPanel.timeStampValueLabel);
 			serverConnectionPanel.startStopButton.addActionListener(
 					serverConnectionPanelLogic.generateStartServerConnectionActionListener());
+			
+			emotionMessageBean.addObserver(serverConnectionPanelLogic);
 			
 			window.addFacePanel(expressivePanel);
 			window.addExpressionGraphPanel(expressionGraphPanel);

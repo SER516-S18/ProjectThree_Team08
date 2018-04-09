@@ -30,12 +30,12 @@ public class EmotionMessageBean extends Observable{
     }
 
     /**
-     *
+     * sets the expressive bean and sets changed to true.
      * @param expressive
      */
     public void setExpressive(ExpressiveBean expressive) {
-
         this.expressive = expressive;
+        this.setChanged();
     }
 
     public AffectiveBean getAffective() {
@@ -43,12 +43,12 @@ public class EmotionMessageBean extends Observable{
     }
 
     /**
-     *
+     * sets the affective bean and sets changed to true.
      * @param affective
      */
     public void setAffective(AffectiveBean affective) {
-
         this.affective = affective;
+        this.setChanged();
     }
 
     public String getSender() {
@@ -64,18 +64,26 @@ public class EmotionMessageBean extends Observable{
     }
 
     /**
-     *
+     *	
      * @param clockTickVal
      */
     public static void setClockTick(double clockTickVal) {
-
         clockTick = clockTickVal;
+    }
+    
+    /**
+     * set the tick in the client and sets changed to true.
+     * @param tick
+     */
+    public void setTick(double tick){
+    	clockTick = tick;
+    	this.setChanged();
     }
 
     public double getClockTick() {
     	return clockTick; 
     }
-
+    
     /**
      * This method is used to generate a Stringified version of the class properties
      *

@@ -8,11 +8,13 @@ import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.websocket.Session;
 
 import org.glassfish.tyrus.client.ClientManager;
 
+import main.client.view.ClientWindow;
 import main.model.EmotionMessageBean;
 import main.utils.ConnectionConstants;
 
@@ -26,39 +28,27 @@ public class ServerConnectionPanelLogic implements Observer{
 	JTextField portTextField;
 	JButton startStopButton;
 	JLabel timeStampValueLabel;
-	EmotionMessageBean emotionMessageBean;
+	ClientEndpoint clientEndPoint;
 	Session session = null;
+	EmotionMessageBean emotionMessageBean;
 	
 	/**
-	 * Constructor sets the fields that need to be updated and sets the reference to the observable.
+	 * Constructor sets the fields that need to be updated and sets the reference to the observable and end point.
+	 * @param clientEndPoint
 	 * @param emotionMessageBean
 	 * @param ipAddressTextField
 	 * @param portTextField
 	 * @param startStopButton
 	 * @param timeStampValueLabel
 	 */
-	public ServerConnectionPanelLogic(EmotionMessageBean emotionMessageBean,
+	public ServerConnectionPanelLogic(ClientEndpoint clientEndPoint, EmotionMessageBean emotionMessageBean,
 			JTextField ipAddressTextField, JTextField portTextField, JButton startStopButton, JLabel timeStampValueLabel){
+		this.clientEndPoint = clientEndPoint;
+		this.ipAddressTextField = ipAddressTextField;
+		this.portTextField = portTextField;
+		this.startStopButton = startStopButton;
+		this.timeStampValueLabel = timeStampValueLabel;
 		this.emotionMessageBean = emotionMessageBean;
-		this.ipAddressTextField = ipAddressTextField;
-		this.portTextField = portTextField;
-		this.startStopButton = startStopButton;
-		this.timeStampValueLabel = timeStampValueLabel;
-		this.emotionMessageBean.addObserver(this);
-	}
-	
-	/**
-	 * Constructor sets the fields that need to be updated.
-	 * @param ipAddressTextField
-	 * @param portTextField
-	 * @param startStopButton
-	 */
-	public ServerConnectionPanelLogic(
-			JTextField ipAddressTextField, JTextField portTextField, JButton startStopButton, JLabel timeStampValueLabel){
-		this.ipAddressTextField = ipAddressTextField;
-		this.portTextField = portTextField;
-		this.startStopButton = startStopButton;
-		this.timeStampValueLabel = timeStampValueLabel;
 	}
 	
 	/**
@@ -75,24 +65,30 @@ public class ServerConnectionPanelLogic implements Observer{
 					
 					if(startStopButton.getText().equals("Start")){
 						startStopButton.setText("Stop");
-						session = client.connectToServer(ClientEndpoint.class, new URI(sURI));
+						session = client.connectToServer(clientEndPoint, new URI(sURI));
+						
+						if(!session.isOpen()){
+							String message = "The Connection was not established.";
+							JOptionPane.showMessageDialog(
+									timeStampValueLabel.getRootPane(), message, 
+									"Connection Status", JOptionPane.WARNING_MESSAGE);
+						}
 					}else{
 						session.close();
 						startStopButton.setText("Start");
 					}
 				}catch(Exception e) {
-					// set the console if client is not connected
+					String message = "Connection error has ocurred.";
+					JOptionPane.showMessageDialog(
+							timeStampValueLabel.getRootPane(), message, 
+							"Connection Error", JOptionPane.ERROR_MESSAGE);
 				}
-				
-
-				System.out.println("ip address: " + ipAddressTextField.getText());
-				System.out.println("port: " + portTextField.getText());
 			}
 		};
 	}
 
 	/**
-	 * update the fields in the SeverConnectionPanel.
+	 * update the time stamp.
 	 * @param observable
 	 * @param arg
 	 */
