@@ -64,8 +64,10 @@ public class MetricGraphPanel extends JPanel {
      * Public method used to update the number of channels in a graph. Creates new chart panel.
      * And it to the panel.
      */
-    public void updateDisplayLength(int n){
-        frequency = n;
+    public void updateDisplayLength(double n){
+        final XYPlot plot = chart.getXYPlot();
+        NumberAxis domain = (NumberAxis) plot.getDomainAxis();
+        domain.setRange(0.00, n);
     }
 
     /**

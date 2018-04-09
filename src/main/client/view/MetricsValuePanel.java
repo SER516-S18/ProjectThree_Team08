@@ -20,7 +20,7 @@ public class MetricsValuePanel extends JPanel {
     private ColorBox relaxation;
     private ColorBox excitement;
     private ColorBox focus;
-    private JTextPane displayLength;
+    private JFormattedTextField displayLength;
     private JButton setLength;
     private Color colors[] = new Color[] {Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE, Color.PINK, Color.ORANGE};
 
@@ -136,8 +136,8 @@ public class MetricsValuePanel extends JPanel {
         title.setBounds(50,495,140,30);
         this.add(title);
 
-        displayLength = new JTextPane();
-        displayLength.setText("1");
+        displayLength = new JFormattedTextField();
+        displayLength.setValue(new Double(1));
         displayLength.setOpaque(true);
         displayLength.setBackground(Color.GRAY);
         displayLength.setBounds(145,495,50,30);
@@ -201,7 +201,7 @@ public class MetricsValuePanel extends JPanel {
     /**
      * Public method to get the display length as per data entered by the user. Default is set to 1.
      */
-    public String getDisplayLength(){
-        return displayLength.getText();
+    public double getDisplayLength(){
+        return (double) displayLength.getValue();
     }
 }
