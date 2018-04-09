@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class ExpressivePanel extends JPanel {
 
-    private static final String faceLayoutPath = "images/faceLayout.png";
+    private static final String faceLayoutPath = "faceLayout.png";
     private List<IExpressive> shapes = new ArrayList<>();
     private LeftEye leftEye = new LeftEye();
     private RightEye rightEye = new RightEye();
@@ -54,10 +54,9 @@ public class ExpressivePanel extends JPanel {
         shapes.add(mouth);
         shapes.add(smile);
         shapes.add(clench);
-        File f = new File(faceLayoutPath);
 
         try {
-            img = ImageIO.read(f);
+            img = ImageIO.read(getClass().getClassLoader().getResource(faceLayoutPath));
         } catch (IOException e) {
             e.printStackTrace();
         }
