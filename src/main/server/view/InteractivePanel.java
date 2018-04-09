@@ -104,6 +104,7 @@ public class InteractivePanel extends JPanel{
             	UIController.setInteractivePanel(getInteractivePanel());
             	UIController.updateSendButtonText(btnSend.getText ());
             	UIController.updateDetectionTime(getEmoStateTimeInterval ());
+            	UIController.sendMessageBean();
 		if(btnSend.getText().toLowerCase().equals("start"))
             		ConsolePanel.setMessage("Data is not being send");
             	else

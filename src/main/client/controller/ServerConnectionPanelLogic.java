@@ -2,14 +2,19 @@ package main.client.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URI;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.websocket.Session;
+
+import org.glassfish.tyrus.client.ClientManager;
 
 import main.model.EmotionMessageBean;
+import main.utils.ConnectionConstants;
 
 /**
  * Server conection panel logic
@@ -22,6 +27,7 @@ public class ServerConnectionPanelLogic implements Observer{
 	JButton startStopButton;
 	JLabel timeStampValueLabel;
 	EmotionMessageBean emotionMessageBean;
+	Session session = null;
 	
 	/**
 	 * Constructor sets the fields that need to be updated and sets the reference to the observable.
@@ -59,14 +65,25 @@ public class ServerConnectionPanelLogic implements Observer{
 	 * Handles the Start connection logic.
 	 */
 	public ActionListener generateStartServerConnectionActionListener(){
+		final String sURI = "ws://"+ this.ipAddressTextField.getText() + ":" + this.portTextField.getText()
+							+ "/" + ConnectionConstants.ROOT_PATH + "/" + ConnectionConstants.ENDPOINT_PATH;
 		return new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				if(startStopButton.getText().equals("Start")){
-					startStopButton.setText("Stop");
-				}else{
-					startStopButton.setText("Start");
+				try {
+					ClientManager client = ClientManager.createClient();
+					
+					if(startStopButton.getText().equals("Start")){
+						startStopButton.setText("Stop");
+						session = client.connectToServer(ClientEndpoint.class, new URI(sURI));
+					}else{
+						session.close();
+						startStopButton.setText("Start");
+					}
+				}catch(Exception e) {
+					// set the console if client is not connected
 				}
+				
 
 				System.out.println("ip address: " + ipAddressTextField.getText());
 				System.out.println("port: " + portTextField.getText());

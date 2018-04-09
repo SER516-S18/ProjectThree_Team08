@@ -321,4 +321,15 @@ public class UIController {
 
 	}
 
+	/**
+	 * This method will send the message bean to the clients
+	 * */
+	public static void sendMessageBean() {
+		if(!interactivePanel.isAutoReset()) {
+			EndpointController.getInstance().sendOnce();
+		} else {
+			EndpointController.getInstance().sendInIntervals(interactivePanel.getEmoStateTimeInterval());
+		}
+	}
+
 }
