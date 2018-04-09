@@ -42,7 +42,7 @@ public class ConsolePanel extends JPanel{
 			consoleTextPane.setContentType("text/html");
 			StyledDocument doc = (StyledDocument) consoleTextPane.getDocument();
 			SimpleAttributeSet keyWord = new SimpleAttributeSet();
-			StyleConstants.setForeground(keyWord, Color.RED);
+			StyleConstants.setForeground(keyWord, Color.WHITE);
 			StyleConstants.setFontFamily(keyWord, "Times New Roman");
 			StyleConstants.setFontSize(keyWord, 13);
 

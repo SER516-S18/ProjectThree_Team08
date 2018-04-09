@@ -259,19 +259,24 @@ public class UIController {
 	}
 
 	/**
-     * This method is to update Send Button Text depending upon 
+	 * This method will send the message bean to all the clients
+     * It will also update Send Button Text depending upon 
      * AutoReset Value and running state of server
+     * 
 	 * @param presentText the value/text on the Send Button
      */
-	public static void updateSendButtonText(String presentText) {
+	public static void sendMessageBean(String presentText) {
 		if (interactivePanel.isAutoReset()) {
 			if ("start".equalsIgnoreCase(presentText)) {
 				interactivePanel.updateSendBtnText("Stop");
+				EndpointController.getInstance().sendInIntervals(interactivePanel.getEmoStateTimeInterval());
 			} else {
 				interactivePanel.updateSendBtnText("Start");
+				// stop sending data to the clients
+				EndpointController.getInstance().stop();
 			}
-
 		}
+		EndpointController.getInstance().sendOnce();
 	}
 
 	/**
@@ -319,17 +324,6 @@ public class UIController {
 
 		}
 
-	}
-
-	/**
-	 * This method will send the message bean to the clients
-	 * */
-	public static void sendMessageBean() {
-		if(!interactivePanel.isAutoReset()) {
-			EndpointController.getInstance().sendOnce();
-		} else {
-			EndpointController.getInstance().sendInIntervals(interactivePanel.getEmoStateTimeInterval());
-		}
 	}
 
 }
