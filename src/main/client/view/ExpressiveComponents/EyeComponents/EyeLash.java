@@ -26,7 +26,7 @@ public abstract class EyeLash extends Arc2D.Double implements IExpressive {
         super(x,y,WIDTH,HEIGHT,START,EXTENT, Arc2D.OPEN);
     }
 
-    public void Blink(boolean b){
+    public void blink(boolean b){
 
         if(!b)
             return;
@@ -43,7 +43,7 @@ public abstract class EyeLash extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public void Reset(){
+    public void reset(){
         setAngleStart(START);
         setAngleExtent(EXTENT);
     }

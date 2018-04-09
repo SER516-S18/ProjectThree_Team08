@@ -30,7 +30,7 @@ public abstract class EyeBrow extends Arc2D.Double implements IExpressive {
      * Raises the eyebrow based of received value
      * @param val double 0-1
      */
-    public void Raise(double val){
+    public void raise(double val){
 
         if(val <= 0 || val > 1)
             return;
@@ -43,7 +43,7 @@ public abstract class EyeBrow extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public void Reset(){
+    public void reset(){
     }
 
     /**
