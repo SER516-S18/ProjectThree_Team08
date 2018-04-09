@@ -1,5 +1,7 @@
 package main.client.view;
 
+import main.client.view.ExpressionLineGraph;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -17,52 +19,50 @@ public class ExpressionGraphPanel extends JPanel {
     public ExpressionGraphPanel() {
         JPanel exp = new JPanel(new GridBagLayout());
         this.setLayout(new BorderLayout());
+        this.setPreferredSize(new Dimension(700,550));
         GridBagConstraints c = new GridBagConstraints();
-        exp.setBackground(Color.LIGHT_GRAY);
+        exp.setBackground(Color.WHITE);
         this.add(exp);
         for (int i=0; i<11; i++)
         {
-            c.ipadx=0;
-            c.ipady=0;
-            c.weightx=0.5;
-            c.weighty=0.0;
-            c.fill = GridBagConstraints.CENTER;
-            c.gridx = 0;
-            c.gridy = i;
-            ExpressionLineGraph graph=new ExpressionLineGraph(i);
-            exp.add(graph, c);
-            c.ipadx=0;
-            c.ipady=0;
-            c.weightx=0.5;
-            c.weighty=0.0;
-            c.fill = GridBagConstraints.CENTER;
-            c.gridx = 1;
-            c.gridy = i;
             switch(i){
                 case 0: type="Blink";
-                        break;
+                    break;
                 case 1: type="Right Wink";
-                        break;
+                    break;
                 case 2: type="Left Wink";
-                        break;
+                    break;
                 case 3: type="Looking Right";
-                        break;
+                    break;
                 case 4: type="Looking Left";
-                        break;
+                    break;
                 case 5: type="Raise Brow";
-                        break;
+                    break;
                 case 6: type="Eyes Open";
-                        break;
+                    break;
                 case 7: type="Smile";
-                        break;
+                    break;
                 case 8: type="Clench";
-                        break;
+                    break;
                 case 9: type="Looking Up";
-                        break;
+                    break;
                 case 10: type="Looking Down";
-                        break;
+                    break;
 
             }
+            c.ipadx=0;
+            c.ipady=0;
+            c.gridx = 0;
+            c.gridy = i;
+            ExpressionLineGraph graph=new ExpressionLineGraph(type);
+            exp.add(graph, c);
+            //JLabel label1=new JLabel(type);
+            //exp.add(label1, c);
+            c.ipadx=0;
+            c.ipady=0;
+            c.gridx = 1;
+            c.gridy = i;
+
 
             JLabel label=new JLabel(type);
             exp.add(label, c);
