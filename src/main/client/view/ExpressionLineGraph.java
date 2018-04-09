@@ -1,114 +1,157 @@
 package main.client.view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+import javax.swing.JPanel;
+
 import main.model.ExpressiveBean;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.data.time.*;
+import org.jfree.data.time.Millisecond;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.axis.NumberTickUnit;
+import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.RefineryUtilities;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-
-import main.model.ExpressiveBean;
+//import main.model.ExpressiveBean.*;
 
 /**
- * Graph Panel to display line graph in graph tab
- * @author Nishiti Sawant
- * @version 1.0
+ * An example to show how we can create a dynamic chart.
  */
+public class ExpressionLineGraph extends JPanel implements ActionListener {
 
-public class ExpressionLineGraph extends JPanel{
-    private TimeSeries[] metricValues;
-    private ChartPanel chartPanel;
-    private JFreeChart chart;
-    private int frequency = 1;
-    public ExpressionLineGraph(int type) {
+    /** The time series data. */
+    private TimeSeries series;
 
+    private String expressionType;
 
-        XYDataset dataSet = createDataSet(type);
-        chart = createChart(dataSet);
-        chartPanel = new ChartPanel(chart);
-        chartPanel.setMouseZoomable(true , true);
-        chartPanel.setPreferredSize(new Dimension(580, 45));
+    /** The most recent value added. */
+    private double value;
+
+    /** Timer to refresh graph after every 1/4th of a second */
+    private Timer timer = new Timer(250, this);
+
+    /**
+     * Constructs a new dynamic chart application.
+     *
+     * @param title  the frame title.
+     */
+    public ExpressionLineGraph(final String title) {
+
+        super();
+        expressionType=title;
+        this.series = new TimeSeries("", Millisecond.class);
+
+        final TimeSeriesCollection dataset = new TimeSeriesCollection(this.series);
+        final JFreeChart chart = createChart(dataset);
+
+        //timer.setInitialDelay(1000);
+
+        //Sets background color of chart
+        chart.setBackgroundPaint(Color.WHITE);
+
+        //Created JPanel to show graph on screen
+        //final JPanel content = new JPanel(new BorderLayout());
+
+        //Created Chartpanel for chart area
+        final ChartPanel chartPanel = new ChartPanel(chart);
+
+        //Added chartpanel to main panel
+        //content.add(chartPanel);
+
+        //Sets the size of whole window (JPanel)
         this.setLayout(new BorderLayout());
+        this.setPreferredSize(new java.awt.Dimension(580, 45));
         this.add(chartPanel, BorderLayout.CENTER);
+        //Puts the whole content on a Frame
+        //setContentPane(content);
+        timer.start();
+
     }
 
     /**
-     * Public method to continuously update the values for the channels in graph
+     * Creates a sample chart.
+     *
+     * @param dataset  the dataset.
+     *
+     * @return A sample chart.
      */
-    public void updateMetric(ExpressiveBean bean){
-        Millisecond current = new Millisecond();
-        //metricValues[0].addOrUpdate(current,bean.isBlink());
-        //metricValues[1].addOrUpdate(current,bean.isRightWink());
-        //metricValues[2].addOrUpdate(current,bean.isLeftWink());
-        metricValues[3].addOrUpdate(current,bean.getLookingLeft());
-        metricValues[4].addOrUpdate(current,bean.getLookingRight());
-        metricValues[5].addOrUpdate(current,bean.getRaiseBrow());
-        metricValues[6].addOrUpdate(current,bean.getEyesOpen());
-        metricValues[7].addOrUpdate(current,bean.getSmile());
-        metricValues[8].addOrUpdate(current,bean.getClench());
-        metricValues[9].addOrUpdate(current,bean.getLookingUp());
-        metricValues[10].addOrUpdate(current,bean.getLookingDown());
-        NumberAxis n = (NumberAxis) chart.getXYPlot().getDomainAxis();
-//        n.pan(0.01);
-    }
+    private JFreeChart createChart(final XYDataset dataset) {
+        final JFreeChart result = ChartFactory.createTimeSeriesChart(
+                "",
+                "Time",
+                "Value",
+                dataset,
+                false,
+                true,
+                false
+        );
 
-
-    /**
-     * Private method to create data chart based on the data set provided. Used when panel is initialized or channel
-     * count is changed.
-     */
-    private JFreeChart createChart(XYDataset dataSet){
-        JFreeChart chart = ChartFactory.createXYLineChart("", "",
-                "Amount", dataSet,
-                PlotOrientation.VERTICAL, true, false, false);
-        chart.removeLegend();
-        final XYPlot plot = chart.getXYPlot();
-        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
-        for (int i = 0; i < dataSet.getSeriesCount()-1; i++) {
-            renderer.setSeriesPaint(i,Color.orange);
-        }
-
-        NumberAxis domain = (NumberAxis) plot.getDomainAxis();
-        domain.setVerticalTickLabels(false);
-        domain.setVisible(false);
-        domain.setAutoTickUnitSelection(true);
-
-        NumberAxis range = (NumberAxis) plot.getRangeAxis();
-        range.setRange(0.00, 1.00);
-        range.setVisible(false);
-        range.setTickUnit(new NumberTickUnit(0.1));
-
-        plot.setRenderer(renderer);
+        final XYPlot plot = result.getXYPlot();
         plot.setBackgroundPaint(Color.LIGHT_GRAY);
-        plot.setRangeGridlinesVisible(false);
         plot.setDomainGridlinesVisible(false);
-        return chart;
-    }
+        plot.setRangeGridlinesVisible(false);
 
+        ValueAxis xaxis = plot.getDomainAxis();
+        xaxis.setAutoRange(true);
+
+        //Domain axis would show data of 60 seconds for a time
+        xaxis.setFixedAutoRange(60000.0);  // 60 seconds
+        xaxis.setVerticalTickLabels(false);
+        xaxis.setVisible(false);
+
+        ValueAxis yaxis = plot.getRangeAxis();
+        yaxis.setRange(0.0, 1.0);
+        yaxis.setVisible(false);
+
+        return result;
+    }
     /**
-     * Private method to initialize new data set based on the number of channels provided. Used when channel number is
-     * addded or updated by the method 'update channel number'.
+     * Generates an random entry for a particular call made by time for every 1/4th of a second.
+     *
+     * @param e  the action event.
      */
-    private XYDataset createDataSet(int channelNumber) {
-        final TimeSeriesCollection dataSet = new TimeSeriesCollection();
-        metricValues = new TimeSeries[channelNumber];
-        for (int i = 0; i < channelNumber; i++) {
-            metricValues[i] = new TimeSeries("Channel " + (i + 1));
-            dataSet.addSeries(metricValues[i]);
+    public void actionPerformed(final ActionEvent e) {
+
+        ExpressiveBean bean = new ExpressiveBean();
+        switch(expressionType){
+            case("Blink"):if(bean.isBlink()) this.value = 1.0;
+            else this.value=0.0;
+                break;
+            case("Right Wink"):if(bean.isRightWink()) this.value = 1.0;
+            else this.value=0.0;
+                break;
+            case("Left Wink"):if(bean.isLeftWink()) this.value = 1.0;
+            else this.value=0.0;
+                break;
+            case("Looking Right"):this.value = bean.getLookingRight();
+                break;
+            case("Looking Left"):this.value = bean.getLookingLeft();
+                break;
+            case("Raise Brow"):this.value = bean.getRaiseBrow();
+                break;
+            case("Eyes Open"):this.value = bean.getEyesOpen();
+                break;
+            case("Smile"):this.value = bean.getSmile();
+                break;
+            case("Clench"):this.value = bean.getClench();
+                break;
+            case("Looking Up"):this.value = bean.getLookingUp();
+                break;
+            case("Looking Down"):this.value = bean.getLookingDown();
+                break;
         }
-        return dataSet;
+
+        final Millisecond now = new Millisecond();
+        this.series.add(new Millisecond(), this.value);
     }
-
-
 
 }
