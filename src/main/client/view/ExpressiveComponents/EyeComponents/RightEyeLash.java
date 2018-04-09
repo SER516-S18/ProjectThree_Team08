@@ -22,8 +22,8 @@ public class RightEyeLash extends EyeLash {
      * {@inheritDoc}
      */
     @Override
-    public void Reset(){
+    public void reset(){
         setFrame(X, Y, WIDTH, HEIGHT);
-        super.Reset();
+        super.reset();
     }
 }

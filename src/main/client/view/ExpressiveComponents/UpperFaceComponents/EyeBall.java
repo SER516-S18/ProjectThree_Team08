@@ -1,4 +1,4 @@
-package main.client.view.ExpressiveComponents.EyeComponents;
+package main.client.view.ExpressiveComponents.UpperFaceComponents;
 
 import main.client.view.ExpressiveComponents.IExpressive;
 
@@ -26,7 +26,7 @@ public abstract class EyeBall extends Arc2D.Double implements IExpressive {
         super(x,y,WIDTH,HEIGHT,START,EXTENT, Arc2D.CHORD);
     }
 
-    public void Blink(boolean b){
+    public void blink(boolean b){
 
         if(!b)
             return;
@@ -38,7 +38,7 @@ public abstract class EyeBall extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public void Reset(){
+    public void reset(){
         setAngleStart(START);
         setAngleExtent(EXTENT);
     }

@@ -30,7 +30,7 @@ public class Smile extends Arc2D.Double implements IExpressive {
      * Smiles mouth arc based on received value
      * @param val double 0-1
      */
-    public void Set(double val){
+    public void set(double val){
 
         if(val <= 0 || val > 1)
             return;
@@ -47,7 +47,7 @@ public class Smile extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public void Reset(){
+    public void reset(){
         setAngleStart(0);
         setAngleExtent(0);
     }

@@ -30,7 +30,7 @@ public abstract class Eye extends Arc2D.Double implements IExpressive {
      * Sets angle extent to zero if blink is true
      * @param b should blink
      */
-    public void Blink(boolean b){
+    public void blink(boolean b){
 
         if(!b)
             return;
@@ -44,7 +44,7 @@ public abstract class Eye extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public void Reset(){
+    public void reset(){
         setAngleStart(START);
         setAngleExtent(EXTENT);
     }

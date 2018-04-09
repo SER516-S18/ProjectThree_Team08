@@ -10,7 +10,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ import java.util.List;
  */
 public class ExpressivePanel extends JPanel {
 
-    private static final String faceLayoutPath = "images/faceLayout.png";
+    private static final String faceLayoutPath = "faceLayout.png";
     private List<IExpressive> shapes = new ArrayList<>();
     private LeftEye leftEye = new LeftEye();
     private RightEye rightEye = new RightEye();
@@ -54,10 +53,9 @@ public class ExpressivePanel extends JPanel {
         shapes.add(mouth);
         shapes.add(smile);
         shapes.add(clench);
-        File f = new File(faceLayoutPath);
 
         try {
-            img = ImageIO.read(f);
+            img = ImageIO.read(getClass().getClassLoader().getResource(faceLayoutPath));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -89,56 +87,56 @@ public class ExpressivePanel extends JPanel {
      * Affects facial features based on the received bean
      * @param b ExpressiveBean object
      */
-    public void Affect(ExpressiveBean b){
+    public void affect(ExpressiveBean b){
 
         if(bean == null || !bean.equals(b)){
             for (IExpressive e : shapes)
-                e.Reset();
+                e.reset();
 
             bean = new ExpressiveBean(b);
             //Blink
-            leftEye.Blink(bean.isBlink());
-            rightEye.Blink(bean.isBlink());
-            leftEyeLash.Blink(bean.isBlink());
-            rightEyeLash.Blink(bean.isBlink());
-            leftEyeBall.Blink(bean.isBlink());
-            rightEyeBall.Blink(bean.isBlink());
+            leftEye.blink(bean.isBlink());
+            rightEye.blink(bean.isBlink());
+            leftEyeLash.blink(bean.isBlink());
+            rightEyeLash.blink(bean.isBlink());
+            leftEyeBall.blink(bean.isBlink());
+            rightEyeBall.blink(bean.isBlink());
 
             //Left wink
-            leftEye.Blink(bean.isLeftWink());
-            leftEyeLash.Blink(bean.isLeftWink());
-            leftEyeBall.Blink(bean.isLeftWink());
+            leftEye.blink(bean.isLeftWink());
+            leftEyeLash.blink(bean.isLeftWink());
+            leftEyeBall.blink(bean.isLeftWink());
 
             //Right wink
-            rightEye.Blink(bean.isRightWink());
-            rightEyeLash.Blink(bean.isRightWink());
-            rightEyeBall.Blink(bean.isRightWink());
+            rightEye.blink(bean.isRightWink());
+            rightEyeLash.blink(bean.isRightWink());
+            rightEyeBall.blink(bean.isRightWink());
 
             //Look left
-            leftEyeBall.LookLeft(bean.getLookingLeft());
-            rightEyeBall.LookLeft(bean.getLookingLeft());
+            leftEyeBall.lookLeft(bean.getLookingLeft());
+            rightEyeBall.lookLeft(bean.getLookingLeft());
 
             //Look right
-            leftEyeBall.LookRight(bean.getLookingRight());
-            rightEyeBall.LookRight(bean.getLookingRight());
+            leftEyeBall.lookRight(bean.getLookingRight());
+            rightEyeBall.lookRight(bean.getLookingRight());
 
             //Look up
-            leftEyeBall.LookUp(bean.getLookingUp());
-            rightEyeBall.LookUp(bean.getLookingUp());
+            leftEyeBall.lookUp(bean.getLookingUp());
+            rightEyeBall.lookUp(bean.getLookingUp());
 
             //Look down
-            leftEyeBall.LookDown(bean.getLookingDown());
-            rightEyeBall.LookDown(bean.getLookingDown());
+            leftEyeBall.lookDown(bean.getLookingDown());
+            rightEyeBall.lookDown(bean.getLookingDown());
 
             //Eyebrow raise
-            leftEyeBrow.Raise(bean.getRaiseBrow());
-            rightEyeBrow.Raise(bean.getRaiseBrow());
+            leftEyeBrow.raise(bean.getRaiseBrow());
+            rightEyeBrow.raise(bean.getRaiseBrow());
 
             //Smile and Clench
-            smile.Set(bean.getSmile());
-            clench.Set(bean.getClench());
-            mouth.Set(bean.getSmile());
-            mouth.Set(bean.getClench());
+            smile.set(bean.getSmile());
+            clench.set(bean.getClench());
+            mouth.set(bean.getSmile());
+            mouth.set(bean.getClench());
 
             Graphics2D g2 =(Graphics2D)getGraphics();
             paintComponent(g2);

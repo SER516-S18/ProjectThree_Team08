@@ -28,7 +28,7 @@ public class Mouth extends Rectangle2D.Double implements IExpressive {
      * Hides mouth if val lies between 0(exclusive) - 1(inclusive)
      * @param val double 0-1
      */
-    public void Set(double val){
+    public void set(double val){
         if(val > 0 && val <= 1)
             setFrame(X,Y,0,0);
     }
@@ -37,7 +37,7 @@ public class Mouth extends Rectangle2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public void Reset(){
+    public void reset(){
         setFrame(X,Y,WIDTH,HEIGHT);
     }
 
