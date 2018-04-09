@@ -36,7 +36,6 @@ public class MetricsValuePanel extends JPanel {
                     @Override
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
-                            interest.getDropdown().setBackground(colors[interest.getDropdown().getSelectedIndex()]);
                             interest.setBackground(colors[interest.getDropdown().getSelectedIndex()]);
                         }
                     }
@@ -54,7 +53,6 @@ public class MetricsValuePanel extends JPanel {
                     @Override
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
-                            engagement.getDropdown().setBackground(colors[engagement.getDropdown().getSelectedIndex()]);
                             engagement.setBackground(colors[engagement.getDropdown().getSelectedIndex()]);
                         }
                     }
@@ -71,7 +69,6 @@ public class MetricsValuePanel extends JPanel {
                     @Override
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
-                            stress.getDropdown().setBackground(colors[stress.getDropdown().getSelectedIndex()]);
                             stress.setBackground(colors[stress.getDropdown().getSelectedIndex()]);
                         }
                     }
@@ -88,7 +85,6 @@ public class MetricsValuePanel extends JPanel {
                     @Override
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
-                            relaxation.getDropdown().setBackground(colors[relaxation.getDropdown().getSelectedIndex()]);
                             relaxation.setBackground(colors[relaxation.getDropdown().getSelectedIndex()]);
                         }
                     }
@@ -105,7 +101,6 @@ public class MetricsValuePanel extends JPanel {
                     @Override
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
-                            excitement.getDropdown().setBackground(colors[excitement.getDropdown().getSelectedIndex()]);
                             excitement.setBackground(colors[excitement.getDropdown().getSelectedIndex()]);
                         }
                     }
@@ -123,7 +118,6 @@ public class MetricsValuePanel extends JPanel {
                     @Override
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
-                            focus.getDropdown().setBackground(colors[focus.getDropdown().getSelectedIndex()]);
                             focus.setBackground(colors[focus.getDropdown().getSelectedIndex()]);
                         }
                     }

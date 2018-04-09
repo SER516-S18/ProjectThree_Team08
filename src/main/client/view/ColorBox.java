@@ -24,6 +24,7 @@ public class ColorBox extends JPanel{
 
         dropdown = new JComboBox<>(colorList);
         dropdown.setBorder(BorderFactory.createEmptyBorder());
+        dropdown.setBackground(Color.GRAY);
         this.add(dropdown, grid);
 
         emotionName = new JLabel();
