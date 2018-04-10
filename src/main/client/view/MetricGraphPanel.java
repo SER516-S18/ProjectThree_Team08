@@ -4,6 +4,7 @@ import main.model.EmotionMessageBean;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
@@ -34,8 +35,8 @@ public class MetricGraphPanel extends JPanel implements Observer {
     private ChartPanel chartPanel;
     private JFreeChart chart;
     private int frequency = 1;
-    private Color colorList[] = new Color[] { Color.RED, Color.GREEN, Color.YELLOW,
-            Color.BLUE, Color.PINK };
+    private Color colorList[] = new Color[] {Color.RED.darker(), Color.GREEN.darker(), Color.YELLOW.darker(),
+            Color.BLUE.darker(), Color.PINK.darker(), Color.ORANGE.darker()};
     private EmotionMessageBean emotionMessageBean;
     private XYPlot plot;
 
@@ -72,6 +73,7 @@ public class MetricGraphPanel extends JPanel implements Observer {
         plot = chart.getXYPlot();
         NumberAxis domain = (NumberAxis) plot.getDomainAxis();
         domain.setRange(0.00, n);
+        chartPanel.repaint();
     }
 
     /**
@@ -100,13 +102,13 @@ public class MetricGraphPanel extends JPanel implements Observer {
             renderer.setSeriesPaint(i,colorList[i]);
         }
 
-        NumberAxis domain = (NumberAxis) plot.getDomainAxis();
-        domain.setVerticalTickLabels(false);
-        domain.setAutoTickUnitSelection(true);
+        ValueAxis domain = plot.getDomainAxis();
+        domain.setRange(0,1);
+//        domain.setVerticalTickLabels(false);
+//        domain.setAutoTickUnitSelection(true);
 
-        NumberAxis range = (NumberAxis) plot.getRangeAxis();
+        ValueAxis range = plot.getRangeAxis();
         range.setRange(0.00, 1.00);
-        range.setTickUnit(new NumberTickUnit(0.1));
 
         plot.setRenderer(renderer);
         plot.setBackgroundPaint(Color.GRAY);

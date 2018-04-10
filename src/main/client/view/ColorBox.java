@@ -13,7 +13,8 @@ public class ColorBox extends JPanel{
     private JComboBox<String> dropdown;
     private JLabel emotionName;
     private String[] colorList = new String[] {"Red", "Green", "Yellow", "Blue", "Pink", "Orange"};
-    private Color colors[] = new Color[] {Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE, Color.PINK, Color.ORANGE};
+    private Color colors[] = new Color[] {Color.RED.darker(), Color.GREEN.darker(), Color.YELLOW.darker(),
+            Color.BLUE.darker(), Color.PINK.darker(), Color.ORANGE.darker()};
 
     public ColorBox(){
         setSize(150,150);
