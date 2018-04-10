@@ -21,6 +21,7 @@ public class UIController {
 	private static DetectionPanel detectionPanel;
 	private static InteractivePanel interactivePanel;
 	private static boolean run = true;
+	private boolean runningEyeVal = false;
 
 	private UIController() {
 	}
@@ -83,18 +84,29 @@ public class UIController {
 	
 	private void updateEyeStateMetric() {
 		String[] eyeStateMetric = {"Blink", "Wink Left", "Wink Right"};
+		boolean eyeVal = false;
+		if(detectionPanel.isActivated() && !detectionPanel.isResetChaecked()){
+			eyeVal = detectionPanel.isActivated();
+			detectionPanel.setActivated(false);
+		} else if (detectionPanel.isActivated() && detectionPanel.isResetChaecked()){
+			eyeVal = !runningEyeVal;
+			runningEyeVal = eyeVal;
+		} else {
+			runningEyeVal = false;
+		}
+
 		for(String str : eyeStateMetric) {
 			if(detectionPanel.getEyeStateSelectedItem().equalsIgnoreCase(str)) {
 				
 				switch(str) {
 					case "Blink" :
-						EndpointController.getInstance().updateExpBlink(true);
+						EndpointController.getInstance().updateExpBlink(eyeVal);
 						break;
 					case "Wink Left" :
-						EndpointController.getInstance().updateExpLeftWink(true);
+						EndpointController.getInstance().updateExpLeftWink(eyeVal);
 						break;
 					case "Wink Right" :
-						EndpointController.getInstance().updateExpRightWink(true);
+						EndpointController.getInstance().updateExpRightWink(eyeVal);
 						break;
 				}
 				
