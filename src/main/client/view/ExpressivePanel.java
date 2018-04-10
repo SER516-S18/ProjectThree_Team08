@@ -12,6 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -61,7 +63,9 @@ public class ExpressivePanel extends JPanel implements Observer {
         shapes.add(clench);
 
         try {
-            img = ImageIO.read(getClass().getClassLoader().getResource(faceLayoutPath));
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(faceLayoutPath);
+            if(inputStream != null)
+                img = ImageIO.read(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
