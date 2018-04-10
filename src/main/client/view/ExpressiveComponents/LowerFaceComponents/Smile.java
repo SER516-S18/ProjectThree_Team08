@@ -35,10 +35,10 @@ public class Smile extends Arc2D.Double implements IExpressive {
         if(val <= 0 || val > 1)
             return;
 
-        double newY = Y + (20*val);
+        double newY = getY() + (20*val);
         double NewStart = START - (30 * val);
         double NewExtent = EXTENT + (60 * val);
-        setFrame(X, newY, WIDTH, HEIGHT);
+        setFrame(getX(), newY, WIDTH, HEIGHT);
         setAngleStart(NewStart);
         setAngleExtent(NewExtent);
     }
