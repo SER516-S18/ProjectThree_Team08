@@ -26,7 +26,7 @@ import org.jfree.ui.RefineryUtilities;
 /**
  * An example to show how we can create a dynamic chart.
  */
-public class ExpressionLineGraph extends JPanel implements ActionListener {
+public class ExpressionLineGraph extends JPanel{
 
     /** The time series data. */
     private TimeSeries series;
@@ -37,7 +37,7 @@ public class ExpressionLineGraph extends JPanel implements ActionListener {
     private double value;
 
     /** Timer to refresh graph after every 1/4th of a second */
-    private Timer timer = new Timer(250, this);
+    //private Timer timer = new Timer(250, this);
 
     /**
      * Constructs a new dynamic chart application.
@@ -73,7 +73,7 @@ public class ExpressionLineGraph extends JPanel implements ActionListener {
         this.add(chartPanel, BorderLayout.CENTER);
         //Puts the whole content on a Frame
         //setContentPane(content);
-        timer.start();
+        //timer.start();
 
     }
 
@@ -119,9 +119,9 @@ public class ExpressionLineGraph extends JPanel implements ActionListener {
      *
      * @param e  the action event.
      */
-    public void actionPerformed(final ActionEvent e) {
+    public void update(ExpressiveBean expressionBean) {
 
-        ExpressiveBean bean = new ExpressiveBean();
+        ExpressiveBean bean = expressionBean;
         switch(expressionType){
             case("Blink"):if(bean.isBlink()) this.value = 1.0;
             else this.value=0.0;

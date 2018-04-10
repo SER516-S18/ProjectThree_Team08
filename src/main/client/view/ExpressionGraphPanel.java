@@ -1,9 +1,12 @@
 package main.client.view;
 
 import main.client.view.ExpressionLineGraph;
+import main.model.EmotionMessageBean;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Graph Panel to display chart in graph tab
@@ -11,12 +14,15 @@ import java.awt.*;
  * @version 1.0
  */
 
-public class ExpressionGraphPanel extends JPanel {
+public class ExpressionGraphPanel extends JPanel implements Observer {
 
     private String type;
+    private EmotionMessageBean emotionMessageBean;
+    ExpressionLineGraph graph = null;
 
 
-    public ExpressionGraphPanel() {
+    public ExpressionGraphPanel(EmotionMessageBean emotionMessageBean) {
+        this.emotionMessageBean = emotionMessageBean;
         JPanel exp = new JPanel(new GridBagLayout());
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(700,550));
@@ -54,7 +60,7 @@ public class ExpressionGraphPanel extends JPanel {
             c.ipady=0;
             c.gridx = 0;
             c.gridy = i;
-            ExpressionLineGraph graph=new ExpressionLineGraph(type);
+            graph=new ExpressionLineGraph(type);
             exp.add(graph, c);
             c.ipadx=0;
             c.ipady=0;
@@ -66,5 +72,10 @@ public class ExpressionGraphPanel extends JPanel {
             exp.add(label, c);
         }
 
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        graph.update(this.emotionMessageBean.getExpressive());
     }
 }
