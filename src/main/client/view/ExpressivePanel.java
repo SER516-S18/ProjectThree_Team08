@@ -103,7 +103,8 @@ public class ExpressivePanel extends JPanel implements Observer {
     private void update(ExpressiveBean b){
 
         if(bean == null || !bean.equals(b)){
-            resetAllShapes();
+            for (IExpressive e : shapes)
+                e.reset(getRelativeX(), getRelativeY());
 
             bean = new ExpressiveBean(b);
             //Blink
@@ -160,17 +161,6 @@ public class ExpressivePanel extends JPanel implements Observer {
     }
 
     /**
-     * Resets all shapes
-     */
-    private void resetAllShapes(){
-        for (IExpressive e : shapes)
-            e.reset(getRelativeX(), getRelativeY());
-
-        Graphics2D g2 =(Graphics2D)getGraphics();
-        paintComponent(g2);
-    }
-
-    /**
      * Gets relative X value such that the image will occupy the
      * center of the panel
      * @return x
@@ -208,8 +198,12 @@ public class ExpressivePanel extends JPanel implements Observer {
     private class ExpressiveSizeListener extends ComponentAdapter {
 
         public void componentResized(ComponentEvent ev) {
-
-            resetAllShapes();
+            ExpressiveBean b = null;
+            if(bean != null) {
+                b = new ExpressiveBean(bean);
+                bean.clear();
+            }
+            update(b);
         }
     }
 }

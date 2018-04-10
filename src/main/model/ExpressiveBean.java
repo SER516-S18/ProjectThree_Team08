@@ -31,6 +31,9 @@ public class ExpressiveBean{
      * @param bean
      */
     public ExpressiveBean(ExpressiveBean bean) {
+        if (bean == null)
+            return;
+
         lookingRight = bean.lookingRight;
         blink = bean.blink;
         rightWink = bean.rightWink;
@@ -223,5 +226,15 @@ public class ExpressiveBean{
                 clench == bean.clench &&
                 lookingUp == bean.lookingUp &&
                 lookingDown == bean.lookingDown;
+    }
+
+    /**
+     * Clears all expressive values
+     */
+    public void clear(){
+        blink = rightWink = leftWink = false;
+        lookingDown = lookingLeft = lookingRight = lookingUp = 0;
+        eyeBrowFurrow = eyeBrowRaise = 0;
+        smile = clench = 0;
     }
 }
