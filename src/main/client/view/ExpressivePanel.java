@@ -4,6 +4,7 @@ import main.client.view.ExpressiveComponents.EyeComponents.*;
 import main.client.view.ExpressiveComponents.LowerFaceComponents.*;
 import main.client.view.ExpressiveComponents.UpperFaceComponents.*;
 import main.client.view.ExpressiveComponents.*;
+import main.model.EmotionMessageBean;
 import main.model.ExpressiveBean;
 
 import javax.imageio.ImageIO;
@@ -13,13 +14,15 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * This panel displays the face and handles facial expressions
  * @author Ejaz Saifudeen
  * @version 1.1
  */
-public class ExpressivePanel extends JPanel {
+public class ExpressivePanel extends JPanel implements Observer {
 
     private static final String faceLayoutPath = "faceLayout.png";
     private List<IExpressive> shapes = new ArrayList<>();
@@ -36,12 +39,15 @@ public class ExpressivePanel extends JPanel {
     private Clench clench = new Clench();
     BufferedImage img = null;
     ExpressiveBean bean = null;
+    EmotionMessageBean emotionMessageBean;
 
     /**
      * Constructor adds all shapes to a list and reads the facelayout image
      * to a buffered image
      */
-    public ExpressivePanel(){
+    public ExpressivePanel(EmotionMessageBean  emotionMessageBean){
+
+        this.emotionMessageBean = emotionMessageBean;
         shapes.add(leftEye);
         shapes.add(rightEye);
         shapes.add(leftEyeLash);
@@ -87,7 +93,7 @@ public class ExpressivePanel extends JPanel {
      * Affects facial features based on the received bean
      * @param b ExpressiveBean object
      */
-    public void affect(ExpressiveBean b){
+    private void update(ExpressiveBean b){
 
         if(bean == null || !bean.equals(b)){
             for (IExpressive e : shapes)
@@ -140,6 +146,13 @@ public class ExpressivePanel extends JPanel {
 
             Graphics2D g2 =(Graphics2D)getGraphics();
             paintComponent(g2);
+        }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(this.emotionMessageBean == o){
+            update(emotionMessageBean.getExpressive());
         }
     }
 }
