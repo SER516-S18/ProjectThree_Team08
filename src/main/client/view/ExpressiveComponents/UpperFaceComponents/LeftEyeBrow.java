@@ -24,7 +24,7 @@ public class LeftEyeBrow extends EyeBrow {
      * {@inheritDoc}
      */
     @Override
-    public void reset(){
-        setFrame(X, Y, WIDTH, HEIGHT);
+    public void reset(int x, int y){
+        setFrame(x+X,y+Y, WIDTH, HEIGHT);
     }
 }

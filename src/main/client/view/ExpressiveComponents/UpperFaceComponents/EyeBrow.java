@@ -43,7 +43,7 @@ public abstract class EyeBrow extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public void reset(){
+    public void reset(int x, int y){
     }
 
     /**

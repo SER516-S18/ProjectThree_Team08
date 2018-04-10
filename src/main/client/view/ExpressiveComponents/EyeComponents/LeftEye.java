@@ -22,8 +22,8 @@ public class LeftEye extends Eye {
      * {@inheritDoc}
      */
     @Override
-    public void reset(){
-        setFrame(X, Y, WIDTH, HEIGHT);
-        super.reset();
+    public void reset(int x, int y){
+        setFrame(x+X, y+Y, WIDTH, HEIGHT);
+        super.reset(x,y);
     }
 }

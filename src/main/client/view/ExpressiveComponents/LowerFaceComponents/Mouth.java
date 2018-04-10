@@ -37,8 +37,8 @@ public class Mouth extends Rectangle2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public void reset(){
-        setFrame(X,Y,WIDTH,HEIGHT);
+    public void reset(int x, int y){
+        setFrame(x+X,y+Y, WIDTH, HEIGHT);
     }
 
     /**

@@ -4,6 +4,7 @@ import main.client.view.ExpressiveComponents.IExpressive;
 
 import java.awt.*;
 import java.awt.geom.Arc2D;
+import java.util.HashMap;
 
 /**
  * Class for mouth clench, inherits from Arc2D
@@ -47,7 +48,8 @@ public class Clench extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public void reset(){
+    public void reset(int x, int y){
+        setFrame(x+X,y+Y, WIDTH, HEIGHT);
         setAngleStart(0);
         setAngleExtent(0);
     }

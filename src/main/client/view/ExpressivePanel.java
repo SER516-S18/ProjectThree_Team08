@@ -10,6 +10,8 @@ import main.model.ExpressiveBean;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -68,6 +70,8 @@ public class ExpressivePanel extends JPanel implements Observer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        this.addComponentListener(new ExpressiveSizeListener());
     }
 
     /**
@@ -79,7 +83,7 @@ public class ExpressivePanel extends JPanel implements Observer {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         setBackground(Color.WHITE);
-        g2.drawImage(img, 0,0,null);
+        g2.drawImage(img, getRelativeX(),getRelativeY(),null);
 
         for (IExpressive e : shapes){
             g2.setColor(e.getColor());
@@ -99,8 +103,7 @@ public class ExpressivePanel extends JPanel implements Observer {
     private void update(ExpressiveBean b){
 
         if(bean == null || !bean.equals(b)){
-            for (IExpressive e : shapes)
-                e.reset();
+            resetAllShapes();
 
             bean = new ExpressiveBean(b);
             //Blink
@@ -152,10 +155,34 @@ public class ExpressivePanel extends JPanel implements Observer {
         }
     }
 
+    private void resetAllShapes(){
+        for (IExpressive e : shapes)
+            e.reset(getRelativeX(), getRelativeY());
+
+        Graphics2D g2 =(Graphics2D)getGraphics();
+        paintComponent(g2);
+    }
+
+    private int getRelativeX(){
+        return (getWidth()/2)-156;
+    }
+
+    private int getRelativeY(){
+        return (getHeight()/2)-156;
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         if(this.emotionMessageBean == o){
             update(emotionMessageBean.getExpressive());
+        }
+    }
+
+    private class ExpressiveSizeListener extends ComponentAdapter {
+
+        public void componentResized(ComponentEvent ev) {
+
+            resetAllShapes();
         }
     }
 }

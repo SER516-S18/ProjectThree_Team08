@@ -12,7 +12,7 @@ public interface IExpressive extends Shape {
     /**
      * Resets shape to original shape
      */
-    void reset();
+    void reset(int x, int y);
 
     /**
      * Returns if the shape needs to be filled with color or not

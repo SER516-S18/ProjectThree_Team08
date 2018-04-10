@@ -47,7 +47,8 @@ public class Smile extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public void reset(){
+    public void reset(int x, int y){
+        setFrame(x+X,y+Y, WIDTH, HEIGHT);
         setAngleStart(0);
         setAngleExtent(0);
     }

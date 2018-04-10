@@ -28,7 +28,7 @@ public class LeftEyeBall extends EyeBall {
         if(val <= 0 || val > 1)
             return;
 
-        double newX = X + (5 * val);
+        double newX = getX() + (5 * val);
         setFrame(newX, getY(), WIDTH, HEIGHT);
     }
 
@@ -42,7 +42,7 @@ public class LeftEyeBall extends EyeBall {
         if(val <= 0 || val > 1)
             return;
 
-        double newX = X - (5 * val);
+        double newX = getX() - (5 * val);
         setFrame(newX, getY(), WIDTH, HEIGHT);
     }
 
@@ -56,7 +56,7 @@ public class LeftEyeBall extends EyeBall {
         if(val <= 0 || val > 1)
             return;
 
-        double newY = Y - (8 * val);
+        double newY = getY() - (8 * val);
         setFrame(getX(), newY, WIDTH, HEIGHT);
     }
 
@@ -70,7 +70,7 @@ public class LeftEyeBall extends EyeBall {
         if(val <= 0 || val > 1)
             return;
 
-        double newY = Y + (6 * val);
+        double newY = getY() + (6 * val);
         setFrame(getX(), newY, WIDTH, HEIGHT);
     }
 
@@ -78,8 +78,8 @@ public class LeftEyeBall extends EyeBall {
      * {@inheritDoc}
      */
     @Override
-    public void reset(){
-        setFrame(X, Y, WIDTH, HEIGHT);
-        super.reset();
+    public void reset(int x, int y){
+        setFrame(x+X,y+Y, WIDTH, HEIGHT);
+        super.reset(x,y);
     }
 }

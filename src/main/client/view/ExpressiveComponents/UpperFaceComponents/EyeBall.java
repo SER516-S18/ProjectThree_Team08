@@ -38,7 +38,7 @@ public abstract class EyeBall extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public void reset(){
+    public void reset(int x, int y){
         setAngleStart(START);
         setAngleExtent(EXTENT);
     }
