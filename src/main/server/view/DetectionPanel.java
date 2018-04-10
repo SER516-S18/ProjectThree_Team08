@@ -87,7 +87,7 @@ public class DetectionPanel extends JPanel{
         lblUpperface.setBounds(14, 68, 139, 33);
         this.add(lblUpperface);
         
-        String[] upperfaceItems = new String[] {"Raise Brow", "Open Eyes",
+        String[] upperfaceItems = new String[] {"Raise Brow", "Furrow Brow",
         		"Look Left", "Look Right", "Look Up", "Look Down"};
         upperfaceComboBox = new JComboBox<>(upperfaceItems);
         upperfaceComboBox.setBounds(14, 98, 139, 25);

@@ -144,6 +144,10 @@ public class ExpressivePanel extends JPanel implements Observer {
             leftEyeBrow.raise(bean.getRaiseBrow());
             rightEyeBrow.raise(bean.getRaiseBrow());
 
+            //Eyebrow furrow
+            leftEyeBrow.furrow(bean.getFurrowBrow());
+            rightEyeBrow.furrow(bean.getFurrowBrow());
+
             //Smile and Clench
             smile.set(bean.getSmile());
             clench.set(bean.getClench());
@@ -155,6 +159,9 @@ public class ExpressivePanel extends JPanel implements Observer {
         }
     }
 
+    /**
+     * Resets all shapes
+     */
     private void resetAllShapes(){
         for (IExpressive e : shapes)
             e.reset(getRelativeX(), getRelativeY());
@@ -163,14 +170,30 @@ public class ExpressivePanel extends JPanel implements Observer {
         paintComponent(g2);
     }
 
+    /**
+     * Gets relative X value such that the image will occupy the
+     * center of the panel
+     * @return x
+     */
     private int getRelativeX(){
         return (getWidth()/2)-156;
     }
 
+    /**
+     * Gets relative Y value such that the image will occupy the
+     * center of the panel
+     * @return y
+     */
     private int getRelativeY(){
         return (getHeight()/2)-156;
     }
 
+    /**
+     * update method changes facial expressions if emotion bean is
+     * updated.
+     * @param o
+     * @param arg
+     */
     @Override
     public void update(Observable o, Object arg) {
         if(this.emotionMessageBean == o){
@@ -178,6 +201,10 @@ public class ExpressivePanel extends JPanel implements Observer {
         }
     }
 
+    /**
+     * Listens to component resize. Used to always keep the face at center of the
+     * panel
+     */
     private class ExpressiveSizeListener extends ComponentAdapter {
 
         public void componentResized(ComponentEvent ev) {

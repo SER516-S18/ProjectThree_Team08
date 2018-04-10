@@ -194,7 +194,7 @@ public class UIController {
 	 * This method is updating the model attributes for upperface
 	 * */
 	private void updateUpperfaceMetrics() {
-		String[] upperfaceMetrics = {"Raise Brow", "Open Eyes", "Look Left", "Look Right",
+		String[] upperfaceMetrics = {"Raise Brow", "Furrow Brow", "Look Left", "Look Right",
 									"Look Up", "Look Down"};
 		for(String str : upperfaceMetrics) {
 			if(detectionPanel.getUpperfaceSelectedItem().equalsIgnoreCase(str)) {
@@ -204,8 +204,8 @@ public class UIController {
 						EndpointController.getInstance().updateEyeBrowRaise(
 								detectionPanel.getUpperfaceSelectedValue());
 						break;
-					case "Open Eyes" :
-						EndpointController.getInstance().updateEyesOpen(
+					case "Furrow Brow" :
+						EndpointController.getInstance().updateEyeBrowFurrow(
 								detectionPanel.getUpperfaceSelectedValue());
 						break;
 					case "Look Left" :
@@ -228,8 +228,8 @@ public class UIController {
 				
 			} else if (str.equalsIgnoreCase("Raise Brow")) {
 				EndpointController.getInstance().updateEyeBrowRaise(0.00);
-			} else if (str.equalsIgnoreCase("Open Eyes")) {
-				EndpointController.getInstance().updateEyesOpen(0.00);
+			} else if (str.equalsIgnoreCase("Furrow Brow")) {
+				EndpointController.getInstance().updateEyeBrowFurrow(0.00);
 			} else if (str.equalsIgnoreCase("Look Left")) {
 				EndpointController.getInstance().updateExpLookingLeft(0.00);
 			} else if (str.equalsIgnoreCase("Look Right")) {

@@ -17,7 +17,7 @@ public class ExpressiveBean{
     private double lookingRight;
     private double lookingLeft;
     private double eyeBrowRaise;
-    private double eyesOpen;
+    private double eyeBrowFurrow;
     private double smile;
     private double clench;
     private double lookingUp;
@@ -37,7 +37,7 @@ public class ExpressiveBean{
         leftWink = bean.leftWink;
         lookingLeft = bean.lookingLeft;
         eyeBrowRaise = bean.eyeBrowRaise;
-        eyesOpen = bean.eyesOpen;
+        eyeBrowFurrow = bean.eyeBrowFurrow;
         smile = bean.smile;
         clench = bean.clench;
         lookingUp = bean.lookingUp;
@@ -125,17 +125,17 @@ public class ExpressiveBean{
         this.eyeBrowRaise = raiseBrow;
     }
 
-    public double getEyesOpen() {
-        return eyesOpen;
+    public double getFurrowBrow() {
+        return eyeBrowFurrow;
     }
 
     /**
      *
-     * @param eyesOpen
+     * @param eyeBrowFurrow
      */
-    public void setEyesOpen(double eyesOpen) {
+    public void setFurrowBrow(double eyeBrowFurrow) {
 
-        this.eyesOpen = eyesOpen;
+        this.eyeBrowFurrow = eyeBrowFurrow;
     }
 
     public double getSmile() {
@@ -197,7 +197,7 @@ public class ExpressiveBean{
                 "lookingRight=" + lookingRight +
                 ", lookingLeft=" + lookingLeft +
                 ", eyeBrowRaise=" + eyeBrowRaise +
-                ", eyesOpen=" + eyesOpen +
+                ", eyeBrowFurrow=" + eyeBrowFurrow +
                 ", smile=" + smile +
                 ", clench=" + clench +
                 ", lookingUp=" + lookingUp +
@@ -218,7 +218,7 @@ public class ExpressiveBean{
                 leftWink == bean.leftWink &&
                 lookingLeft == bean.lookingLeft &&
                 eyeBrowRaise == bean.eyeBrowRaise &&
-                eyesOpen == bean.eyesOpen &&
+                eyeBrowFurrow == bean.eyeBrowFurrow &&
                 smile == bean.smile &&
                 clench == bean.clench &&
                 lookingUp == bean.lookingUp &&

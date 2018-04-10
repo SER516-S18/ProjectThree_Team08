@@ -138,7 +138,7 @@ public class ExpressionLineGraph extends JPanel implements ActionListener {
                 break;
             case("Raise Brow"):this.value = bean.getRaiseBrow();
                 break;
-            case("Eyes Open"):this.value = bean.getEyesOpen();
+            case("Furrow Brow"):this.value = bean.getFurrowBrow();
                 break;
             case("Smile"):this.value = bean.getSmile();
                 break;

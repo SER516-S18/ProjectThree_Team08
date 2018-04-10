@@ -97,12 +97,12 @@ public class EndpointController {
 	}
 
 	/**
-	 * Updates eyes open in the message bean for the expression
-	 * @param eyesOpen value of looking eyes open
+	 * Updates eyes brow furrow in the message bean for the expression
+	 * @param eyeBrowFurrow value of looking eyes open
 	 */
-	public void updateEyesOpen(double eyesOpen) {
+	public void updateEyeBrowFurrow(double eyeBrowFurrow) {
 		EndpointController.getInstance().emotionMessageBean.
-				getExpressive().setEyesOpen(eyesOpen);
+				getExpressive().setFurrowBrow(eyeBrowFurrow);
 	}
 
 	/**
