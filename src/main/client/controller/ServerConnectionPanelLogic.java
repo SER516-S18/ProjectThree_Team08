@@ -55,12 +55,12 @@ public class ServerConnectionPanelLogic implements Observer{
 	 * Handles the Start connection logic.
 	 */
 	public ActionListener generateStartServerConnectionActionListener(){
-		final String sURI = "ws://"+ this.ipAddressTextField.getText() + ":" + this.portTextField.getText()
-							+ "/" + ConnectionConstants.ROOT_PATH + "/" + ConnectionConstants.ENDPOINT_PATH;
 		return new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				try {
+					String sURI = "ws://"+ ipAddressTextField.getText() + ":" + portTextField.getText()
+							+ "/" + ConnectionConstants.ROOT_PATH + "/" + ConnectionConstants.ENDPOINT_PATH;
 					ClientManager client = ClientManager.createClient();
 					
 					if(startStopButton.getText().equals("Start")){
