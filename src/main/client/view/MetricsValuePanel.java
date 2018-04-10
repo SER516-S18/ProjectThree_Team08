@@ -11,6 +11,7 @@ import java.awt.event.ItemListener;
  * Panel to display color for the graph plot representing effects in form of boxes. And display the time difference
  * between data received for the graph points.
  * @author Shaunak Shah
+ * @author Ayan Shah
  * @version 1.0
  */
 public class MetricsValuePanel extends JPanel {
