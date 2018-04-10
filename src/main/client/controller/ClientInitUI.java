@@ -24,8 +24,8 @@ class ClientInitUI {
 
 			ExpressivePanel expressivePanel = new ExpressivePanel(emotionMessageBean);
 			ExpressionGraphPanel expressionGraphPanel = new ExpressionGraphPanel();
-			MetricGraphPanel metricGraphPanel = new MetricGraphPanel();
-			MetricsValuePanel metricsValuePanel = new MetricsValuePanel();
+			MetricGraphPanel metricGraphPanel = new MetricGraphPanel(emotionMessageBean);
+			MetricsValuePanel metricsValuePanel = new MetricsValuePanel(metricGraphPanel);
 			ServerConnectionPanel serverConnectionPanel = new ServerConnectionPanel();
 			
 
@@ -42,6 +42,7 @@ class ClientInitUI {
 			
 			emotionMessageBean.addObserver(serverConnectionPanelLogic);
 			emotionMessageBean.addObserver(expressivePanel);
+			emotionMessageBean.addObserver(metricGraphPanel);
 			
 			window.addFacePanel(expressivePanel);
 			window.addExpressionGraphPanel(expressionGraphPanel);

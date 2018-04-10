@@ -22,11 +22,12 @@ public class MetricsValuePanel extends JPanel {
     private ColorBox focus;
     private JFormattedTextField displayLength;
     private JButton setLength;
+    private MetricGraphPanel metricGraphPanel;
     private Color colors[] = new Color[] {Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE, Color.PINK, Color.ORANGE};
 
-    public MetricsValuePanel(){
+    public MetricsValuePanel(MetricGraphPanel metricGraphPanel1){
         this.setLayout(null);
-
+        this.metricGraphPanel = metricGraphPanel1;
         interest = new ColorBox();
         interest.setBoxColor(0);
         interest.setEmotionName("Interest");
@@ -37,6 +38,7 @@ public class MetricsValuePanel extends JPanel {
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
                             interest.setBackground(colors[interest.getDropdown().getSelectedIndex()]);
+                            metricGraphPanel.updateColor(0, colors[interest.getDropdown().getSelectedIndex()]);
                         }
                     }
                 }
@@ -54,6 +56,7 @@ public class MetricsValuePanel extends JPanel {
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
                             engagement.setBackground(colors[engagement.getDropdown().getSelectedIndex()]);
+                            metricGraphPanel.updateColor(1, colors[engagement.getDropdown().getSelectedIndex()]);
                         }
                     }
                 }
@@ -70,6 +73,7 @@ public class MetricsValuePanel extends JPanel {
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
                             stress.setBackground(colors[stress.getDropdown().getSelectedIndex()]);
+                            metricGraphPanel.updateColor(2, colors[stress.getDropdown().getSelectedIndex()]);
                         }
                     }
                 }
@@ -86,6 +90,7 @@ public class MetricsValuePanel extends JPanel {
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
                             relaxation.setBackground(colors[relaxation.getDropdown().getSelectedIndex()]);
+                            metricGraphPanel.updateColor(3, colors[relaxation.getDropdown().getSelectedIndex()]);
                         }
                     }
                 }
@@ -102,6 +107,7 @@ public class MetricsValuePanel extends JPanel {
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
                             excitement.setBackground(colors[excitement.getDropdown().getSelectedIndex()]);
+                            metricGraphPanel.updateColor(4, colors[excitement.getDropdown().getSelectedIndex()]);
                         }
                     }
                 }
@@ -119,6 +125,7 @@ public class MetricsValuePanel extends JPanel {
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
                             focus.setBackground(colors[focus.getDropdown().getSelectedIndex()]);
+                            metricGraphPanel.updateColor(5, colors[focus.getDropdown().getSelectedIndex()]);
                         }
                     }
                 }
@@ -144,7 +151,7 @@ public class MetricsValuePanel extends JPanel {
         setLength.setBounds(210,495,100,30);
         setLength.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-
+                metricGraphPanel.updateDisplayLength(getDisplayLength());
             }
         });
         this.add(setLength);

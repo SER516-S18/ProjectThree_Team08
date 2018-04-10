@@ -1,5 +1,6 @@
 package main.client.view;
 
+import main.model.EmotionMessageBean;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -15,6 +16,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.Observable;
+import java.util.Observer;
 
 import main.model.AffectiveBean;
 
@@ -24,7 +27,7 @@ import main.model.AffectiveBean;
  * @version 1.0
  */
 
-public class MetricGraphPanel extends JPanel {
+public class MetricGraphPanel extends JPanel implements Observer {
 
     final private int channelNumber = 6;
     private TimeSeries[] metricValues;
@@ -33,14 +36,16 @@ public class MetricGraphPanel extends JPanel {
     private int frequency = 1;
     private Color colorList[] = new Color[] { Color.RED, Color.GREEN, Color.YELLOW,
             Color.BLUE, Color.PINK };
+    private EmotionMessageBean emotionMessageBean;
 
-    public MetricGraphPanel(){
+    public MetricGraphPanel(EmotionMessageBean emotionMessageBean){
         XYDataset dataSet = createDataSet(channelNumber);
         chart = createChart(dataSet);
         chartPanel = new ChartPanel(chart);
         chartPanel.addComponentListener(new ChartSizeListener());
         chartPanel.setMouseZoomable(true , true);
         chartPanel.setPreferredSize(new Dimension(520, 520));
+        this.emotionMessageBean = emotionMessageBean;
         this.setLayout(new BorderLayout());
         this.add(chartPanel, BorderLayout.CENTER);
     }
@@ -56,8 +61,6 @@ public class MetricGraphPanel extends JPanel {
         metricValues[3].addOrUpdate(current,bean.getRelaxation());
         metricValues[4].addOrUpdate(current,bean.getExcitement());
         metricValues[5].addOrUpdate(current,bean.getFocus());
-        NumberAxis n = (NumberAxis) chart.getXYPlot().getDomainAxis();
-//        n.pan(0.01);
     }
 
     /**
@@ -131,6 +134,14 @@ public class MetricGraphPanel extends JPanel {
 
         for(int i = 0; i < channelNumber; i++){
             metricValues[i].setMaximumItemAge(maxItemAge);
+        }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("Graph Update Called");
+        if (this.emotionMessageBean == o){
+            updateMetric(emotionMessageBean.getAffective());
         }
     }
 
