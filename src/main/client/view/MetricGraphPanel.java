@@ -4,6 +4,7 @@ import main.model.EmotionMessageBean;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
@@ -34,9 +35,10 @@ public class MetricGraphPanel extends JPanel implements Observer {
     private ChartPanel chartPanel;
     private JFreeChart chart;
     private int frequency = 1;
-    private Color colorList[] = new Color[] { Color.RED, Color.GREEN, Color.YELLOW,
-            Color.BLUE, Color.PINK };
+    private Color colorList[] = new Color[] {Color.RED.darker(), Color.GREEN.darker(), Color.YELLOW.darker(),
+            Color.BLUE.darker(), Color.PINK.darker(), Color.ORANGE.darker()};
     private EmotionMessageBean emotionMessageBean;
+    private XYPlot plot;
 
     public MetricGraphPanel(EmotionMessageBean emotionMessageBean){
         XYDataset dataSet = createDataSet(channelNumber);
@@ -68,16 +70,17 @@ public class MetricGraphPanel extends JPanel implements Observer {
      * And it to the panel.
      */
     public void updateDisplayLength(double n){
-        final XYPlot plot = chart.getXYPlot();
+        plot = chart.getXYPlot();
         NumberAxis domain = (NumberAxis) plot.getDomainAxis();
         domain.setRange(0.00, n);
+        chartPanel.repaint();
     }
 
     /**
      * Public method to change the color of a specific channel.
      */
     public void updateColor(int key, Color color){
-        XYPlot plot = chart.getXYPlot();
+        plot = chart.getXYPlot();
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
         renderer.setSeriesPaint(key,color);
         plot.setRenderer(renderer);
@@ -93,19 +96,19 @@ public class MetricGraphPanel extends JPanel implements Observer {
                 "Amount", dataSet,
                 PlotOrientation.VERTICAL, true, false, false);
         chart.removeLegend();
-        final XYPlot plot = chart.getXYPlot();
+        plot = chart.getXYPlot();
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
         for (int i = 0; i < dataSet.getSeriesCount()-1; i++) {
             renderer.setSeriesPaint(i,colorList[i]);
         }
 
-        NumberAxis domain = (NumberAxis) plot.getDomainAxis();
-        domain.setVerticalTickLabels(false);
-        domain.setAutoTickUnitSelection(true);
+        ValueAxis domain = plot.getDomainAxis();
+        domain.setRange(0,1);
+//        domain.setVerticalTickLabels(false);
+//        domain.setAutoTickUnitSelection(true);
 
-        NumberAxis range = (NumberAxis) plot.getRangeAxis();
+        ValueAxis range = plot.getRangeAxis();
         range.setRange(0.00, 1.00);
-        range.setTickUnit(new NumberTickUnit(0.1));
 
         plot.setRenderer(renderer);
         plot.setBackgroundPaint(Color.GRAY);

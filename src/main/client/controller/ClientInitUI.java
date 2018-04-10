@@ -11,7 +11,7 @@ import main.model.EmotionMessageBean;
  * @author Jason Rice
  * @version 1.1
  */
-class ClientInitUI {
+public class ClientInitUI {
 	/**
 	 * Initialize the client GUI
 	 */

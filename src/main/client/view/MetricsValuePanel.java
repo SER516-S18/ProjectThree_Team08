@@ -23,7 +23,8 @@ public class MetricsValuePanel extends JPanel {
     private JFormattedTextField displayLength;
     private JButton setLength;
     private MetricGraphPanel metricGraphPanel;
-    private Color colors[] = new Color[] {Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE, Color.PINK, Color.ORANGE};
+    private Color colors[] = new Color[] {Color.RED.darker(), Color.GREEN.darker(), Color.YELLOW.darker(),
+            Color.BLUE.darker(), Color.PINK.darker(), Color.ORANGE.darker()};
 
     public MetricsValuePanel(MetricGraphPanel metricGraphPanel1){
         this.setLayout(null);
