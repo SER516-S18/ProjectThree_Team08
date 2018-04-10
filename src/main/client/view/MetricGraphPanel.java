@@ -25,6 +25,7 @@ import main.model.AffectiveBean;
 /**
  * Graph Panel to display chart in graph tab
  * @author Shaunak Shah
+ * @author Ayan Shah
  * @version 1.0
  */
 
