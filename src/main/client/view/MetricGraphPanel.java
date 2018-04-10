@@ -37,6 +37,7 @@ public class MetricGraphPanel extends JPanel implements Observer {
     private Color colorList[] = new Color[] { Color.RED, Color.GREEN, Color.YELLOW,
             Color.BLUE, Color.PINK };
     private EmotionMessageBean emotionMessageBean;
+    private XYPlot plot;
 
     public MetricGraphPanel(EmotionMessageBean emotionMessageBean){
         XYDataset dataSet = createDataSet(channelNumber);
@@ -68,7 +69,7 @@ public class MetricGraphPanel extends JPanel implements Observer {
      * And it to the panel.
      */
     public void updateDisplayLength(double n){
-        final XYPlot plot = chart.getXYPlot();
+        plot = chart.getXYPlot();
         NumberAxis domain = (NumberAxis) plot.getDomainAxis();
         domain.setRange(0.00, n);
     }
@@ -77,7 +78,7 @@ public class MetricGraphPanel extends JPanel implements Observer {
      * Public method to change the color of a specific channel.
      */
     public void updateColor(int key, Color color){
-        XYPlot plot = chart.getXYPlot();
+        plot = chart.getXYPlot();
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
         renderer.setSeriesPaint(key,color);
         plot.setRenderer(renderer);
@@ -93,7 +94,7 @@ public class MetricGraphPanel extends JPanel implements Observer {
                 "Amount", dataSet,
                 PlotOrientation.VERTICAL, true, false, false);
         chart.removeLegend();
-        final XYPlot plot = chart.getXYPlot();
+        plot = chart.getXYPlot();
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
         for (int i = 0; i < dataSet.getSeriesCount()-1; i++) {
             renderer.setSeriesPaint(i,colorList[i]);
