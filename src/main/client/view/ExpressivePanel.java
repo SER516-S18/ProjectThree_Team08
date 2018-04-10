@@ -59,9 +59,10 @@ public class ExpressivePanel extends JPanel implements Observer {
         shapes.add(mouth);
         shapes.add(smile);
         shapes.add(clench);
-
+        //getClass().getClassLoader().getResource().toString();
         try {
-            img = ImageIO.read(getClass().getClassLoader().getResource(faceLayoutPath));
+            if(getClass().getClassLoader().getResource(faceLayoutPath)!=null)
+                img = ImageIO.read(getClass().getClassLoader().getResource(faceLayoutPath));
         } catch (IOException e) {
             e.printStackTrace();
         }
