@@ -1,6 +1,5 @@
 package main.client.view;
 
-import javafx.scene.chart.ValueAxis;
 import main.model.EmotionMessageBean;
 import main.model.ExpressiveBean;
 import org.jfree.chart.ChartFactory;
@@ -9,13 +8,11 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
-//import org.jfree.data.xy.XYSeries;
 import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.TimeSeries;
 
 import javax.swing.*;
 import java.awt.*;
-//import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -40,7 +37,6 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
     public ExpressionGraphPanel(EmotionMessageBean emotionMessageBean){
         this.emotionMessageBean=emotionMessageBean;
         this.setLayout(new BorderLayout());
-        //this.setBackground(Color.PINK);
         JPanel subPanel = new JPanel();
         subPanel.setLayout(new GridBagLayout());
         GridBagConstraints constraints=new GridBagConstraints();
@@ -170,10 +166,6 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
         else
             val=0.00;
         leftWinkVal.add(current,val);
-
-        //blinkVal.add(expressiveBean.isBlink());
-        //rightWinkVal.add(expressiveBean.isRightWink());
-        //leftWinkVal.add(expressiveBean.isLeftWink());
         lookingRightVal.add(current, expressiveBean.getLookingRight());
         lookingLeftVal.add(current, expressiveBean.getLookingLeft());
         eyeBrowRaiseVal.add(current, expressiveBean.getRaiseBrow());
@@ -182,15 +174,11 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
         clenchVal.add(current, expressiveBean.getClench());
         lookingUpVal.add(current, expressiveBean.getLookingUp());
         lookingDownVal.add(current, expressiveBean.getLookingDown());
-        System.out.println("upppppp");
-        System.out.println(clenchVal);
-        //System.out.println(clenchVal.size());
     }
     @Override
     public void update(Observable o, Object arg) {
         if(this.emotionMessageBean == o){
             updateValue(emotionMessageBean.getExpressive());
         }
-        System.out.println("update method graph");
     }
 }
