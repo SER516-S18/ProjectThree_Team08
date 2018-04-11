@@ -6,6 +6,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.time.Millisecond;
@@ -20,19 +21,17 @@ import java.util.Observer;
 public class ExpressionGraphPanel extends JPanel implements Observer{
 
     private EmotionMessageBean emotionMessageBean;
-    //private TimeSeries[] series;
-    //private Double[] clenchVal;
-    private TimeSeries blinkVal = new TimeSeries("Blink");
-    private TimeSeries rightWinkVal = new TimeSeries("Right Wink");
-    private TimeSeries leftWinkVal = new TimeSeries("Left Wink");
-    private TimeSeries lookingRightVal = new TimeSeries("Looking Right");
-    private TimeSeries lookingLeftVal = new TimeSeries("Looking Left");
-    private TimeSeries eyeBrowRaiseVal = new TimeSeries("Eyebrow Raise");
-    private TimeSeries eyeBrowFurrowVal = new TimeSeries("Eyebrow Furrow ");
-    private TimeSeries smileVal = new TimeSeries("Smile");
-    private TimeSeries clenchVal = new TimeSeries("Clench");
-    private TimeSeries lookingUpVal = new TimeSeries("Looking Up");
-    private TimeSeries lookingDownVal = new TimeSeries("Looking Down");
+    private TimeSeries blinkValue = new TimeSeries("Blink");
+    private TimeSeries rightWinkValue = new TimeSeries("Right Wink");
+    private TimeSeries leftWinkValue = new TimeSeries("Left Wink");
+    private TimeSeries lookingRightValue = new TimeSeries("Looking Right");
+    private TimeSeries lookingLeftValue = new TimeSeries("Looking Left");
+    private TimeSeries eyeBrowRaiseValue = new TimeSeries("Eyebrow Raise");
+    private TimeSeries eyeBrowFurrowValue = new TimeSeries("Eyebrow Furrow ");
+    private TimeSeries smileValue = new TimeSeries("Smile");
+    private TimeSeries clenchValue = new TimeSeries("Clench");
+    private TimeSeries lookingUpValue = new TimeSeries("Looking Up");
+    private TimeSeries lookingDownValue = new TimeSeries("Looking Down");
 
     public ExpressionGraphPanel(EmotionMessageBean emotionMessageBean){
         this.emotionMessageBean=emotionMessageBean;
@@ -40,9 +39,9 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
         JPanel subPanel = new JPanel();
         subPanel.setLayout(new GridBagLayout());
         GridBagConstraints constraints=new GridBagConstraints();
-        subPanel.setBackground(Color.WHITE);
         this.add(subPanel, BorderLayout.CENTER);
         subPanel.setPreferredSize(new Dimension(700,550));
+        subPanel.setBackground(Color.WHITE);
         for(int i=0; i<11; i++){
             constraints.ipadx=0;
             constraints.ipady=0;
@@ -61,31 +60,30 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
     }
 
     private JPanel createChartPanel(int type){
+        JPanel chartPanelHolder = new JPanel();
+        chartPanelHolder.setPreferredSize(new Dimension(600,45));
+        chartPanelHolder.setLayout(new BorderLayout());
         XYDataset dataSet = createDataSet(type);
         JFreeChart graph = createChart(dataSet);
         ChartPanel chart = new ChartPanel(graph);
-        JPanel chartPanelHolder = new JPanel();
-
         chart.setMouseZoomable(true,true);
-        chartPanelHolder.setPreferredSize(new Dimension(550,40));
-        chartPanelHolder.setLayout(new BorderLayout());
         chartPanelHolder.add(chart, BorderLayout.CENTER);
         return chartPanelHolder;
     }
 
     private XYDataset createDataSet(int type){
         switch(type){
-            case 0: return new TimeSeriesCollection(blinkVal);
-            case 1: return new TimeSeriesCollection(rightWinkVal);
-            case 2: return new TimeSeriesCollection(leftWinkVal);
-            case 3: return new TimeSeriesCollection(lookingRightVal);
-            case 4: return new TimeSeriesCollection(lookingLeftVal);
-            case 5: return new TimeSeriesCollection(eyeBrowRaiseVal);
-            case 6: return new TimeSeriesCollection(eyeBrowFurrowVal);
-            case 7: return new TimeSeriesCollection(smileVal);
-            case 8: return new TimeSeriesCollection(clenchVal);
-            case 9: return new TimeSeriesCollection(lookingUpVal);
-            case 10: return new TimeSeriesCollection(lookingDownVal);
+            case 0: return new TimeSeriesCollection(blinkValue);
+            case 1: return new TimeSeriesCollection(rightWinkValue);
+            case 2: return new TimeSeriesCollection(leftWinkValue);
+            case 3: return new TimeSeriesCollection(lookingRightValue);
+            case 4: return new TimeSeriesCollection(lookingLeftValue);
+            case 5: return new TimeSeriesCollection(eyeBrowRaiseValue);
+            case 6: return new TimeSeriesCollection(eyeBrowFurrowValue);
+            case 7: return new TimeSeriesCollection(smileValue);
+            case 8: return new TimeSeriesCollection(clenchValue);
+            case 9: return new TimeSeriesCollection(lookingUpValue);
+            case 10: return new TimeSeriesCollection(lookingDownValue);
         }
 
         return new TimeSeriesCollection();
@@ -103,18 +101,23 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
         XYPlot plot = chart.getXYPlot();
         plot.setDomainGridlinesVisible(false);
         plot.setRangeGridlinesVisible(false);
-        org.jfree.chart.axis.ValueAxis xaxis = plot.getDomainAxis();
-        xaxis.setAutoRange(true);
 
-        xaxis.setFixedAutoRange(60000.0);  // 60 seconds
-        xaxis.setVerticalTickLabels(false);
+        XYItemRenderer r = plot.getRenderer();
+        BasicStroke wideLine = new BasicStroke(2.0f);
+        r.setSeriesStroke(0,wideLine);
 
-        xaxis.setAutoTickUnitSelection(true);
-        xaxis.setVisible(false);
+        org.jfree.chart.axis.ValueAxis xAxis = plot.getDomainAxis();
+        xAxis.setAutoRange(true);
 
-        org.jfree.chart.axis.ValueAxis yaxis = plot.getRangeAxis();
-        yaxis.setRange(0.0, 1.1);
-        yaxis.setVisible(false);
+        xAxis.setFixedAutoRange(60000.0);
+        xAxis.setVerticalTickLabels(false);
+
+        xAxis.setAutoTickUnitSelection(true);
+        xAxis.setVisible(false);
+
+        org.jfree.chart.axis.ValueAxis yAxis = plot.getRangeAxis();
+        yAxis.setRange(0.0, 1.1);
+        yAxis.setVisible(false);
 
         return chart;
     }
@@ -155,25 +158,25 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
             val=1.00;
         else
             val=0.00;
-        blinkVal.add(current,val);
+        blinkValue.add(current,val);
         if(expressiveBean.isRightWink())
             val=1.00;
         else
             val=0.00;
-        rightWinkVal.add(current,val);
+        rightWinkValue.add(current,val);
         if(expressiveBean.isLeftWink())
             val=1.00;
         else
             val=0.00;
-        leftWinkVal.add(current,val);
-        lookingRightVal.add(current, expressiveBean.getLookingRight());
-        lookingLeftVal.add(current, expressiveBean.getLookingLeft());
-        eyeBrowRaiseVal.add(current, expressiveBean.getRaiseBrow());
-        eyeBrowFurrowVal.add(current, expressiveBean.getFurrowBrow());
-        smileVal.add(current, expressiveBean.getSmile());
-        clenchVal.add(current, expressiveBean.getClench());
-        lookingUpVal.add(current, expressiveBean.getLookingUp());
-        lookingDownVal.add(current, expressiveBean.getLookingDown());
+        leftWinkValue.add(current,val);
+        lookingRightValue.add(current, expressiveBean.getLookingRight());
+        lookingLeftValue.add(current, expressiveBean.getLookingLeft());
+        eyeBrowRaiseValue.add(current, expressiveBean.getRaiseBrow());
+        eyeBrowFurrowValue.add(current, expressiveBean.getFurrowBrow());
+        smileValue.add(current, expressiveBean.getSmile());
+        clenchValue.add(current, expressiveBean.getClench());
+        lookingUpValue.add(current, expressiveBean.getLookingUp());
+        lookingDownValue.add(current, expressiveBean.getLookingDown());
     }
     @Override
     public void update(Observable o, Object arg) {
