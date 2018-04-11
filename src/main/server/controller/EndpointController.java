@@ -32,6 +32,10 @@ public class EndpointController {
 				endpointController = new EndpointController();
 	}
 
+	public EmotionMessageBean getEmotionMessageBean() {
+		return emotionMessageBean;
+	}
+
 	/**
 	 * Returns an instance of the class
 	 *
@@ -150,6 +154,13 @@ public class EndpointController {
 				getAffective().setInterest(interest);
 	}
 
+	/**
+	 * To update the clock
+	 * @param time
+	 */
+	public void updateClock(double time) {
+		EndpointController.getInstance().emotionMessageBean.setClockTick(time);
+	}
 	/**
 	 * Updates engagement parameter in the message bean for the expression
 	 * @param engagement value of engagement
