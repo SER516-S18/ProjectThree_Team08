@@ -18,7 +18,7 @@ import javax.swing.JFrame;
 public class ServerUI extends JFrame{
     
     public ServerUI() {
-        this.setTitle("Emotiv Xavier Composer");
+        this.setTitle("Group8 Lab3 Server");
         this.getContentPane().setBackground(Color.LIGHT_GRAY);
         this.setResizable(true);
         this.setMinimumSize(new Dimension(492,600));

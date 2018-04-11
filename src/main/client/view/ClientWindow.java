@@ -26,7 +26,7 @@ public class ClientWindow extends JFrame{
 	 * Create the Client Window.
 	 */
 	public ClientWindow(){
-		this.setTitle("Client");
+		this.setTitle("Group8 Lab3 Client");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocation(200,200);
 		this.setBackground(Color.LIGHT_GRAY);
