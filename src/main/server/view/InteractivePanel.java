@@ -1,6 +1,7 @@
 package main.server.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,9 +46,8 @@ public class InteractivePanel extends JPanel{
 				TitledBorder.LEADING,
                         TitledBorder.TOP, new Font("Tahoma",
 				Font.BOLD, 12), null));
-        this.setBounds(11, 11, 474, 104);
         this.setLayout(null);
-        
+        this.setPreferredSize(new Dimension(200, 120));
         
         String[] playerItems = new String[] {"0", "1", "2"};
         playerComboBox = new JComboBox<>(playerItems);

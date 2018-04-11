@@ -149,7 +149,8 @@ public class ClientWindow extends JFrame{
 
 		this.facePanelArea.add(panel, BorderLayout.CENTER);
 	}
-	
+
+
 	/**
 	 * Add the expressions graph panel to the client.
 	 * @param panel
