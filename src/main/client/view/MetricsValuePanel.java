@@ -25,6 +25,11 @@ public class MetricsValuePanel extends JPanel {
     private JButton setLength;
     private MetricGraphPanel metricGraphPanel;
 
+    /**
+    * Constructor to initialize message bean and chart varibales
+    * @param metricGraphPanel1 MetricGraphPanel object to instantiate
+    * class object for graphPanel control
+    */
     public MetricsValuePanel(MetricGraphPanel metricGraphPanel1){
         this.setLayout(null);
         this.setBackground(Color.LIGHT_GRAY);
