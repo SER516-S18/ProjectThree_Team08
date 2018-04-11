@@ -31,7 +31,7 @@ public class ClientWindow extends JFrame{
 			MetricsValuePanel metricsValuePanel, 
 			ServerConnectionPanel serverConnectionPanel){
 		
-		this.setTitle("Group Lab3 Client");
+		this.setTitle("Group8 Lab3 Client");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocation(200,200);
 		this.setBackground(Color.LIGHT_GRAY);
