@@ -43,6 +43,10 @@ public class MetricGraphPanel extends JPanel implements Observer {
     private long start;
     private XYLineAndShapeRenderer renderer;
 
+    /**
+    * Constructor to initialize message bean and chart varibales
+    * @param EmotionMessageBean emotionMessageBean to read data
+    */
     public MetricGraphPanel(EmotionMessageBean emotionMessageBean){
         XYDataset dataSet = createDataSet(channelNumber);
         chart = createChart(dataSet);
@@ -57,6 +61,7 @@ public class MetricGraphPanel extends JPanel implements Observer {
 
     /**
      * Public method to continuously update the values for the channels in graph
+     * @param AffectiveBean affective message data bean to extract affective data values
      */
     public void updateMetric(AffectiveBean bean){
         long current = (System.currentTimeMillis() - start) ;
@@ -73,16 +78,19 @@ public class MetricGraphPanel extends JPanel implements Observer {
     /**
      * Public method used to update the number of channels in a graph. Creates new chart panel.
      * And it to the panel.
+     * @param length  double lenght varible to set domain range
      */
-    public void updateDisplayLength(double n){
+    public void updateDisplayLength(double length){
         plot = chart.getXYPlot();
         NumberAxis domain = (NumberAxis) plot.getDomainAxis();
-        domain.setRange(0.00, n);
+        domain.setRange(0.00, length);
         chartPanel.repaint();
     }
 
     /**
      * Public method to change the color of a specific channel.
+     * @param key integer parameter key to identify emotion series
+     * @param color Color parameter to set selected color for the series
      */
     public void updateColor(int key, Color color){
         plot = chart.getXYPlot();
@@ -94,6 +102,7 @@ public class MetricGraphPanel extends JPanel implements Observer {
     /**
      * Private method to create data chart based on the data set provided. Used when panel is initialized or channel
      * count is changed.
+     * @param dataSet XYDataSet parameter to set graph panel
      */
     private JFreeChart createChart(XYDataset dataSet){
         JFreeChart chart = ChartFactory.createXYLineChart("Performance Metric", "Time",
@@ -125,6 +134,7 @@ public class MetricGraphPanel extends JPanel implements Observer {
     /**
      * Private method to initialize new data set based on the number of channels provided. Used when channel number is
      * addded or updated by the method 'update channel number'.
+     * @param channelNumber int parameter to set channels for each emotion in the chart
      */
     private XYDataset createDataSet(int channelNumber) {
         final TimeSeriesCollection dataSet = new TimeSeriesCollection();
@@ -136,6 +146,10 @@ public class MetricGraphPanel extends JPanel implements Observer {
         return dataSet;
     }
 
+    /**
+    * Private method to set maximum amount of time each plot will be persist in the graph
+    * @param maxPlots integer paramter to set maximum age for each series
+    */
     private void setMaximumPlots(int maxPlots){
 
         int maxItemAge = (1000/frequency)*maxPlots;
@@ -145,6 +159,11 @@ public class MetricGraphPanel extends JPanel implements Observer {
         }
     }
 
+    /**
+    * Public update method inherited from observer to update series data
+    * when the observer is notified with new data
+    * @param Observable o message bean parameter sent by the observer on update
+    */
     @Override
     public void update(Observable o, Object arg) {
         if (this.emotionMessageBean == o){
