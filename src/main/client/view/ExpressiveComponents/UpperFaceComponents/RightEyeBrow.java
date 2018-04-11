@@ -21,6 +21,20 @@ public class RightEyeBrow extends EyeBrow {
     }
 
     /**
+     * Raises the eyebrow based of received value
+     * @param val double 0-1
+     */
+    public void furrow(double val){
+        if(val <= 0 || val > 1)
+            return;
+
+        double newStart = START - (val * 20);
+        double newY = getY() + (val * 4);
+        setFrame(getX(), newY, WIDTH, HEIGHT);
+        setAngleStart(newStart);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

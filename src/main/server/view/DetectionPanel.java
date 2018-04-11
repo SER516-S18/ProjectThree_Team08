@@ -5,13 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -33,7 +27,7 @@ public class DetectionPanel extends JPanel{
 	private JComboBox<String> lowerfaceComboBox;
 	private JComboBox<String> eyeComboBox;
 	private JCheckBox chckbxReset;
-	private JCheckBox chckbxActivate;
+	private JButton btnActivate;
 	private JComboBox<String> performanceMetricsComboBox;
 	private JSpinner pfMetricSpinner;
 	private String upperfaceSelectedItem;
@@ -87,7 +81,7 @@ public class DetectionPanel extends JPanel{
         lblUpperface.setBounds(14, 68, 139, 33);
         this.add(lblUpperface);
         
-        String[] upperfaceItems = new String[] {"Raise Brow", "Open Eyes",
+        String[] upperfaceItems = new String[] {"Raise Brow", "Furrow Brow",
         		"Look Left", "Look Right", "Look Up", "Look Down"};
         upperfaceComboBox = new JComboBox<>(upperfaceItems);
         upperfaceComboBox.setBounds(14, 98, 139, 25);
@@ -182,22 +176,33 @@ public class DetectionPanel extends JPanel{
 		});
         this.add(eyeComboBox);
         
-        chckbxActivate = new JCheckBox("Activate");
-        chckbxActivate.setFont(new Font("Tahoma", Font.BOLD, 12));
-        chckbxActivate.setBackground(Color.GRAY);
-        chckbxActivate.setForeground(Color.WHITE);
-        chckbxActivate.setBounds(185, 164, 95, 25);
+        btnActivate = new JButton("Activate");
+		btnActivate.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnActivate.setForeground(Color.WHITE);
+		btnActivate.setBackground(Color.BLACK);
+		btnActivate.setContentAreaFilled(false);
+		btnActivate.setOpaque(true);
+		btnActivate.setBounds(185, 164, 95, 25);
         setActivated(false);
-        chckbxActivate.addActionListener(new ActionListener() {
+		btnActivate.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JCheckBox changedObj = (JCheckBox) e.getSource();
-				setActivated(changedObj.isSelected());
+				if(isResetChecked && isActivated){
+					setActivated(false);
+					btnActivate.setText("Activate");
+					chckbxReset.setEnabled(true);
+				} else if(isResetChecked && !isActivated) {
+					setActivated(true);
+					btnActivate.setText("Deactivate");
+					chckbxReset.setEnabled(false);
+				} else {
+					setActivated(true);
+				}
 				UIController.setDetectionPanel(getDetectionPanel());
 			}
 		});
-        this.add(chckbxActivate);
+        this.add(btnActivate);
         
         chckbxReset = new JCheckBox("Auto Reset");
         chckbxReset.setForeground(Color.WHITE);

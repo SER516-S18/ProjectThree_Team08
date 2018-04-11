@@ -21,6 +21,7 @@ public class UIController {
 	private static DetectionPanel detectionPanel;
 	private static InteractivePanel interactivePanel;
 	private static boolean run = true;
+	private boolean runningEyeVal = false;
 
 	private UIController() {
 	}
@@ -83,18 +84,29 @@ public class UIController {
 	
 	private void updateEyeStateMetric() {
 		String[] eyeStateMetric = {"Blink", "Wink Left", "Wink Right"};
+		boolean eyeVal = false;
+		if(detectionPanel.isActivated() && !detectionPanel.isResetChaecked()){
+			eyeVal = detectionPanel.isActivated();
+			detectionPanel.setActivated(false);
+		} else if (detectionPanel.isActivated() && detectionPanel.isResetChaecked()){
+			eyeVal = !runningEyeVal;
+			runningEyeVal = eyeVal;
+		} else {
+			runningEyeVal = false;
+		}
+
 		for(String str : eyeStateMetric) {
 			if(detectionPanel.getEyeStateSelectedItem().equalsIgnoreCase(str)) {
 				
 				switch(str) {
 					case "Blink" :
-						EndpointController.getInstance().updateExpBlink(true);
+						EndpointController.getInstance().updateExpBlink(eyeVal);
 						break;
 					case "Wink Left" :
-						EndpointController.getInstance().updateExpLeftWink(true);
+						EndpointController.getInstance().updateExpLeftWink(eyeVal);
 						break;
 					case "Wink Right" :
-						EndpointController.getInstance().updateExpRightWink(true);
+						EndpointController.getInstance().updateExpRightWink(eyeVal);
 						break;
 				}
 				
@@ -194,7 +206,7 @@ public class UIController {
 	 * This method is updating the model attributes for upperface
 	 * */
 	private void updateUpperfaceMetrics() {
-		String[] upperfaceMetrics = {"Raise Brow", "Open Eyes", "Look Left", "Look Right",
+		String[] upperfaceMetrics = {"Raise Brow", "Furrow Brow", "Look Left", "Look Right",
 									"Look Up", "Look Down"};
 		for(String str : upperfaceMetrics) {
 			if(detectionPanel.getUpperfaceSelectedItem().equalsIgnoreCase(str)) {
@@ -204,8 +216,8 @@ public class UIController {
 						EndpointController.getInstance().updateEyeBrowRaise(
 								detectionPanel.getUpperfaceSelectedValue());
 						break;
-					case "Open Eyes" :
-						EndpointController.getInstance().updateEyesOpen(
+					case "Furrow Brow" :
+						EndpointController.getInstance().updateEyeBrowFurrow(
 								detectionPanel.getUpperfaceSelectedValue());
 						break;
 					case "Look Left" :
@@ -228,8 +240,8 @@ public class UIController {
 				
 			} else if (str.equalsIgnoreCase("Raise Brow")) {
 				EndpointController.getInstance().updateEyeBrowRaise(0.00);
-			} else if (str.equalsIgnoreCase("Open Eyes")) {
-				EndpointController.getInstance().updateEyesOpen(0.00);
+			} else if (str.equalsIgnoreCase("Furrow Brow")) {
+				EndpointController.getInstance().updateEyeBrowFurrow(0.00);
 			} else if (str.equalsIgnoreCase("Look Left")) {
 				EndpointController.getInstance().updateExpLookingLeft(0.00);
 			} else if (str.equalsIgnoreCase("Look Right")) {
