@@ -13,6 +13,7 @@ import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.TimeSeries;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
@@ -45,6 +46,8 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
     public ExpressionGraphPanel(EmotionMessageBean emotionMessageBean){
         this.emotionMessageBean=emotionMessageBean;
         this.setLayout(new BorderLayout());
+        this.setBorder(new EmptyBorder(0,0,0,10));
+        this.setBackground(Color.WHITE);
         JPanel subPanel = new JPanel();
         subPanel.setLayout(new GridBagLayout());
         GridBagConstraints constraints=new GridBagConstraints();
@@ -52,16 +55,19 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
         subPanel.setPreferredSize(new Dimension(700,550));
         subPanel.setBackground(Color.WHITE);
         for(int i=0; i<11; i++){
-            constraints.ipadx=0;
-            constraints.ipady=0;
             constraints.gridx=0;
             constraints.gridy=i;
+            constraints.fill = GridBagConstraints.BOTH;
+            constraints.weighty = 1;
+            constraints.weightx = 1;
             subPanel.add(createChartPanel(i), constraints);
 
-            constraints.ipadx=0;
+            constraints.ipadx=1;
             constraints.ipady=0;
             constraints.gridx=1;
             constraints.gridy=i;
+            constraints.weighty = 0;
+            constraints.weightx = 0;
             JLabel label=new JLabel(createLabel(i));
             subPanel.add(label, constraints);
         }
