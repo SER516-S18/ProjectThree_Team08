@@ -36,14 +36,16 @@ public class ClientEndpoint {
      */
     @OnMessage
     public void onMessage(EmotionMessageBean message) {
+    	
+    	
     	if(message.getAffective() != null){
     		this.emotionMessageBean.setAffective(message.getAffective());
     	}
     	if(message.getExpressive() != null){
     		this.emotionMessageBean.setExpressive(message.getExpressive());
     	}
-    	if(emotionMessageBean.getClockTick() != 0.0){
-    		emotionMessageBean.setTick(message.getClockTick());
+    	if(message.getClockTick() != 0.0){
+    		this.emotionMessageBean.setTick(message.getClockTick());
     	}
     	if(emotionMessageBean.hasChanged()){
     		System.out.println("Observers Notified: "+ emotionMessageBean.countObservers());

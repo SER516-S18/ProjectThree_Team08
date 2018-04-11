@@ -310,10 +310,9 @@ public class UIController {
 			double detectionTime = detectionPanel.getTimeTextField();
 			detectionTime += emoStateInterval;
 			detectionPanel.setTimeTxtField(detectionTime);
-		//	EmotionMessageBean.setClockTick(detectionTime);
 			
 		} else {
-			if ("start".equalsIgnoreCase(interactivePanel.getBtnSendValue())) {
+			if ("stop".equalsIgnoreCase(interactivePanel.getBtnSendValue())) {
 				run = false;
 			} else {
 				run = true;
@@ -327,10 +326,11 @@ public class UIController {
 				@Override
 				public void run() {
 					if (run) {
+
 						detectionTime = detectionPanel.getTimeTextField();
+						System.out.println("From Runner"+detectionTime);
 						newDetectionTime = detectionTime + emoStateInterval;
 						detectionPanel.setTimeTxtField(newDetectionTime);
-				//		EmotionMessageBean.setClockTick(detectionTime);
 					} else {
 						timer.cancel();
 						timer.purge();
