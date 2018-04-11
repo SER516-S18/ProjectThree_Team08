@@ -1,6 +1,7 @@
 package main.server.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,9 +62,8 @@ public class ConsolePanel extends JPanel{
                 TitledBorder.LEADING,
                         TitledBorder.TOP, new Font("Tahoma", Font.BOLD,
                 12), Color.BLACK));
-        this.setBounds(11, 408, 474, 152);
         this.setLayout(null);
-        
+        this.setPreferredSize(new Dimension(200, 150));
         
         btnClearLog = new JButton("Clear Log");
         btnClearLog.addActionListener(new ActionListener() {
