@@ -24,22 +24,6 @@ public class ClientWindow extends JFrame{
 	/**
 	 * Create the Client Window.
 	 */
-	public ClientWindow(){
-		this.setTitle("Group8 Lab3 Client");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocation(200,200);
-		this.setBackground(Color.LIGHT_GRAY);
-		this.setMinimumSize(new Dimension(1250, 720));
-		
-		this.clientPanel = new JPanel(new BorderLayout());
-		this.clientPanel.setBackground(Color.LIGHT_GRAY);
-		this.add(this.clientPanel);
-		
-		initializeMenuBar();
-		initializeServerConnectionPanel();
-		initializeTabbedPane();
-	}
-	
 	public ClientWindow(
 			ExpressivePanel expressivePanel, 
 			ExpressionGraphPanel expressionGraphPanel, 
@@ -47,7 +31,7 @@ public class ClientWindow extends JFrame{
 			MetricsValuePanel metricsValuePanel, 
 			ServerConnectionPanel serverConnectionPanel){
 		
-		this.setTitle("Client");
+		this.setTitle("Group Lab3 Client");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocation(200,200);
 		this.setBackground(Color.LIGHT_GRAY);
