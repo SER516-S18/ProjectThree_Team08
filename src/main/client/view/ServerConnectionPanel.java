@@ -34,7 +34,7 @@ public class ServerConnectionPanel extends JPanel{
 		ipAddressLabel = new JLabel("IP Address:");
 		portLabel = new JLabel("Port:");
 		timeStampLabel = new JLabel("Time Step:");
-		timeStampValueLabel = new JLabel("0.00");
+		timeStampValueLabel = new JLabel("0.0");
 		ipAddressTextField = new JTextField("localhost");
 		portTextField = new JTextField("1726");
 		
