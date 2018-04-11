@@ -21,8 +21,8 @@ public class ServerUI extends JFrame{
         this.setTitle("Emotiv Xavier Composer");
         this.getContentPane().setBackground(Color.LIGHT_GRAY);
         this.setResizable(true);
-        this.setMinimumSize(new Dimension(500,600));
-        this.setBounds(100, 100, 500, 600);
+        this.setMinimumSize(new Dimension(492,600));
+        this.setBounds(100, 100, 492, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setLayout(new BorderLayout(0, 0));
         
