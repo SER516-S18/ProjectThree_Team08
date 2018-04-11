@@ -30,7 +30,6 @@ public class ClientEndpoint {
      */
     @OnOpen
     public void onOpen(Session session) {
-        System.out.println(String.format("Connection established. session id: %s", session.getId()));
     }
 
     /**
@@ -51,10 +50,8 @@ public class ClientEndpoint {
     		this.emotionMessageBean.setTick(message.getClockTick());
     	}
     	if(emotionMessageBean.hasChanged()){
-    		System.out.println("Observers Notified: "+ emotionMessageBean.countObservers());
     		this.emotionMessageBean.notifyObservers();
     	}
-        System.out.println("Message received from client"+message);
     }
 
 }

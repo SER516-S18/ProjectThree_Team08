@@ -48,7 +48,7 @@ public class Client {
 			emotionMessageBean.addObserver(metricGraphPanel);
 			emotionMessageBean.addObserver(expressionGraphPanel);
 		} catch(Exception exception){
-			System.out.println(exception.getMessage());
+			exception.printStackTrace();
 		}
     }
 
