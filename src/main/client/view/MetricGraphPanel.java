@@ -41,6 +41,7 @@ public class MetricGraphPanel extends JPanel implements Observer {
     private EmotionMessageBean emotionMessageBean;
     private XYPlot plot;
     private long start;
+    private XYLineAndShapeRenderer renderer;
 
     public MetricGraphPanel(EmotionMessageBean emotionMessageBean){
         XYDataset dataSet = createDataSet(channelNumber);
@@ -86,7 +87,6 @@ public class MetricGraphPanel extends JPanel implements Observer {
      */
     public void updateColor(int key, Color color){
         plot = chart.getXYPlot();
-        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
         renderer.setSeriesPaint(key,color);
         plot.setRenderer(renderer);
 
@@ -97,19 +97,19 @@ public class MetricGraphPanel extends JPanel implements Observer {
      * count is changed.
      */
     private JFreeChart createChart(XYDataset dataSet){
-        JFreeChart chart = ChartFactory.createXYLineChart("InitialMetric", "Time",
+        JFreeChart chart = ChartFactory.createXYLineChart("Performance Metric", "Time",
                 "Amount", dataSet,
                 PlotOrientation.VERTICAL, true, false, false);
         chart.removeLegend();
         plot = chart.getXYPlot();
-        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
-        for (int i = 0; i < dataSet.getSeriesCount()-1; i++) {
+        renderer = new XYLineAndShapeRenderer();
+        for (int i = 0; i < dataSet.getSeriesCount(); i++) {
             renderer.setSeriesPaint(i,colorList[i]);
         }
 
         start = System.currentTimeMillis();
         ValueAxis domain = plot.getDomainAxis();
-        domain.setRange(0,1);
+        domain.setRange(0,300);
         domain.setVerticalTickLabels(false);
         domain.setAutoTickUnitSelection(true);
 
@@ -117,7 +117,7 @@ public class MetricGraphPanel extends JPanel implements Observer {
         range.setRange(0.00, 1.00);
 
         plot.setRenderer(renderer);
-        plot.setBackgroundPaint(Color.GRAY);
+        plot.setBackgroundPaint(Color.LIGHT_GRAY);
         plot.setRangeGridlinesVisible(false);
         plot.setDomainGridlinesVisible(false);
         return chart;

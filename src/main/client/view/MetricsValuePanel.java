@@ -24,11 +24,10 @@ public class MetricsValuePanel extends JPanel {
     private JFormattedTextField displayLength;
     private JButton setLength;
     private MetricGraphPanel metricGraphPanel;
-    private Color colors[] = new Color[] {Color.RED.darker(), Color.GREEN.darker(), Color.YELLOW.darker(),
-            Color.BLUE.darker(), Color.PINK.darker(), Color.ORANGE.darker()};
 
     public MetricsValuePanel(MetricGraphPanel metricGraphPanel1){
         this.setLayout(null);
+        this.setBackground(Color.LIGHT_GRAY);
         this.metricGraphPanel = metricGraphPanel1;
         interest = new ColorBox();
         interest.setBoxColor(0);
@@ -39,8 +38,8 @@ public class MetricsValuePanel extends JPanel {
                     @Override
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
-                            interest.setBackground(colors[interest.getDropdown().getSelectedIndex()]);
-                            metricGraphPanel.updateColor(0, colors[interest.getDropdown().getSelectedIndex()]);
+                            interest.setBackground(getInterstColor());
+                            metricGraphPanel.updateColor(0, getInterstColor());
                         }
                     }
                 }
@@ -57,8 +56,8 @@ public class MetricsValuePanel extends JPanel {
                     @Override
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
-                            engagement.setBackground(colors[engagement.getDropdown().getSelectedIndex()]);
-                            metricGraphPanel.updateColor(1, colors[engagement.getDropdown().getSelectedIndex()]);
+                            engagement.setBackground(getEngagementColor());
+                            metricGraphPanel.updateColor(1, getEngagementColor());
                         }
                     }
                 }
@@ -74,8 +73,8 @@ public class MetricsValuePanel extends JPanel {
                     @Override
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
-                            stress.setBackground(colors[stress.getDropdown().getSelectedIndex()]);
-                            metricGraphPanel.updateColor(2, colors[stress.getDropdown().getSelectedIndex()]);
+                            stress.setBackground(getStressColor());
+                            metricGraphPanel.updateColor(2, getStressColor());
                         }
                     }
                 }
@@ -91,8 +90,8 @@ public class MetricsValuePanel extends JPanel {
                     @Override
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
-                            relaxation.setBackground(colors[relaxation.getDropdown().getSelectedIndex()]);
-                            metricGraphPanel.updateColor(3, colors[relaxation.getDropdown().getSelectedIndex()]);
+                            relaxation.setBackground(getRelaxationColor());
+                            metricGraphPanel.updateColor(3, getRelaxationColor());
                         }
                     }
                 }
@@ -108,8 +107,8 @@ public class MetricsValuePanel extends JPanel {
                     @Override
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
-                            excitement.setBackground(colors[excitement.getDropdown().getSelectedIndex()]);
-                            metricGraphPanel.updateColor(4, colors[excitement.getDropdown().getSelectedIndex()]);
+                            excitement.setBackground(getExcitemetColor());
+                            metricGraphPanel.updateColor(4, getExcitemetColor());
                         }
                     }
                 }
@@ -126,8 +125,8 @@ public class MetricsValuePanel extends JPanel {
                     @Override
                     public void itemStateChanged(ItemEvent e) {
                         if(e.getStateChange() == ItemEvent.SELECTED){
-                            focus.setBackground(colors[focus.getDropdown().getSelectedIndex()]);
-                            metricGraphPanel.updateColor(5, colors[focus.getDropdown().getSelectedIndex()]);
+                            focus.setBackground(getFocusColor());
+                            metricGraphPanel.updateColor(5, getFocusColor());
                         }
                     }
                 }
@@ -140,7 +139,7 @@ public class MetricsValuePanel extends JPanel {
         this.add(title);
 
         displayLength = new JFormattedTextField();
-        displayLength.setValue(new Double(1));
+        displayLength.setValue(new Double(300));
         displayLength.setOpaque(true);
         displayLength.setBackground(Color.GRAY);
         displayLength.setBounds(145,495,50,30);
@@ -160,51 +159,51 @@ public class MetricsValuePanel extends JPanel {
     }
 
     /**
-     * Public method to return the color selected by user for interest plot.
+     * private method to return the color selected by user for interest plot.
      */
-    public Color getInterstColor(){
+    private Color getInterstColor(){
         return interest.getBoxColor();
     }
 
     /**
-     * Public method to return the color selected by user for engagement plot.
+     * private method to return the color selected by user for engagement plot.
      */
-    public Color getEngagementColor(){
+    private Color getEngagementColor(){
         return engagement.getBoxColor();
     }
 
     /**
-     * Public method to return the color selected by user for stress plot.
+     * private method to return the color selected by user for stress plot.
      */
-    public Color getStressColor(){
+    private Color getStressColor(){
         return stress.getBoxColor();
     }
 
     /**
-     * Public method to return the color selected by user for relaxation plot.
+     * private method to return the color selected by user for relaxation plot.
      */
-    public Color getRelaxationColor(){
+    private Color getRelaxationColor(){
         return relaxation.getBoxColor();
     }
 
     /**
-     * Public method to return the color selected by user for excitement plot.
+     * private method to return the color selected by user for excitement plot.
      */
-    public Color getExcitemetColor(){
+    private Color getExcitemetColor(){
         return excitement.getBoxColor();
     }
 
     /**
-     * Public method to return the color selected by user for focus plot.
+     * private method to return the color selected by user for focus plot.
      */
-    public Color getFocusColor(){
+    private Color getFocusColor(){
         return focus.getBoxColor();
     }
 
     /**
-     * Public method to get the display length as per data entered by the user. Default is set to 1.
+     * private method to get the display length as per data entered by the user. Default is set to 1.
      */
-    public double getDisplayLength(){
+    private double getDisplayLength(){
         return (double) displayLength.getValue();
     }
 }
