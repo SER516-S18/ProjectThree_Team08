@@ -72,7 +72,7 @@ public class ConsolePanel extends JPanel{
                 consoleTextPane.setText("");
             }
         });
-        btnClearLog.setBounds(140, 119, 171, 25);
+        btnClearLog.setBounds(140, 115, 171, 25);
         btnClearLog.setForeground(Color.WHITE);
         btnClearLog.setBackground(Color.BLACK);
         btnClearLog.setContentAreaFilled(false);
@@ -83,7 +83,7 @@ public class ConsolePanel extends JPanel{
         consoleTextPane.setEditable(false);
         consoleTextPane.setForeground(Color.WHITE);
         consoleTextPane.setBackground(Color.DARK_GRAY);
-        consoleTextPane.setBounds(10, 26, 454, 86);
+        consoleTextPane.setBounds(10, 23, 454, 86);
         this.add(consoleTextPane);
     }
 }
