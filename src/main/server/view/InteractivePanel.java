@@ -47,7 +47,7 @@ public class InteractivePanel extends JPanel{
                         TitledBorder.TOP, new Font("Tahoma",
 				Font.BOLD, 12), null));
         this.setLayout(null);
-        this.setPreferredSize(new Dimension(200, 150));
+        this.setPreferredSize(new Dimension(200, 120));
         
         String[] playerItems = new String[] {"0", "1", "2"};
         playerComboBox = new JComboBox<>(playerItems);
