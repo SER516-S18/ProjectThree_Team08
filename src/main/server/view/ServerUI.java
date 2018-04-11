@@ -2,7 +2,9 @@ package main.server.view;
 
 import main.server.controller.UIController;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
@@ -18,19 +20,22 @@ public class ServerUI extends JFrame{
     public ServerUI() {
         this.setTitle("Emotiv Xavier Composer");
         this.getContentPane().setBackground(Color.LIGHT_GRAY);
-        this.setResizable(false);
+        this.setResizable(true);
+        this.setMinimumSize(new Dimension(500,600));
         this.setBounds(100, 100, 500, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.getContentPane().setLayout(null);
+        this.getContentPane().setLayout(new BorderLayout(0, 0));
         
         InteractivePanel intPanel = new InteractivePanel();
-        this.getContentPane().add(intPanel);
+        this.getContentPane().add(intPanel, BorderLayout.NORTH);
         UIController.getInstance().setInteractivePanel(intPanel);
+        
         DetectionPanel detPanel = new DetectionPanel();
-        this.getContentPane().add(detPanel);
+        this.getContentPane().add(detPanel, BorderLayout.CENTER);
         UIController.getInstance().setDetectionPanel(detPanel);
+        
         ConsolePanel conPanel = new ConsolePanel();
-        this.getContentPane().add(conPanel);
+        this.getContentPane().add(conPanel, BorderLayout.SOUTH);
         UIController.getInstance().setConsolePanel(conPanel);
     }
 }
