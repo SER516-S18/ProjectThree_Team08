@@ -97,41 +97,37 @@ public class UIController {
      *                         the interactive panel
      */
     public static void updateDetectionTime(double emoStateInterval) {
-
         if (!interactivePanel.isAutoReset()) {
             double detectionTime = detectionPanel.getTimeTextField();
             detectionTime += emoStateInterval;
             detectionPanel.setTimeTxtField(detectionTime);
-
         } else {
-            if ("stop".equalsIgnoreCase(interactivePanel.getBtnSendValue())) {
+            if ("start".equalsIgnoreCase(interactivePanel.getBtnSendValue())) {
                 run = false;
             } else {
                 run = true;
             }
-
             Timer timer = new Timer();
-
-            TimerTask timerTask = new TimerTask() {
+            long delay = 0;
+            long intervalPeriod = (long) (emoStateInterval * 1000);
+            timer.schedule(new TimerTask() {
                 double detectionTime, newDetectionTime;
-
-                @Override
                 public void run() {
                     if (run) {
-
                         detectionTime = detectionPanel.getTimeTextField();
                         newDetectionTime = detectionTime + emoStateInterval;
                         detectionPanel.setTimeTxtField(newDetectionTime);
+                        long period1 = (long) (InteractivePanel.getEmoStateTimeInterval() * 1000);
+                        if(intervalPeriod!=period1) {
+                            timer.cancel();
+                            updateDetectionTime(InteractivePanel.getEmoStateTimeInterval());
+                        }
                     } else {
                         timer.cancel();
                         timer.purge();
                     }
                 }
-            };
-
-            long delay = 0;
-            long intervalPeriod = (long) (emoStateInterval * 1000);
-            timer.scheduleAtFixedRate(timerTask, delay, intervalPeriod);
+            }, 0, intervalPeriod);
 
         }
 

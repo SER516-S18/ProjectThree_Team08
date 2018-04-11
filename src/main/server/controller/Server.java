@@ -27,11 +27,18 @@ public class Server {
                 org.glassfish.tyrus.server.Server(ConnectionConstants.HOSTNAME,
                 ConnectionConstants.PORT, "/" + ConnectionConstants.ROOT_PATH, ServerEndpoint.class);
         try {
-            server.start();
-            new Scanner(System.in).nextLine();
-        } catch (DeploymentException e) {
-            throw new RuntimeException(e);
-        } finally {
+           new Thread() {
+               @Override
+               public void run() {
+                   super.run();
+                   try {
+                       server.start();
+                   } catch (DeploymentException e) {
+                       e.printStackTrace();
+                   }
+               }
+           }.start();
+        }  finally {
             server.stop();
         }
     }

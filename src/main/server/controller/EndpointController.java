@@ -1,6 +1,7 @@
 package main.server.controller;
 
 import main.model.EmotionMessageBean;
+import main.server.view.InteractivePanel;
 
 import javax.websocket.EncodeException;
 import javax.websocket.Session;
@@ -232,14 +233,17 @@ public class EndpointController {
      */
     public void sendInIntervals(double intervals) {
         long period = (long) (intervals * 1000L);
-        TimerTask toRepeatTask = new TimerTask() {
-            @Override
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
             public void run() {
                 sendEmotionMessage();
+                long period1 = (long) (InteractivePanel.getEmoStateTimeInterval() * 1000L);
+                if(period!=period1) {
+                    timer.cancel();
+                    sendInIntervals(InteractivePanel.getEmoStateTimeInterval());
+                }
             }
-        };
-        timer = new Timer();
-        timer.scheduleAtFixedRate(toRepeatTask, 0, period);
+        }, 0, period);
     }
 
     /**

@@ -71,7 +71,7 @@ public class InteractivePanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
 
                 UIController.setInteractivePanel(getInteractivePanel());
-                UIController.updateDetectionTime(getEmoStateTimeInterval());
+
                 UIController.sendMessageBean(btnSend.getText());
                 if (btnSend.getText().toLowerCase().equals("start"))
                     ConsolePanel.setMessage("Data transmission ended.");
@@ -79,6 +79,7 @@ public class InteractivePanel extends JPanel {
                     ConsolePanel.setMessage("Data transmission started.");
                 else
                     ConsolePanel.setMessage("Data transmitted.");
+                UIController.updateDetectionTime(getEmoStateTimeInterval());
             }
         });
         btnSend.setFont(new Font("Tahoma", Font.PLAIN, 12));
