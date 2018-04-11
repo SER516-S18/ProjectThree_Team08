@@ -1,26 +1,21 @@
 package main.client.controller;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.websocket.Session;
-
 import org.glassfish.tyrus.client.ClientManager;
-
-import main.client.view.ClientWindow;
 import main.model.EmotionMessageBean;
 import main.utils.ConnectionConstants;
 
 /**
- * Server conection panel logic
+ * Server connection panel logic
  * @author Jason Rice
  * @version 1.0
  */
@@ -34,7 +29,7 @@ public class ServerConnectionPanelLogic implements Observer{
 	EmotionMessageBean emotionMessageBean;
 	
 	/**
-	 * Constructor sets the fields that need to be updated and sets the reference to the observable and end point.
+	 * Constructor sets the references to the fields, end point, and the message bean.
 	 * @param clientEndPoint
 	 * @param emotionMessageBean
 	 * @param ipAddressTextField
@@ -42,8 +37,14 @@ public class ServerConnectionPanelLogic implements Observer{
 	 * @param startStopButton
 	 * @param timeStampValueLabel
 	 */
-	public ServerConnectionPanelLogic(ClientEndpoint clientEndPoint, EmotionMessageBean emotionMessageBean,
-			JTextField ipAddressTextField, JTextField portTextField, JButton startStopButton, JLabel timeStampValueLabel){
+	public ServerConnectionPanelLogic(
+			ClientEndpoint clientEndPoint, 
+			EmotionMessageBean emotionMessageBean,
+			JTextField ipAddressTextField, 
+			JTextField portTextField, 
+			JButton startStopButton, 
+			JLabel timeStampValueLabel){
+		
 		this.clientEndPoint = clientEndPoint;
 		this.ipAddressTextField = ipAddressTextField;
 		this.portTextField = portTextField;
@@ -54,7 +55,7 @@ public class ServerConnectionPanelLogic implements Observer{
 	}
 	
 	/**
-	 * Handles the Start connection logic.
+	 * ActionListener for the connection logic.
 	 */
 	public ActionListener generateStartServerConnectionActionListener(){
 		return new ActionListener(){
@@ -73,7 +74,7 @@ public class ServerConnectionPanelLogic implements Observer{
 						startStopButton.setText("Connect");
 					}
 				}catch(Exception e) {
-					String message = "Connection error has ocurred.";
+					String message = "Connection could not be established.";
 					JOptionPane.showMessageDialog(
 							timeStampValueLabel.getRootPane(), message, 
 							"Connection Error", JOptionPane.ERROR_MESSAGE);

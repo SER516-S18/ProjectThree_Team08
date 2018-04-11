@@ -12,7 +12,7 @@ public class ClientWindowLogic {
 	JMenuItem openServer;
 	
 	/**
-	 * get the reference to the 
+	 * Constructor that sets the reference to the openServer menu item.
 	 * @param openServer
 	 */
 	public ClientWindowLogic(JMenuItem openServer){
@@ -21,8 +21,7 @@ public class ClientWindowLogic {
 	}
 	
 	/**
-	 * Handles the OpenServer menu item logic.
-	 *
+	 * Action Listener for the open server button in the menu on the client.
 	 */
 	public ActionListener generateOpenServerActionListener(){
 		return new ActionListener(){
