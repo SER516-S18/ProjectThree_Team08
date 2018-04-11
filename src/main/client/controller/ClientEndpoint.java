@@ -10,7 +10,7 @@ import javax.websocket.Session;
 
 /**
  * ClientEndpoint
- * @author
+ * @author Jason Rice, Balachandar Sampath
  * @version 1.1
  */
 @javax.websocket.ClientEndpoint(encoders = MessageEncoder.class, decoders = MessageDecoder.class)

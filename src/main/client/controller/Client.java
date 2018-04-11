@@ -18,15 +18,9 @@ import main.utils.ConnectionConstants;
 public class Client {
 
     public static final String SERVER = "ws://"+ ConnectionConstants.HOSTNAME+":"+ConnectionConstants.PORT+"/"+ConnectionConstants.ROOT_PATH+"/"+ConnectionConstants.ENDPOINT_PATH;
-    private static Gson gson = new Gson();
+
     public static void main(String[] args) throws Exception {
         ClientInitUI.initialiseGUI();
-       /* String message;
-        // repeatedly read a message and send it to the main.server (until stop)
-        do {
-            message = scanner.nextLine();
-            session.getBasicRemote().sendText(gson.toJson(new EmotionMessageBean()));
-        } while (!message.equalsIgnoreCase("stop"));*/
     }
 
 }

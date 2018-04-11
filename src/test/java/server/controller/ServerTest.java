@@ -1,11 +1,6 @@
 package test.java.server.controller;
-
-import main.client.controller.ClientEndpoint;
-import main.client.controller.ClientInitUI;
 import main.server.controller.ServerEndpoint;
 import main.utils.ConnectionConstants;
-import org.glassfish.tyrus.client.ClientManager;
-import org.glassfish.tyrus.server.Server;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,13 +9,7 @@ import org.junit.runners.JUnit4;
 
 
 import javax.websocket.DeploymentException;
-
-import javax.websocket.Session;
-import java.io.IOException;
-
-import java.net.URI;
 import java.net.URISyntaxException;
-
 import static org.junit.Assert.assertEquals;
 
 
