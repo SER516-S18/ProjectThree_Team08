@@ -2,7 +2,6 @@ package main.client.view;
 
 import java.awt.*;
 import javax.swing.*;
-import main.client.controller.ClientWindowLogic;
 
 /**
  * Graphical User Interface (GUI) for the client window.
@@ -40,9 +39,38 @@ public class ClientWindow extends JFrame{
 		initializeServerConnectionPanel();
 		initializeTabbedPane();
 	}
+	
+	public ClientWindow(
+			ExpressivePanel expressivePanel, 
+			ExpressionGraphPanel expressionGraphPanel, 
+			MetricGraphPanel metricGraphPanel, 
+			MetricsValuePanel metricsValuePanel, 
+			ServerConnectionPanel serverConnectionPanel){
+		
+		this.setTitle("Client");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocation(200,200);
+		this.setBackground(Color.LIGHT_GRAY);
+		this.setMinimumSize(new Dimension(1250, 720));
+		
+		this.clientPanel = new JPanel(new BorderLayout());
+		this.clientPanel.setBackground(Color.LIGHT_GRAY);
+		this.add(this.clientPanel);
+		
+		initializeMenuBar();
+		initializeServerConnectionPanel();
+		initializeTabbedPane();
+		
+		this.metricsValuesPanelArea.add(metricsValuePanel, BorderLayout.CENTER);
+		this.metricsGraphPanelArea.add(metricGraphPanel, BorderLayout.CENTER);
+		this.facePanelArea.add(expressivePanel, BorderLayout.CENTER);
+		this.expressionGraphPanelArea.add(expressionGraphPanel, BorderLayout.CENTER);
+		this.serverConnectionPanel.add(serverConnectionPanel, BorderLayout.CENTER);
+	}
 
 	/**
-	 * Initialize the tabbed pane and configure the layout.
+	 * Initialize the tabbed pane, and areas inside (metrics values area, metrics graph area, 
+	 * face panel area, and expression graph area).
 	 */
 	public void initializeTabbedPane(){
 		JPanel metricsValuesPanelArea = new JPanel(new BorderLayout());
@@ -93,8 +121,7 @@ public class ClientWindow extends JFrame{
 	}
 	
 	/**
-	 * Sets the menu bar of the client.
-	 *
+	 * initialize the menu/menu-bar/item.
 	 */
 	public void initializeMenuBar(){
 		JMenu menu = new JMenu("Menu");
@@ -111,7 +138,7 @@ public class ClientWindow extends JFrame{
 	}
 	
 	/**
-	 * Sets the Servers Connection panel area.
+	 * initialize the server connection panel area.
 	 */
 	public void initializeServerConnectionPanel(){
 		JPanel serverConnectionPanel = new JPanel(new BorderLayout());
@@ -121,50 +148,5 @@ public class ClientWindow extends JFrame{
 		
 		this.serverConnectionPanel = serverConnectionPanel;
 		this.clientPanel.add(this.serverConnectionPanel, BorderLayout.NORTH);
-	}
-	
-	/**
-	 * Add the metrics value panel to client.
-	 * @param panel
-	 */
-	public void addMetricsValuesPanel(JPanel panel){
-
-		this.metricsValuesPanelArea.add(panel, BorderLayout.CENTER);
-	}
-	
-	/**
-	 * Add the metrics graph panel to the client.
-	 * @param panel
-	 */
-	public void addMetricsGraphPanel(JPanel panel){
-
-		this.metricsGraphPanelArea.add(panel, BorderLayout.CENTER);
-	}
-	
-	/**
-	 * Add the face panel to the client.
-	 * @param panel
-	 */
-	public void addFacePanel(JPanel panel){
-
-		this.facePanelArea.add(panel, BorderLayout.CENTER);
-	}
-	
-	/**
-	 * Add the expressions graph panel to the client.
-	 * @param panel
-	 */
-	public void addExpressionGraphPanel(JPanel panel){
-
-		this.expressionGraphPanelArea.add(panel, BorderLayout.CENTER);
-	}
-	
-	/**
-	 * Add the Server Connection Panel to the client.
-	 * @param panel
-	 */
-	public void addServerConnectionPanel(JPanel panel){
-
-		this.serverConnectionPanel.add(panel, BorderLayout.CENTER);
 	}
 }

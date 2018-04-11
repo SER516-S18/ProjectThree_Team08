@@ -16,7 +16,7 @@ public class ServerInstanceSingleton {
 	private ServerInstanceSingleton(){}
 	
 	/**
-	 * If no instance exists call a new one.
+	 * If no instance exists create a new one.
 	 */
 	public static void startServerInstance(){
 		if(process == null || !process.isAlive()){

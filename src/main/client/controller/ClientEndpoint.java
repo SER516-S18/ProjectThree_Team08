@@ -3,7 +3,6 @@ package main.client.controller;
 import main.model.EmotionMessageBean;
 import main.model.MessageDecoder;
 import main.model.MessageEncoder;
-
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
@@ -17,6 +16,10 @@ import javax.websocket.Session;
 public class ClientEndpoint {
 	EmotionMessageBean emotionMessageBean;
 	
+	/**
+	 * Constructor sets the emotionMessageBean reference.
+	 * @param emotionMessageBean
+	 */
 	public ClientEndpoint(EmotionMessageBean emotionMessageBean){
 		this.emotionMessageBean = emotionMessageBean;
 	}
