@@ -43,6 +43,7 @@ public class ExpressivePanel extends JPanel implements Observer {
     BufferedImage img = null;
     ExpressiveBean bean = null;
     EmotionMessageBean emotionMessageBean;
+    Graphics2D g2 = null;
 
     /**
      * Constructor adds all shapes to a list and reads the facelayout image
@@ -81,7 +82,7 @@ public class ExpressivePanel extends JPanel implements Observer {
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D)g;
+        g2 = (Graphics2D)g;
         setBackground(Color.WHITE);
         g2.drawImage(img, getRelativeX(),getRelativeY(),null);
 
@@ -155,8 +156,8 @@ public class ExpressivePanel extends JPanel implements Observer {
             mouth.set(bean.getSmile());
             mouth.set(bean.getClench());
 
-            Graphics2D g2 =(Graphics2D)getGraphics();
-            paintComponent(g2);
+            if(g2!= null)
+                paintComponent(g2);
         }
     }
 
