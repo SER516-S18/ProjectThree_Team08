@@ -30,7 +30,7 @@ public class ClientWindow extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocation(200,200);
 		this.setBackground(Color.LIGHT_GRAY);
-		this.setMinimumSize(new Dimension(1250, 650));
+		this.setMinimumSize(new Dimension(1250, 720));
 		
 		this.clientPanel = new JPanel(new BorderLayout());
 		this.clientPanel.setBackground(Color.LIGHT_GRAY);
@@ -83,10 +83,10 @@ public class ClientWindow extends JFrame{
 		this.expressionsTab = expressionsTab;
 		this.clientTabbedPane = clientTabbedPane;
 		
-		metricsTab.add(this.metricsValuesPanelArea, BorderLayout.WEST);
-		metricsTab.add(this.metricsGraphPanelArea, BorderLayout.CENTER);
 		expressionsTab.add(this.facePanelArea, BorderLayout.WEST);
 		expressionsTab.add(this.expressionGraphPanelArea, BorderLayout.CENTER);
+		metricsTab.add(this.metricsValuesPanelArea, BorderLayout.WEST);
+		metricsTab.add(this.metricsGraphPanelArea, BorderLayout.CENTER);
 		clientTabbedPane.addTab("Expressions", this.expressionsTab);
 		clientTabbedPane.addTab("Metrics", this.metricsTab);
 		this.clientPanel.add(this.clientTabbedPane, BorderLayout.CENTER);
@@ -149,8 +149,7 @@ public class ClientWindow extends JFrame{
 
 		this.facePanelArea.add(panel, BorderLayout.CENTER);
 	}
-
-
+	
 	/**
 	 * Add the expressions graph panel to the client.
 	 * @param panel

@@ -1,5 +1,6 @@
 package main.client.controller;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
@@ -46,9 +47,10 @@ public class ServerConnectionPanelLogic implements Observer{
 		this.clientEndPoint = clientEndPoint;
 		this.ipAddressTextField = ipAddressTextField;
 		this.portTextField = portTextField;
-		this.startStopButton = startStopButton;
 		this.timeStampValueLabel = timeStampValueLabel;
 		this.emotionMessageBean = emotionMessageBean;
+		startStopButton.addActionListener(generateStartServerConnectionActionListener());
+		this.startStopButton = startStopButton;
 	}
 	
 	/**
@@ -63,25 +65,19 @@ public class ServerConnectionPanelLogic implements Observer{
 							+ "/" + ConnectionConstants.ROOT_PATH + "/" + ConnectionConstants.ENDPOINT_PATH;
 					ClientManager client = ClientManager.createClient();
 					
-					if(startStopButton.getText().equals("Start")){
-						startStopButton.setText("Stop");
+					if(startStopButton.getText().equals("Connect")){
+						startStopButton.setText("Disconnect");
 						session = client.connectToServer(clientEndPoint, new URI(sURI));
-						
-						if(!session.isOpen()){
-							String message = "The Connection was not established.";
-							JOptionPane.showMessageDialog(
-									timeStampValueLabel.getRootPane(), message, 
-									"Connection Status", JOptionPane.WARNING_MESSAGE);
-						}
 					}else{
 						session.close();
-						startStopButton.setText("Start");
+						startStopButton.setText("Connect");
 					}
 				}catch(Exception e) {
 					String message = "Connection error has ocurred.";
 					JOptionPane.showMessageDialog(
 							timeStampValueLabel.getRootPane(), message, 
 							"Connection Error", JOptionPane.ERROR_MESSAGE);
+					startStopButton.setText("Connect");
 				}
 			}
 		};

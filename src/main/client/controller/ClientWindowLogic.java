@@ -1,6 +1,7 @@
 package main.client.controller;
 
 import java.awt.event.*;
+import javax.swing.JMenuItem;
 
 /**
  * Client window logic
@@ -8,6 +9,16 @@ import java.awt.event.*;
  * @version 1.0
  */
 public class ClientWindowLogic {	
+	JMenuItem openServer;
+	
+	/**
+	 * get the reference to the 
+	 * @param openServer
+	 */
+	public ClientWindowLogic(JMenuItem openServer){
+		openServer.addActionListener(generateOpenServerActionListener());
+		this.openServer = openServer;
+	}
 	
 	/**
 	 * Handles the OpenServer menu item logic.

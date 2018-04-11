@@ -30,13 +30,13 @@ public class ServerConnectionPanel extends JPanel{
 		JPanel innerPanelLeft = new JPanel(new BorderLayout());
 		JPanel innerPanelCenter = new JPanel(new BorderLayout());
 		
-		startStopButton = new JButton("Start");
+		startStopButton = new JButton("Connect");
 		ipAddressLabel = new JLabel("IP Address:");
 		portLabel = new JLabel("Port:");
 		timeStampLabel = new JLabel("Time Step:");
 		timeStampValueLabel = new JLabel("0.00");
 		ipAddressTextField = new JTextField("localhost");
-		portTextField = new JTextField("8025");
+		portTextField = new JTextField("1726");
 		
 		innerPanelLeft.add(ipAddressLabel, BorderLayout.WEST);
 		innerPanelLeft.add(ipAddressTextField, BorderLayout.CENTER);
@@ -45,11 +45,11 @@ public class ServerConnectionPanel extends JPanel{
 		innerPanelCenter.add(portLabel, BorderLayout.WEST);
 		innerPanelCenter.add(portTextField, BorderLayout.CENTER);
 		innerPanelCenter.add(startStopButton, BorderLayout.EAST);
-		innerPanelCenter.setPreferredSize(new Dimension(150, 50));
+		innerPanelCenter.setPreferredSize(new Dimension(220, 50));
 		
 		outterPanelRight.add(timeStampLabel, BorderLayout.WEST);
 		outterPanelRight.add(timeStampValueLabel, BorderLayout.CENTER);
-		outterPanelRight.setPreferredSize(new Dimension(100, 50));
+		outterPanelRight.setPreferredSize(new Dimension(150, 50));
 		
 		outterPanelLeft.add(innerPanelLeft, BorderLayout.WEST);
 		outterPanelLeft.add(innerPanelCenter, BorderLayout.CENTER);
