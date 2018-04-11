@@ -227,14 +227,4 @@ public class ExpressiveBean{
                 lookingUp == bean.lookingUp &&
                 lookingDown == bean.lookingDown;
     }
-
-    /**
-     * Clears all expressive values
-     */
-    public void clear(){
-        blink = rightWink = leftWink = false;
-        lookingDown = lookingLeft = lookingRight = lookingUp = 0;
-        eyeBrowFurrow = eyeBrowRaise = 0;
-        smile = clench = 0;
-    }
 }

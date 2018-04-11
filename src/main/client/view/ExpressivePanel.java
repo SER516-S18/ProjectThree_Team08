@@ -201,7 +201,7 @@ public class ExpressivePanel extends JPanel implements Observer {
             ExpressiveBean b = null;
             if(bean != null) {
                 b = new ExpressiveBean(bean);
-                bean.clear();
+                bean = null;
             }
             update(b);
         }
