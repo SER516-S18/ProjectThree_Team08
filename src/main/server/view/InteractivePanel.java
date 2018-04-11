@@ -51,7 +51,7 @@ public class InteractivePanel extends JPanel {
         chckbxAutoReset.setForeground(Color.WHITE);
         chckbxAutoReset.setBackground(Color.GRAY);
         chckbxAutoReset.setFont(new Font("Tahoma", Font.BOLD, 12));
-        chckbxAutoReset.setBounds(10, 61, 101, 25);
+        chckbxAutoReset.setBounds(260, 29, 101, 25);
         chckbxAutoReset.addActionListener(new ActionListener() {
 
             @Override
@@ -82,7 +82,7 @@ public class InteractivePanel extends JPanel {
             }
         });
         btnSend.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        btnSend.setBounds(121, 61, 107, 25);
+        btnSend.setBounds(150, 80, 107, 25);
         this.add(btnSend);
 
         emoStateSpinner = new JSpinner();
