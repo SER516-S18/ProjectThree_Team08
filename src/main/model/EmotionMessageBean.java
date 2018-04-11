@@ -4,25 +4,24 @@ import java.util.Observable;
 
 /**
  * Bean which stores the emotion message to be sent to client.
+ *
  * @author Balachandar Sampath
  * @version 1.0
  */
-public class EmotionMessageBean extends Observable{
+public class EmotionMessageBean extends Observable {
 
     private ExpressiveBean expressive;
     private String sender;
     private AffectiveBean affective;
     private double clockTick;
 
-    public EmotionMessageBean()
-    {
+    public EmotionMessageBean() {
         expressive = new ExpressiveBean();
         affective = new AffectiveBean();
     }
 
     /**
      * Getter/Setter for class properties
-     *
      */
 
     public ExpressiveBean getExpressive() {
@@ -31,6 +30,7 @@ public class EmotionMessageBean extends Observable{
 
     /**
      * sets the expressive bean and sets changed to true.
+     *
      * @param expressive
      */
     public void setExpressive(ExpressiveBean expressive) {
@@ -44,6 +44,7 @@ public class EmotionMessageBean extends Observable{
 
     /**
      * sets the affective bean and sets changed to true.
+     *
      * @param affective
      */
     public void setAffective(AffectiveBean affective) {
@@ -56,7 +57,6 @@ public class EmotionMessageBean extends Observable{
     }
 
     /**
-     *
      * @param sender
      */
     public void setSender(String sender) {
@@ -64,29 +64,28 @@ public class EmotionMessageBean extends Observable{
     }
 
     /**
-     *	
-     * @param clockTickVal
-     */
-    public  void setClockTick(double clockTickVal) {
-        clockTick = clockTickVal;
-    }
-    
-    /**
      * set the tick in the client and sets changed to true.
+     *
      * @param tick
      */
-    public void setTick(double tick){
-    	clockTick = tick;
-    	this.setChanged();
+    public void setTick(double tick) {
+        clockTick = tick;
+        this.setChanged();
     }
 
     public double getClockTick() {
-    	return clockTick; 
+        return clockTick;
     }
-    
+
+    /**
+     * @param clockTickVal
+     */
+    public void setClockTick(double clockTickVal) {
+        clockTick = clockTickVal;
+    }
+
     /**
      * This method is used to generate a Stringified version of the class properties
-     *
      */
     @Override
     public String toString() {

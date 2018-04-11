@@ -1,9 +1,10 @@
 package main.server.view;
 
-import java.awt.EventQueue;
+import java.awt.*;
 
 /**
  * Server main to initialize Server GUI.
+ *
  * @author Akash Sharma
  * @version 1.0
  */

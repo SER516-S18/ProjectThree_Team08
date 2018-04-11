@@ -7,6 +7,7 @@ import java.awt.geom.Arc2D;
 
 /**
  * Class for mouth smile, inherits from Arc2D
+ *
  * @author Ejaz Saifudeen
  * @version 1.1
  */
@@ -22,20 +23,21 @@ public class Smile extends Arc2D.Double implements IExpressive {
     /**
      * Constructor that initializes the smile arc
      */
-    public Smile(){
-        super(X,Y,WIDTH,HEIGHT,0,0, Arc2D.CHORD);
+    public Smile() {
+        super(X, Y, WIDTH, HEIGHT, 0, 0, Arc2D.CHORD);
     }
 
     /**
      * Smiles mouth arc based on received value
+     *
      * @param val double 0-1
      */
-    public void set(double val){
+    public void set(double val) {
 
-        if(val <= 0 || val > 1)
+        if (val <= 0 || val > 1)
             return;
 
-        double newY = getY() + (20*val);
+        double newY = getY() + (20 * val);
         double NewStart = START - (30 * val);
         double NewExtent = EXTENT + (60 * val);
         setFrame(getX(), newY, WIDTH, HEIGHT);
@@ -47,8 +49,8 @@ public class Smile extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public void reset(int x, int y){
-        setFrame(x+X,y+Y, WIDTH, HEIGHT);
+    public void reset(int x, int y) {
+        setFrame(x + X, y + Y, WIDTH, HEIGHT);
         setAngleStart(0);
         setAngleExtent(0);
     }
@@ -57,7 +59,7 @@ public class Smile extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public boolean getFill(){
+    public boolean getFill() {
         return true;
     }
 
@@ -65,7 +67,7 @@ public class Smile extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public Color getColor(){
+    public Color getColor() {
         return Color.BLACK;
     }
 }

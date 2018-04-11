@@ -7,10 +7,10 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYItemRenderer;
-import org.jfree.data.time.TimeSeriesCollection;
-import org.jfree.data.xy.XYDataset;
 import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
+import org.jfree.data.xy.XYDataset;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -20,11 +20,12 @@ import java.util.Observer;
 
 /**
  * This panel displays the graph for different facial expressions
+ *
  * @author Nishiti Sawant
  * @version 1.1
  */
 
-public class ExpressionGraphPanel extends JPanel implements Observer{
+public class ExpressionGraphPanel extends JPanel implements Observer {
 
     private EmotionMessageBean emotionMessageBean;
     private TimeSeries blinkValue = new TimeSeries("Blink");
@@ -40,35 +41,36 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
     private TimeSeries lookingDownValue = new TimeSeries("Looking Down");
 
     /**
-     *constructor creates subpanels to display multiple charts and labels
+     * constructor creates subpanels to display multiple charts and labels
+     *
      * @param emotionMessageBean Emotion Message Bean object
      */
-    public ExpressionGraphPanel(EmotionMessageBean emotionMessageBean){
-        this.emotionMessageBean=emotionMessageBean;
+    public ExpressionGraphPanel(EmotionMessageBean emotionMessageBean) {
+        this.emotionMessageBean = emotionMessageBean;
         this.setLayout(new BorderLayout());
-        this.setBorder(new EmptyBorder(0,0,0,10));
+        this.setBorder(new EmptyBorder(0, 0, 0, 10));
         this.setBackground(Color.WHITE);
         JPanel subPanel = new JPanel();
         subPanel.setLayout(new GridBagLayout());
-        GridBagConstraints constraints=new GridBagConstraints();
+        GridBagConstraints constraints = new GridBagConstraints();
         this.add(subPanel, BorderLayout.CENTER);
-        subPanel.setPreferredSize(new Dimension(700,550));
+        subPanel.setPreferredSize(new Dimension(700, 550));
         subPanel.setBackground(Color.WHITE);
-        for(int i=0; i<11; i++){
-            constraints.gridx=0;
-            constraints.gridy=i;
+        for (int i = 0; i < 11; i++) {
+            constraints.gridx = 0;
+            constraints.gridy = i;
             constraints.fill = GridBagConstraints.BOTH;
             constraints.weighty = 1;
             constraints.weightx = 1;
             subPanel.add(createChartPanel(i), constraints);
 
-            constraints.ipadx=1;
-            constraints.ipady=0;
-            constraints.gridx=1;
-            constraints.gridy=i;
+            constraints.ipadx = 1;
+            constraints.ipady = 0;
+            constraints.gridx = 1;
+            constraints.gridy = i;
             constraints.weighty = 0;
             constraints.weightx = 0;
-            JLabel label=new JLabel(createLabel(i));
+            JLabel label = new JLabel(createLabel(i));
             subPanel.add(label, constraints);
         }
 
@@ -76,39 +78,52 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
 
     /**
      * creates a chart panel holder and invokes create chart function
+     *
      * @param type expression type
      * @return chart panel
      */
-    private JPanel createChartPanel(int type){
+    private JPanel createChartPanel(int type) {
         JPanel chartPanelHolder = new JPanel();
-        chartPanelHolder.setPreferredSize(new Dimension(600,45));
+        chartPanelHolder.setPreferredSize(new Dimension(600, 45));
         chartPanelHolder.setLayout(new BorderLayout());
         XYDataset dataSet = createDataSet(type);
         JFreeChart graph = createChart(dataSet);
         ChartPanel chart = new ChartPanel(graph);
-        chart.setMouseZoomable(true,true);
+        chart.setMouseZoomable(true, true);
         chartPanelHolder.add(chart, BorderLayout.CENTER);
         return chartPanelHolder;
     }
 
     /**
      * creates a dataset for an expression depending in the expression type passsed
+     *
      * @param type expression type
      * @return XYDataset
      */
-    private XYDataset createDataSet(int type){
-        switch(type){
-            case 0: return new TimeSeriesCollection(blinkValue);
-            case 1: return new TimeSeriesCollection(rightWinkValue);
-            case 2: return new TimeSeriesCollection(leftWinkValue);
-            case 3: return new TimeSeriesCollection(lookingRightValue);
-            case 4: return new TimeSeriesCollection(lookingLeftValue);
-            case 5: return new TimeSeriesCollection(eyeBrowRaiseValue);
-            case 6: return new TimeSeriesCollection(eyeBrowFurrowValue);
-            case 7: return new TimeSeriesCollection(smileValue);
-            case 8: return new TimeSeriesCollection(clenchValue);
-            case 9: return new TimeSeriesCollection(lookingUpValue);
-            case 10: return new TimeSeriesCollection(lookingDownValue);
+    private XYDataset createDataSet(int type) {
+        switch (type) {
+            case 0:
+                return new TimeSeriesCollection(blinkValue);
+            case 1:
+                return new TimeSeriesCollection(rightWinkValue);
+            case 2:
+                return new TimeSeriesCollection(leftWinkValue);
+            case 3:
+                return new TimeSeriesCollection(lookingRightValue);
+            case 4:
+                return new TimeSeriesCollection(lookingLeftValue);
+            case 5:
+                return new TimeSeriesCollection(eyeBrowRaiseValue);
+            case 6:
+                return new TimeSeriesCollection(eyeBrowFurrowValue);
+            case 7:
+                return new TimeSeriesCollection(smileValue);
+            case 8:
+                return new TimeSeriesCollection(clenchValue);
+            case 9:
+                return new TimeSeriesCollection(lookingUpValue);
+            case 10:
+                return new TimeSeriesCollection(lookingDownValue);
         }
 
         return new TimeSeriesCollection();
@@ -116,11 +131,12 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
 
     /**
      * creates charts from the dataset
+     *
      * @param dataSet dataset
      * @return Chart
      */
-    private JFreeChart createChart(final XYDataset dataSet){
-        JFreeChart chart= ChartFactory.createTimeSeriesChart(
+    private JFreeChart createChart(final XYDataset dataSet) {
+        JFreeChart chart = ChartFactory.createTimeSeriesChart(
                 "",
                 "Seconds",
                 "Value",
@@ -134,7 +150,7 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
 
         XYItemRenderer r = plot.getRenderer();
         BasicStroke wideLine = new BasicStroke(2.0f);
-        r.setSeriesStroke(0,wideLine);
+        r.setSeriesStroke(0, wideLine);
 
         org.jfree.chart.axis.ValueAxis xAxis = plot.getDomainAxis();
         xAxis.setAutoRange(true);
@@ -154,33 +170,45 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
 
     /**
      * creates labels to display the expression type
+     *
      * @param type expression type
      * @return expression name
      */
-    private String createLabel(int type){
-        String expression="";
-        switch(type){
-            case 0: expression="Blink";
+    private String createLabel(int type) {
+        String expression = "";
+        switch (type) {
+            case 0:
+                expression = "Blink";
                 break;
-            case 1: expression="Right Wink";
+            case 1:
+                expression = "Right Wink";
                 break;
-            case 2: expression="Left wink";
+            case 2:
+                expression = "Left wink";
                 break;
-            case 3: expression="Looking Right";
+            case 3:
+                expression = "Looking Right";
                 break;
-            case 4: expression="Looking Left";
+            case 4:
+                expression = "Looking Left";
                 break;
-            case 5: expression="Eye Brow Raise";
+            case 5:
+                expression = "Eye Brow Raise";
                 break;
-            case 6: expression="Eye Brow Furrow";
+            case 6:
+                expression = "Eye Brow Furrow";
                 break;
-            case 7: expression="Smile";
+            case 7:
+                expression = "Smile";
                 break;
-            case 8: expression="Clench";
+            case 8:
+                expression = "Clench";
                 break;
-            case 9: expression="Looking Up";
+            case 9:
+                expression = "Looking Up";
                 break;
-            case 10 : expression="Looking Down";
+            case 10:
+                expression = "Looking Down";
                 break;
         }
         return expression;
@@ -188,26 +216,27 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
 
     /**
      * updates the dataset used for graph depending on the received bean
+     *
      * @param expressiveBean bean object
      */
-    private void updateValue(ExpressiveBean expressiveBean){
+    private void updateValue(ExpressiveBean expressiveBean) {
         Double val;
-        final Millisecond current= new Millisecond();
-        if(expressiveBean.isBlink())
-            val=1.00;
+        final Millisecond current = new Millisecond();
+        if (expressiveBean.isBlink())
+            val = 1.00;
         else
-            val=0.00;
-        blinkValue.add(current,val);
-        if(expressiveBean.isRightWink())
-            val=1.00;
+            val = 0.00;
+        blinkValue.add(current, val);
+        if (expressiveBean.isRightWink())
+            val = 1.00;
         else
-            val=0.00;
-        rightWinkValue.add(current,val);
-        if(expressiveBean.isLeftWink())
-            val=1.00;
+            val = 0.00;
+        rightWinkValue.add(current, val);
+        if (expressiveBean.isLeftWink())
+            val = 1.00;
         else
-            val=0.00;
-        leftWinkValue.add(current,val);
+            val = 0.00;
+        leftWinkValue.add(current, val);
         lookingRightValue.add(current, expressiveBean.getLookingRight());
         lookingLeftValue.add(current, expressiveBean.getLookingLeft());
         eyeBrowRaiseValue.add(current, expressiveBean.getRaiseBrow());
@@ -220,12 +249,13 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
 
     /**
      * passes the updated value of the bean object to other methods
-     * @param o observable
+     *
+     * @param o   observable
      * @param arg object
      */
     @Override
     public void update(Observable o, Object arg) {
-        if(this.emotionMessageBean == o){
+        if (this.emotionMessageBean == o) {
             updateValue(emotionMessageBean.getExpressive());
         }
     }

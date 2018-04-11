@@ -1,9 +1,17 @@
 package main.client.view;
 
-import main.client.view.ExpressiveComponents.EyeComponents.*;
-import main.client.view.ExpressiveComponents.LowerFaceComponents.*;
-import main.client.view.ExpressiveComponents.UpperFaceComponents.*;
-import main.client.view.ExpressiveComponents.*;
+import main.client.view.ExpressiveComponents.EyeComponents.LeftEye;
+import main.client.view.ExpressiveComponents.EyeComponents.LeftEyeLash;
+import main.client.view.ExpressiveComponents.EyeComponents.RightEye;
+import main.client.view.ExpressiveComponents.EyeComponents.RightEyeLash;
+import main.client.view.ExpressiveComponents.IExpressive;
+import main.client.view.ExpressiveComponents.LowerFaceComponents.Clench;
+import main.client.view.ExpressiveComponents.LowerFaceComponents.Mouth;
+import main.client.view.ExpressiveComponents.LowerFaceComponents.Smile;
+import main.client.view.ExpressiveComponents.UpperFaceComponents.LeftEyeBall;
+import main.client.view.ExpressiveComponents.UpperFaceComponents.LeftEyeBrow;
+import main.client.view.ExpressiveComponents.UpperFaceComponents.RightEyeBall;
+import main.client.view.ExpressiveComponents.UpperFaceComponents.RightEyeBrow;
 import main.model.EmotionMessageBean;
 import main.model.ExpressiveBean;
 
@@ -22,12 +30,16 @@ import java.util.Observer;
 
 /**
  * This panel displays the face and handles facial expressions
+ *
  * @author Ejaz Saifudeen
  * @version 1.1
  */
 public class ExpressivePanel extends JPanel implements Observer {
 
     private static final String faceLayoutPath = "faceLayout.png";
+    BufferedImage img = null;
+    ExpressiveBean bean = null;
+    EmotionMessageBean emotionMessageBean;
     private List<IExpressive> shapes = new ArrayList<>();
     private LeftEye leftEye = new LeftEye();
     private RightEye rightEye = new RightEye();
@@ -40,15 +52,12 @@ public class ExpressivePanel extends JPanel implements Observer {
     private Mouth mouth = new Mouth();
     private Smile smile = new Smile();
     private Clench clench = new Clench();
-    BufferedImage img = null;
-    ExpressiveBean bean = null;
-    EmotionMessageBean emotionMessageBean;
 
     /**
      * Constructor adds all shapes to a list and reads the facelayout image
      * to a buffered image
      */
-    public ExpressivePanel(EmotionMessageBean  emotionMessageBean){
+    public ExpressivePanel(EmotionMessageBean emotionMessageBean) {
 
         this.emotionMessageBean = emotionMessageBean;
         shapes.add(leftEye);
@@ -65,7 +74,7 @@ public class ExpressivePanel extends JPanel implements Observer {
 
         try {
             InputStream inputStream = getClass().getClassLoader().getResourceAsStream(faceLayoutPath);
-            if(inputStream != null)
+            if (inputStream != null)
                 img = ImageIO.read(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
@@ -76,18 +85,18 @@ public class ExpressivePanel extends JPanel implements Observer {
 
     /**
      * This method is responsible for drawing all the shapes
+     *
      * @param g Graphics object
      */
-    public void paintComponent(Graphics g)
-    {
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g2 = (Graphics2D) g;
         setBackground(Color.WHITE);
-        g2.drawImage(img, getRelativeX(),getRelativeY(),null);
+        g2.drawImage(img, getRelativeX(), getRelativeY(), null);
 
-        for (IExpressive e : shapes){
+        for (IExpressive e : shapes) {
             g2.setColor(e.getColor());
-            if(e.getFill()) {
+            if (e.getFill()) {
                 g2.fill(e);
             } else {
                 g2.setStroke(new BasicStroke(3));
@@ -98,11 +107,12 @@ public class ExpressivePanel extends JPanel implements Observer {
 
     /**
      * Affects facial features based on the received bean
+     *
      * @param b ExpressiveBean object
      */
-    private void update(ExpressiveBean b){
+    private void update(ExpressiveBean b) {
 
-        if(bean == null || !bean.equals(b)){
+        if (bean == null || !bean.equals(b)) {
             for (IExpressive e : shapes)
                 e.reset(getRelativeX(), getRelativeY());
 
@@ -163,30 +173,33 @@ public class ExpressivePanel extends JPanel implements Observer {
     /**
      * Gets relative X value such that the image will occupy the
      * center of the panel
+     *
      * @return x
      */
-    private int getRelativeX(){
-        return (getWidth()/2)-156;
+    private int getRelativeX() {
+        return (getWidth() / 2) - 156;
     }
 
     /**
      * Gets relative Y value such that the image will occupy the
      * center of the panel
+     *
      * @return y
      */
-    private int getRelativeY(){
-        return (getHeight()/2)-156;
+    private int getRelativeY() {
+        return (getHeight() / 2) - 156;
     }
 
     /**
      * update method changes facial expressions if emotion bean is
      * updated.
+     *
      * @param o
      * @param arg
      */
     @Override
     public void update(Observable o, Object arg) {
-        if(this.emotionMessageBean == o){
+        if (this.emotionMessageBean == o) {
             update(emotionMessageBean.getExpressive());
         }
     }
@@ -199,7 +212,7 @@ public class ExpressivePanel extends JPanel implements Observer {
 
         public void componentResized(ComponentEvent ev) {
             ExpressiveBean b = null;
-            if(bean != null) {
+            if (bean != null) {
                 b = new ExpressiveBean(bean);
                 bean = null;
             }

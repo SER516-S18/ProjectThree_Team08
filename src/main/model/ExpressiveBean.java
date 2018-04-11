@@ -1,13 +1,12 @@
 package main.model;
 
-import java.util.Observable;
-
 /**
  * Bean which stores the emotion message to be sent to client.
+ *
  * @author Balachandar Sampath
  * @version 1.0
  */
-public class ExpressiveBean{
+public class ExpressiveBean {
 
 
     private boolean blink;
@@ -23,7 +22,8 @@ public class ExpressiveBean{
     private double lookingUp;
     private double lookingDown;
 
-    public ExpressiveBean(){}
+    public ExpressiveBean() {
+    }
 
     /**
      * Copy constructor
@@ -49,14 +49,12 @@ public class ExpressiveBean{
 
     /**
      * Setters/Getters for class properties
-     *
      */
     public boolean isBlink() {
         return blink;
     }
 
     /**
-     *
      * @param blink
      */
     public void setBlink(boolean blink) {
@@ -68,7 +66,6 @@ public class ExpressiveBean{
     }
 
     /**
-     *
      * @param rightWink
      */
     public void setRightWink(boolean rightWink) {
@@ -81,7 +78,6 @@ public class ExpressiveBean{
     }
 
     /**
-     *
      * @param leftWink
      */
     public void setLeftWink(boolean leftWink) {
@@ -94,7 +90,6 @@ public class ExpressiveBean{
     }
 
     /**
-     *
      * @param lookingLeft
      */
     public void setLookingLeft(double lookingLeft) {
@@ -107,7 +102,6 @@ public class ExpressiveBean{
     }
 
     /**
-     *
      * @param lookingRight
      */
     public void setLookingRight(double lookingRight) {
@@ -120,7 +114,6 @@ public class ExpressiveBean{
     }
 
     /**
-     *
      * @param raiseBrow
      */
     public void setRaiseBrow(double raiseBrow) {
@@ -133,7 +126,6 @@ public class ExpressiveBean{
     }
 
     /**
-     *
      * @param eyeBrowFurrow
      */
     public void setFurrowBrow(double eyeBrowFurrow) {
@@ -146,7 +138,6 @@ public class ExpressiveBean{
     }
 
     /**
-     *
      * @param smile
      */
     public void setSmile(double smile) {
@@ -158,7 +149,6 @@ public class ExpressiveBean{
     }
 
     /**
-     *
      * @param clench
      */
     public void setClench(double clench) {
@@ -170,7 +160,6 @@ public class ExpressiveBean{
     }
 
     /**
-     *
      * @param lookingUp
      */
     public void setLookingUp(double lookingUp) {
@@ -183,7 +172,6 @@ public class ExpressiveBean{
     }
 
     /**
-     *
      * @param lookingDown
      */
     public void setLookingDown(double lookingDown) {
@@ -210,12 +198,13 @@ public class ExpressiveBean{
 
     /**
      * Checks if the parameter bean is equal to the Expressive bean
+     *
      * @param bean
      * @return boolean value based on comparison
      */
-    public boolean equals(ExpressiveBean bean){
+    public boolean equals(ExpressiveBean bean) {
 
-        return  lookingRight == bean.lookingRight &&
+        return lookingRight == bean.lookingRight &&
                 blink == bean.blink &&
                 rightWink == bean.rightWink &&
                 leftWink == bean.leftWink &&

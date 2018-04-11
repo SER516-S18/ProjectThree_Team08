@@ -2,6 +2,7 @@ package main.client.view.ExpressiveComponents.UpperFaceComponents;
 
 /**
  * Class for left eye ball, inherits from EyeBall
+ *
  * @author Ejaz Saifudeen
  * @version 1.1
  */
@@ -14,18 +15,19 @@ public class LeftEyeBall extends EyeBall {
      * Constructor that calls super constructor with relevant
      * X, Y
      */
-    public LeftEyeBall(){
-        super(X,Y);
+    public LeftEyeBall() {
+        super(X, Y);
     }
 
     /**
      * Modifies X position based on received val to position
      * eyeball to the left
+     *
      * @param val double 0-1
      */
-    public void lookLeft(double val){
+    public void lookLeft(double val) {
 
-        if(val <= 0 || val > 1)
+        if (val <= 0 || val > 1)
             return;
 
         double newX = getX() + (5 * val);
@@ -35,11 +37,12 @@ public class LeftEyeBall extends EyeBall {
     /**
      * Modifies X position based on received val to position
      * eyeball to the right
+     *
      * @param val double 0-1
      */
-    public void lookRight(double val){
+    public void lookRight(double val) {
 
-        if(val <= 0 || val > 1)
+        if (val <= 0 || val > 1)
             return;
 
         double newX = getX() - (5 * val);
@@ -49,11 +52,12 @@ public class LeftEyeBall extends EyeBall {
     /**
      * Modifies Y position based on received val to position
      * eyeball to the top
+     *
      * @param val double 0-1
      */
-    public void lookUp(double val){
+    public void lookUp(double val) {
 
-        if(val <= 0 || val > 1)
+        if (val <= 0 || val > 1)
             return;
 
         double newY = getY() - (8 * val);
@@ -63,11 +67,12 @@ public class LeftEyeBall extends EyeBall {
     /**
      * Modifies Y position based on received val to position
      * eyeball to the bottom
+     *
      * @param val double 0-1
      */
-    public void lookDown(double val){
+    public void lookDown(double val) {
 
-        if(val <= 0 || val > 1)
+        if (val <= 0 || val > 1)
             return;
 
         double newY = getY() + (6 * val);
@@ -78,8 +83,8 @@ public class LeftEyeBall extends EyeBall {
      * {@inheritDoc}
      */
     @Override
-    public void reset(int x, int y){
-        setFrame(x+X,y+Y, WIDTH, HEIGHT);
-        super.reset(x,y);
+    public void reset(int x, int y) {
+        setFrame(x + X, y + Y, WIDTH, HEIGHT);
+        super.reset(x, y);
     }
 }

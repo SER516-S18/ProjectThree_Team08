@@ -7,6 +7,7 @@ import java.awt.geom.Arc2D;
 
 /**
  * Abstract class for eye brow, inherits from Arc2D
+ *
  * @author Ejaz Saifudeen
  * @version 1.1
  */
@@ -17,22 +18,24 @@ public abstract class EyeBrow extends Arc2D.Double implements IExpressive {
 
     /**
      * Constructor that initializes the eye brow arc
-     * @param x top left X position
-     * @param y top left Y position
+     *
+     * @param x  top left X position
+     * @param y  top left Y position
      * @param st angle start position
      * @param ex angle extent
      */
-    public EyeBrow(int x, int y, int st, int ex){
-        super(x,y,WIDTH,HEIGHT,st,ex, Arc2D.OPEN);
+    public EyeBrow(int x, int y, int st, int ex) {
+        super(x, y, WIDTH, HEIGHT, st, ex, Arc2D.OPEN);
     }
 
     /**
      * Raises the eyebrow based of received value
+     *
      * @param val double 0-1
      */
-    public void raise(double val){
+    public void raise(double val) {
 
-        if(val <= 0 || val > 1)
+        if (val <= 0 || val > 1)
             return;
 
         double newY = getY() - (val * 10);
@@ -43,14 +46,14 @@ public abstract class EyeBrow extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public void reset(int x, int y){
+    public void reset(int x, int y) {
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean getFill(){
+    public boolean getFill() {
         return false;
     }
 
@@ -58,7 +61,7 @@ public abstract class EyeBrow extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public Color getColor(){
+    public Color getColor() {
         return Color.BLACK;
     }
 }

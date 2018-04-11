@@ -4,10 +4,10 @@ import main.client.view.ExpressiveComponents.IExpressive;
 
 import java.awt.*;
 import java.awt.geom.Arc2D;
-import java.util.HashMap;
 
 /**
  * Class for mouth clench, inherits from Arc2D
+ *
  * @author Ejaz Saifudeen
  * @version 1.1
  */
@@ -23,17 +23,18 @@ public class Clench extends Arc2D.Double implements IExpressive {
     /**
      * Constructor that initializes the clench arc
      */
-    public Clench(){
-        super(X,Y,WIDTH,HEIGHT,0,0, Arc2D.CHORD);
+    public Clench() {
+        super(X, Y, WIDTH, HEIGHT, 0, 0, Arc2D.CHORD);
     }
 
     /**
      * Clenches mouth arc based on received value
+     *
      * @param val double 0-1
      */
-    public void set(double val){
+    public void set(double val) {
 
-        if(val <= 0 || val > 1)
+        if (val <= 0 || val > 1)
             return;
 
         //double newY = Y - (25*val);
@@ -48,8 +49,8 @@ public class Clench extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public void reset(int x, int y){
-        setFrame(x+X,y+Y, WIDTH, HEIGHT);
+    public void reset(int x, int y) {
+        setFrame(x + X, y + Y, WIDTH, HEIGHT);
         setAngleStart(0);
         setAngleExtent(0);
     }
@@ -58,7 +59,7 @@ public class Clench extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public boolean getFill(){
+    public boolean getFill() {
         return true;
     }
 
@@ -66,7 +67,7 @@ public class Clench extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public Color getColor(){
+    public Color getColor() {
         return Color.BLACK;
     }
 }

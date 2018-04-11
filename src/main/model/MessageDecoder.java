@@ -5,8 +5,10 @@ import com.google.gson.Gson;
 import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
+
 /**
  * Decoder which converts json text to java object.
+ *
  * @author Balachandar Sampath
  * @version 1.0
  */
@@ -15,7 +17,6 @@ public class MessageDecoder implements Decoder.Text<EmotionMessageBean> {
     private static Gson gson = new Gson();
 
     /**
-     *
      * @param config
      */
     @Override
@@ -27,7 +28,6 @@ public class MessageDecoder implements Decoder.Text<EmotionMessageBean> {
     }
 
     /**
-     *
      * @param textMessage this message in json text will be converted to object
      * @return EmotionMessageBean object
      * @throws DecodeException
@@ -38,7 +38,6 @@ public class MessageDecoder implements Decoder.Text<EmotionMessageBean> {
     }
 
     /**
-     *
      * @param s
      * @return
      */

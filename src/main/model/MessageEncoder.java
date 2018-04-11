@@ -8,6 +8,7 @@ import javax.websocket.EndpointConfig;
 
 /**
  * Encoder which converts java object to json.
+ *
  * @author Balachandar Sampath
  * @version 1.0
  */
@@ -15,7 +16,6 @@ public class MessageEncoder implements Encoder.Text<EmotionMessageBean> {
     private static Gson gson = new Gson();
 
     /**
-     *
      * @param config End Point Configuration
      */
     @Override
@@ -27,7 +27,6 @@ public class MessageEncoder implements Encoder.Text<EmotionMessageBean> {
     }
 
     /**
-     *
      * @param message is converted to json string
      * @return converted json string from the received message object
      * @throws EncodeException

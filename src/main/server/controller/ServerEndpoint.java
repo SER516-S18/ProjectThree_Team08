@@ -7,16 +7,17 @@ import main.server.view.ConsolePanel;
 import main.utils.ConnectionConstants;
 
 import javax.websocket.*;
-
-import java.io.IOException;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Web Socket Endpoint which handles the various lifecycle of connections with client.
+ *
  * @author Balachandar Sampath
  * @version 1.0
  */
-@javax.websocket.server.ServerEndpoint(value = "/"+ ConnectionConstants.ENDPOINT_PATH,
+@javax.websocket.server.ServerEndpoint(value = "/" + ConnectionConstants.ENDPOINT_PATH,
         encoders = MessageEncoder.class, decoders = MessageDecoder.class)
 public class ServerEndpoint {
 
@@ -25,6 +26,7 @@ public class ServerEndpoint {
 
     /**
      * This method is called when connection opens
+     *
      * @param session This is the first parameter to onOpen method and
      *                holds client session
      */
@@ -36,6 +38,7 @@ public class ServerEndpoint {
 
     /**
      * This method is called when connection opens
+     *
      * @param message This is the first parameter to onMessage
      *                method and holds the message object received
      * @param session This is the second parameter to onMessage
@@ -47,10 +50,12 @@ public class ServerEndpoint {
         if (user == null) {
             session.getUserProperties().put("user", message.getSender());
         }
-        ConsolePanel.setMessage(String.format("[%s:%s]", session.getId(),message.toString()));
+        ConsolePanel.setMessage(String.format("[%s:%s]", session.getId(), message.toString()));
     }
+
     /**
      * This method is called when connection closes
+     *
      * @param session This is the first parameter to onClose method
      *                and holds client session
      */
@@ -60,10 +65,12 @@ public class ServerEndpoint {
                 session.getId()));
         clients.remove(session);
     }
+
     /**
      * This method is called when there is connection error
-     * @param session This is the first parameter to onError method
-     *                and holds client session
+     *
+     * @param session   This is the first parameter to onError method
+     *                  and holds client session
      * @param throwable
      */
     @OnError

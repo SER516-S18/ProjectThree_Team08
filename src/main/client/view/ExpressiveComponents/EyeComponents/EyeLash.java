@@ -7,6 +7,7 @@ import java.awt.geom.Arc2D;
 
 /**
  * Abstract class for lash, inherits from Arc2D
+ *
  * @author Ejaz Saifudeen
  * @version 1.1
  */
@@ -19,16 +20,17 @@ public abstract class EyeLash extends Arc2D.Double implements IExpressive {
 
     /**
      * Constructor that initializes the eye lash arc
+     *
      * @param x Top left X position
      * @param y Top right Y position
      */
-    public EyeLash(int x, int y){
-        super(x,y,WIDTH,HEIGHT,START,EXTENT, Arc2D.OPEN);
+    public EyeLash(int x, int y) {
+        super(x, y, WIDTH, HEIGHT, START, EXTENT, Arc2D.OPEN);
     }
 
-    public void blink(boolean b){
+    public void blink(boolean b) {
 
-        if(!b)
+        if (!b)
             return;
 
         //double newStart = START - ((val/2) * 180);
@@ -43,7 +45,7 @@ public abstract class EyeLash extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public void reset(int x, int y){
+    public void reset(int x, int y) {
         setAngleStart(START);
         setAngleExtent(EXTENT);
     }
@@ -52,7 +54,7 @@ public abstract class EyeLash extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public boolean getFill(){
+    public boolean getFill() {
         return false;
     }
 
@@ -60,7 +62,7 @@ public abstract class EyeLash extends Arc2D.Double implements IExpressive {
      * {@inheritDoc}
      */
     @Override
-    public Color getColor(){
+    public Color getColor() {
         return Color.BLACK;
     }
 

@@ -3,6 +3,7 @@ package main.model;
 /**
  * Bean which stores the emotion message to be sent to client.
  * Setter Getter for class properties included
+ *
  * @author Balachandar Sampath
  * @version 1.0
  */
@@ -22,7 +23,6 @@ public class AffectiveBean {
     }
 
     /**
-     *
      * @param interest
      */
     public void setInterest(double interest) {
@@ -35,7 +35,6 @@ public class AffectiveBean {
     }
 
     /**
-     *
      * @param engagement
      */
     public void setEngagement(double engagement) {
@@ -48,7 +47,6 @@ public class AffectiveBean {
     }
 
     /**
-     *
      * @param stress
      */
     public void setStress(double stress) {
@@ -60,7 +58,6 @@ public class AffectiveBean {
     }
 
     /**
-     *
      * @param relaxation
      */
     public void setRelaxation(double relaxation) {
@@ -73,7 +70,6 @@ public class AffectiveBean {
     }
 
     /**
-     *
      * @param excitement
      */
     public void setExcitement(double excitement) {
@@ -86,7 +82,6 @@ public class AffectiveBean {
     }
 
     /**
-     *
      * @param focus
      */
     public void setFocus(double focus) {
@@ -96,7 +91,6 @@ public class AffectiveBean {
     /**
      * This method is used to generate a Stringified version of
      * the class properties
-     *
      */
     @Override
     public String toString() {

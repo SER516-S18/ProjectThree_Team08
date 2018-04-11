@@ -2,6 +2,7 @@ package main.utils;
 
 /**
  * Connection constants which acts like a property file
+ *
  * @author Balachandar Sampath
  * @version 1.0
  */
