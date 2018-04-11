@@ -52,14 +52,14 @@ public class InteractivePanel extends JPanel{
 		JLabel emoStateLabel = new JLabel("<html>EmoState Interval:</html>");
 		emoStateLabel.setForeground(Color.WHITE);
 		emoStateLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		emoStateLabel.setBounds(145, 29, 124, 25);
+		emoStateLabel.setBounds(14, 29, 124, 25);
 		this.add(emoStateLabel);
 
 		chckbxAutoReset = new JCheckBox("Auto Reset");
 		chckbxAutoReset.setForeground(Color.WHITE);
 		chckbxAutoReset.setBackground(Color.GRAY);
 		chckbxAutoReset.setFont(new Font("Tahoma", Font.BOLD, 12));
-		chckbxAutoReset.setBounds(145, 61, 101, 25);
+		chckbxAutoReset.setBounds(10, 61, 101, 25);
 		chckbxAutoReset.addActionListener(new ActionListener() {
 
 			@Override
@@ -90,13 +90,13 @@ public class InteractivePanel extends JPanel{
 			}
 		});
 		btnSend.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnSend.setBounds(172, 61, 107, 25);
+		btnSend.setBounds(121, 61, 107, 25);
 		this.add(btnSend);
 
 		emoStateSpinner = new JSpinner();
 		emoStateSpinner.setModel(new SpinnerNumberModel(0.25,
 				0.25, 100.00, 0.50));
-		emoStateSpinner.setBounds(294, 29, 55, 25);
+		emoStateSpinner.setBounds(173, 29, 55, 25);
 		setEmoStateTimeInterval(0.25);
 
 		ChangeListener emoStateChangeListener = new ChangeListener() {
