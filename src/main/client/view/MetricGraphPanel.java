@@ -11,12 +11,12 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.time.*;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.axis.NumberTickUnit;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -40,6 +40,7 @@ public class MetricGraphPanel extends JPanel implements Observer {
             Color.BLUE.darker(), Color.PINK.darker(), Color.ORANGE.darker()};
     private EmotionMessageBean emotionMessageBean;
     private XYPlot plot;
+    private long start;
 
     public MetricGraphPanel(EmotionMessageBean emotionMessageBean){
         XYDataset dataSet = createDataSet(channelNumber);
@@ -57,13 +58,16 @@ public class MetricGraphPanel extends JPanel implements Observer {
      * Public method to continuously update the values for the channels in graph
      */
     public void updateMetric(AffectiveBean bean){
-        Millisecond current = new Millisecond();
-        metricValues[0].addOrUpdate(current,bean.getInterest());
-        metricValues[1].addOrUpdate(current,bean.getEngagement());
-        metricValues[2].addOrUpdate(current,bean.getStress());
-        metricValues[3].addOrUpdate(current,bean.getRelaxation());
-        metricValues[4].addOrUpdate(current,bean.getExcitement());
-        metricValues[5].addOrUpdate(current,bean.getFocus());
+        long current = (System.currentTimeMillis() - start) ;
+        Date date = new Date(current/1000);
+        Millisecond millisecond = new Millisecond(date);
+        System.out.println("Second is = "+millisecond.toString()+ " "+ date.toString()+ " "+ current);
+        metricValues[0].addOrUpdate(millisecond,bean.getInterest());
+        metricValues[1].addOrUpdate(millisecond,bean.getEngagement());
+        metricValues[2].addOrUpdate(millisecond,bean.getStress());
+        metricValues[3].addOrUpdate(millisecond,bean.getRelaxation());
+        metricValues[4].addOrUpdate(millisecond,bean.getExcitement());
+        metricValues[5].addOrUpdate(millisecond,bean.getFocus());
     }
 
     /**
@@ -103,10 +107,11 @@ public class MetricGraphPanel extends JPanel implements Observer {
             renderer.setSeriesPaint(i,colorList[i]);
         }
 
+        start = System.currentTimeMillis();
         ValueAxis domain = plot.getDomainAxis();
         domain.setRange(0,1);
-//        domain.setVerticalTickLabels(false);
-//        domain.setAutoTickUnitSelection(true);
+        domain.setVerticalTickLabels(false);
+        domain.setAutoTickUnitSelection(true);
 
         ValueAxis range = plot.getRangeAxis();
         range.setRange(0.00, 1.00);
@@ -143,7 +148,6 @@ public class MetricGraphPanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("Graph Update Called");
         if (this.emotionMessageBean == o){
             updateMetric(emotionMessageBean.getAffective());
         }
