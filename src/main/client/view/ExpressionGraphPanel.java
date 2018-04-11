@@ -17,6 +17,11 @@ import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * This panel displays the graph for different facial expressions
+ * @author Nishiti Sawant
+ * @version 1.1
+ */
 
 public class ExpressionGraphPanel extends JPanel implements Observer{
 
@@ -33,6 +38,10 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
     private TimeSeries lookingUpValue = new TimeSeries("Looking Up");
     private TimeSeries lookingDownValue = new TimeSeries("Looking Down");
 
+    /**
+     *constructor creates subpanels to display multiple charts and labels
+     * @param emotionMessageBean Emotion Message Bean object
+     */
     public ExpressionGraphPanel(EmotionMessageBean emotionMessageBean){
         this.emotionMessageBean=emotionMessageBean;
         this.setLayout(new BorderLayout());
@@ -59,6 +68,11 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
 
     }
 
+    /**
+     * creates a chart panel holder and invokes create chart function
+     * @param type expression type
+     * @return chart panel
+     */
     private JPanel createChartPanel(int type){
         JPanel chartPanelHolder = new JPanel();
         chartPanelHolder.setPreferredSize(new Dimension(600,45));
@@ -71,6 +85,11 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
         return chartPanelHolder;
     }
 
+    /**
+     * creates a dataset for an expression depending in the expression type passsed
+     * @param type expression type
+     * @return XYDataset
+     */
     private XYDataset createDataSet(int type){
         switch(type){
             case 0: return new TimeSeriesCollection(blinkValue);
@@ -89,6 +108,11 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
         return new TimeSeriesCollection();
     }
 
+    /**
+     * creates charts from the dataset
+     * @param dataSet dataset
+     * @return Chart
+     */
     private JFreeChart createChart(final XYDataset dataSet){
         JFreeChart chart= ChartFactory.createTimeSeriesChart(
                 "",
@@ -122,6 +146,11 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
         return chart;
     }
 
+    /**
+     * creates labels to display the expression type
+     * @param type expression type
+     * @return expression name
+     */
     private String createLabel(int type){
         String expression="";
         switch(type){
@@ -151,6 +180,10 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
         return expression;
     }
 
+    /**
+     * updates the dataset used for graph depending on the received bean
+     * @param expressiveBean bean object
+     */
     private void updateValue(ExpressiveBean expressiveBean){
         Double val;
         final Millisecond current= new Millisecond();
@@ -178,6 +211,12 @@ public class ExpressionGraphPanel extends JPanel implements Observer{
         lookingUpValue.add(current, expressiveBean.getLookingUp());
         lookingDownValue.add(current, expressiveBean.getLookingDown());
     }
+
+    /**
+     * passes the updated value of the bean object to other methods
+     * @param o observable
+     * @param arg object
+     */
     @Override
     public void update(Observable o, Object arg) {
         if(this.emotionMessageBean == o){
