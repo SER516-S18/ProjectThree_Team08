@@ -40,20 +40,20 @@ public class InteractivePanel extends JPanel{
 	 * Constructor is adding the interactivePanel to server UI 
 	 * */
 	public InteractivePanel() {
-        
-        this.setBackground(Color.GRAY);
-        this.setBorder(new TitledBorder(null, "Interactive",
+
+		this.setBackground(Color.GRAY);
+		this.setBorder(new TitledBorder(null, "Interactive",
 				TitledBorder.LEADING,
-                        TitledBorder.TOP, new Font("Tahoma",
+				TitledBorder.TOP, new Font("Tahoma",
 				Font.BOLD, 12), null));
-        this.setLayout(null);
-        this.setPreferredSize(new Dimension(200, 120));
-        
-        String[] playerItems = new String[] {"0", "1", "2"};
-        playerComboBox = new JComboBox<>(playerItems);
-        playerComboBox.setBounds(85, 30, 55, 25);
-        playerComboBox.addActionListener(new ActionListener() {
-			
+		this.setLayout(null);
+		this.setPreferredSize(new Dimension(200, 120));
+
+		String[] playerItems = new String[]{"0", "1", "2"};
+		playerComboBox = new JComboBox<>(playerItems);
+		playerComboBox.setBounds(85, 30, 55, 25);
+		playerComboBox.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JComboBox<String> changedObj = (JComboBox<String>) e.getSource();
@@ -61,28 +61,28 @@ public class InteractivePanel extends JPanel{
 						getSelectedItem().toString()));
 			}
 		});
-        this.add(playerComboBox);
-        
-        JLabel playerLabel = new JLabel("Player");
-        playerLabel.setForeground(Color.WHITE);
-        playerLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-        playerLabel.setBounds(14, 29, 55, 25);
-        setPlayerValue (0);
-        this.add(playerLabel);
-        
-        JLabel emoStateLabel = new JLabel("<html>EmoState Interval:</html>");
-        emoStateLabel.setForeground(Color.WHITE);
-        emoStateLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-        emoStateLabel.setBounds(175, 29, 124, 25);
-        this.add(emoStateLabel);
-        
-        chckbxAutoReset = new JCheckBox("Auto Reset");
-        chckbxAutoReset.setForeground(Color.WHITE);
-        chckbxAutoReset.setBackground(Color.GRAY);
-        chckbxAutoReset.setFont(new Font("Tahoma", Font.BOLD, 12));
-        chckbxAutoReset.setBounds(175, 61, 101, 25);
-        chckbxAutoReset.addActionListener(new ActionListener() {
-			
+		this.add(playerComboBox);
+
+		JLabel playerLabel = new JLabel("Player");
+		playerLabel.setForeground(Color.WHITE);
+		playerLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		playerLabel.setBounds(14, 29, 55, 25);
+		setPlayerValue(0);
+		this.add(playerLabel);
+
+		JLabel emoStateLabel = new JLabel("<html>EmoState Interval:</html>");
+		emoStateLabel.setForeground(Color.WHITE);
+		emoStateLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		emoStateLabel.setBounds(175, 29, 124, 25);
+		this.add(emoStateLabel);
+
+		chckbxAutoReset = new JCheckBox("Auto Reset");
+		chckbxAutoReset.setForeground(Color.WHITE);
+		chckbxAutoReset.setBackground(Color.GRAY);
+		chckbxAutoReset.setFont(new Font("Tahoma", Font.BOLD, 12));
+		chckbxAutoReset.setBounds(175, 61, 101, 25);
+		chckbxAutoReset.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JCheckBox changedObj = (JCheckBox) e.getSource();
@@ -90,38 +90,40 @@ public class InteractivePanel extends JPanel{
 				UIController.updateSendButtonText(changedObj.isSelected());
 			}
 		});
-        this.add(chckbxAutoReset);
-        
-        btnSend = new JButton("Send");
-        btnSend.setForeground(Color.WHITE);
-        btnSend.setBackground(Color.BLACK);
-        btnSend.setContentAreaFilled(false);
-        btnSend.setOpaque(true);
-        btnSend.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+		this.add(chckbxAutoReset);
 
-            	UIController.setInteractivePanel(getInteractivePanel());
-            	UIController.updateDetectionTime(getEmoStateTimeInterval ());
-            	UIController.sendMessageBean(btnSend.getText ());
-		if(btnSend.getText().toLowerCase().equals("start"))
-            		ConsolePanel.setMessage("Data is not being send");
-            	else
-            		ConsolePanel.setMessage("Data is now being send");
-            }
-        });
-        btnSend.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        btnSend.setBounds(302, 61, 107, 25);
-        this.add(btnSend);
-        
-        emoStateSpinner = new JSpinner();
-        emoStateSpinner.setModel(new SpinnerNumberModel(0.25,
+		btnSend = new JButton("Send");
+		btnSend.setForeground(Color.WHITE);
+		btnSend.setBackground(Color.BLACK);
+		btnSend.setContentAreaFilled(false);
+		btnSend.setOpaque(true);
+		btnSend.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				UIController.setInteractivePanel(getInteractivePanel());
+				UIController.updateDetectionTime(getEmoStateTimeInterval());
+				UIController.sendMessageBean(btnSend.getText());
+				if (btnSend.getText().toLowerCase().equals("start"))
+					ConsolePanel.setMessage("Data transmission ended.");
+				else if (isAutoReset)
+					ConsolePanel.setMessage("Data transmission started.");
+				else
+					ConsolePanel.setMessage("Data transmitted.");
+			}
+		});
+		btnSend.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnSend.setBounds(302, 61, 107, 25);
+		this.add(btnSend);
+
+		emoStateSpinner = new JSpinner();
+		emoStateSpinner.setModel(new SpinnerNumberModel(0.25,
 				0.25, 100.00, 0.50));
-        emoStateSpinner.setBounds(324, 29, 55, 25);
-        setEmoStateTimeInterval(0.25);
+		emoStateSpinner.setBounds(324, 29, 55, 25);
+		setEmoStateTimeInterval(0.25);
 
-        ChangeListener emoStateChangeListener = new ChangeListener() {
-			
+		ChangeListener emoStateChangeListener = new ChangeListener() {
+
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				JSpinner changedObj = (JSpinner) e.getSource();
@@ -129,9 +131,9 @@ public class InteractivePanel extends JPanel{
 						getValue().toString()));
 			}
 		};
-        emoStateSpinner.addChangeListener(emoStateChangeListener);
-        this.add(emoStateSpinner);
-    }
+		emoStateSpinner.addChangeListener(emoStateChangeListener);
+		this.add(emoStateSpinner);
+	}
 
 	/**
 	 * Getter Setters for class properties

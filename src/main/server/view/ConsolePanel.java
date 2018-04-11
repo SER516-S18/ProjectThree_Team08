@@ -9,9 +9,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JTextPane;
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -48,6 +46,7 @@ public class ConsolePanel extends JPanel{
 			StyleConstants.setFontSize(keyWord, 13);
 
 			doc.insertString(0,new Date()+"Message: "+message +"\n",keyWord );
+			consoleTextPane.setCaretPosition(0);
 		}
 		catch(Exception ex) 
 		{ 
@@ -78,12 +77,15 @@ public class ConsolePanel extends JPanel{
         btnClearLog.setContentAreaFilled(false);
         btnClearLog.setOpaque(true);
         this.add(btnClearLog);
-        
+
+
         consoleTextPane = new JTextPane();
         consoleTextPane.setEditable(false);
         consoleTextPane.setForeground(Color.WHITE);
         consoleTextPane.setBackground(Color.DARK_GRAY);
-        consoleTextPane.setBounds(10, 23, 454, 86);
-        this.add(consoleTextPane);
+        //consoleTextPane.setBounds(10, 23, 454, 86);
+        JScrollPane scrollPane = new JScrollPane(consoleTextPane);
+        scrollPane.setBounds(10, 23, 454, 86);
+        this.add(scrollPane);
     }
 }
