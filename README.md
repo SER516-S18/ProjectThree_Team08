@@ -2,16 +2,14 @@
 
 How to run
 
-Have Maven installed in your machine.
-For reference https://maven.apache.org/install.html
-## Build jar file
+## Clone project from git
 
 ```bash
 $> git clone https://github.com/SER516/ProjectThree_Team08
 $> cd ProjectThree_Team08
 ```
 
-Double click the below jars or run the following commands
+Run the following commands in seperate terminals
 
 ## Start the main.server
 
