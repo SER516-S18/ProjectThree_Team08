@@ -23,7 +23,7 @@ public class ServerInstanceSingleton {
 			try {
 				process = Runtime.getRuntime().exec("java -jar ProjectThree_Team08-server.jar");
 			} catch (IOException exception) {
-				System.out.println(exception.getMessage());
+				exception.printStackTrace();
 			}
 		}
 	}

@@ -62,7 +62,6 @@ public class MetricGraphPanel extends JPanel implements Observer {
         long current = (System.currentTimeMillis() - start) ;
         Date date = new Date(current/1000);
         Millisecond millisecond = new Millisecond(date);
-        System.out.println("Second is = "+millisecond.toString()+ " "+ date.toString()+ " "+ current);
         metricValues[0].addOrUpdate(millisecond,bean.getInterest());
         metricValues[1].addOrUpdate(millisecond,bean.getEngagement());
         metricValues[2].addOrUpdate(millisecond,bean.getStress());

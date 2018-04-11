@@ -134,8 +134,6 @@ public class UIController {
 	private void updatePerformanceMetrics() {
 		String[] pfMetrics = { "Interest", "Engagement", "Stress", "Excitement",
 				"Relaxation", "Focus" };
-		System.out.println("In UIController, in updatePerformanceMetrics ::::::   " +
-				detectionPanel.getPfMetricSelectedValue());
 		for (String str : pfMetrics) {
 			if (detectionPanel.getPfMetricSelectedItem().equalsIgnoreCase(str)) {
 				
@@ -328,7 +326,6 @@ public class UIController {
 					if (run) {
 
 						detectionTime = detectionPanel.getTimeTextField();
-						System.out.println("From Runner"+detectionTime);
 						newDetectionTime = detectionTime + emoStateInterval;
 						detectionPanel.setTimeTxtField(newDetectionTime);
 					} else {

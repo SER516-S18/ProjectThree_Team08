@@ -52,7 +52,7 @@ public class Client {
 			window.pack();
 			window.setVisible(true);
 		} catch(Exception exception){
-			System.out.println(exception.getMessage());
+			exception.printStackTrace();
 		}
     }
 
