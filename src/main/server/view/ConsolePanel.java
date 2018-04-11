@@ -30,7 +30,7 @@ public class ConsolePanel extends JPanel{
     private static JTextPane consoleTextPane = null;
 
     /**
-	 * Sets the layout of messages
+	 * Appends a new message to the top of server console
      *
 	 * @param message message to be set on the console
 	 */
