@@ -43,6 +43,10 @@ public class MetricGraphPanel extends JPanel implements Observer {
     private long start;
     private XYLineAndShapeRenderer renderer;
 
+    /**
+    * Constructor to initialize message bean and chart varibales
+    * @param EmotionMessageBean emotionMessageBean to read data
+    */
     public MetricGraphPanel(EmotionMessageBean emotionMessageBean){
         XYDataset dataSet = createDataSet(channelNumber);
         chart = createChart(dataSet);
@@ -57,6 +61,7 @@ public class MetricGraphPanel extends JPanel implements Observer {
 
     /**
      * Public method to continuously update the values for the channels in graph
+     * @param AffectiveBean affective message data bean to extract affective data values
      */
     public void updateMetric(AffectiveBean bean){
         long current = (System.currentTimeMillis() - start) ;
@@ -73,16 +78,19 @@ public class MetricGraphPanel extends JPanel implements Observer {
     /**
      * Public method used to update the number of channels in a graph. Creates new chart panel.
      * And it to the panel.
+     * @param length  double lenght varible to set domain range
      */
-    public void updateDisplayLength(double n){
+    public void updateDisplayLength(double length){
         plot = chart.getXYPlot();
         NumberAxis domain = (NumberAxis) plot.getDomainAxis();
-        domain.setRange(0.00, n);
+        domain.setRange(0.00, length);
         chartPanel.repaint();
     }
 
     /**
      * Public method to change the color of a specific channel.
+     * @param key integer parameter key to identify emotion series
+     * @param color Color parameter to set selected color for the series
      */
     public void updateColor(int key, Color color){
         plot = chart.getXYPlot();
