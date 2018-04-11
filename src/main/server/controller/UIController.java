@@ -76,8 +76,16 @@ public class UIController {
 		this.updateLowerfaceMetrics();
 		this.updatePerformanceMetrics();
 		this.updateEyeStateMetric();
+		this.updateClock();
 	}
 
+	/**
+	 * To update emotion bean
+	 */
+	private void updateClock() {
+		double detectionTime = detectionPanel.getTimeTextField();
+		EndpointController.getInstance().updateClock(detectionTime);
+	}
 	/**
 	 * This method is updating the model attributes for eye state
 	 * */
@@ -302,7 +310,7 @@ public class UIController {
 			double detectionTime = detectionPanel.getTimeTextField();
 			detectionTime += emoStateInterval;
 			detectionPanel.setTimeTxtField(detectionTime);
-			EmotionMessageBean.setClockTick(detectionTime);
+		//	EmotionMessageBean.setClockTick(detectionTime);
 			
 		} else {
 			if ("start".equalsIgnoreCase(interactivePanel.getBtnSendValue())) {
@@ -322,7 +330,7 @@ public class UIController {
 						detectionTime = detectionPanel.getTimeTextField();
 						newDetectionTime = detectionTime + emoStateInterval;
 						detectionPanel.setTimeTxtField(newDetectionTime);
-						EmotionMessageBean.setClockTick(detectionTime);
+				//		EmotionMessageBean.setClockTick(detectionTime);
 					} else {
 						timer.cancel();
 						timer.purge();

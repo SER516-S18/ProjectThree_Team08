@@ -12,7 +12,7 @@ public class EmotionMessageBean extends Observable{
     private ExpressiveBean expressive;
     private String sender;
     private AffectiveBean affective;
-    private static double clockTick;
+    private double clockTick;
 
     public EmotionMessageBean()
     {
@@ -67,7 +67,7 @@ public class EmotionMessageBean extends Observable{
      *	
      * @param clockTickVal
      */
-    public static void setClockTick(double clockTickVal) {
+    public  void setClockTick(double clockTickVal) {
         clockTick = clockTickVal;
     }
     
