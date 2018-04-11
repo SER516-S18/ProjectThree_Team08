@@ -72,8 +72,6 @@ public class ConsolePanel extends JPanel{
             }
         });
         btnClearLog.setBounds(140, 115, 171, 25);
-        btnClearLog.setForeground(Color.WHITE);
-        btnClearLog.setBackground(Color.BLACK);
         btnClearLog.setContentAreaFilled(false);
         btnClearLog.setOpaque(true);
         this.add(btnClearLog);

@@ -178,8 +178,6 @@ public class DetectionPanel extends JPanel{
         
         btnActivate = new JButton("Activate");
 		btnActivate.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnActivate.setForeground(Color.WHITE);
-		btnActivate.setBackground(Color.BLACK);
 		btnActivate.setContentAreaFilled(false);
 		btnActivate.setOpaque(true);
 		btnActivate.setBounds(185, 164, 95, 25);

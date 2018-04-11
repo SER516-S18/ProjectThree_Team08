@@ -49,27 +49,6 @@ public class InteractivePanel extends JPanel{
 		this.setLayout(null);
 		this.setPreferredSize(new Dimension(200, 120));
 
-		String[] playerItems = new String[]{"0", "1", "2"};
-		playerComboBox = new JComboBox<>(playerItems);
-		playerComboBox.setBounds(85, 30, 55, 25);
-		playerComboBox.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JComboBox<String> changedObj = (JComboBox<String>) e.getSource();
-				setPlayerValue(Integer.valueOf(changedObj.
-						getSelectedItem().toString()));
-			}
-		});
-		this.add(playerComboBox);
-
-		JLabel playerLabel = new JLabel("Player");
-		playerLabel.setForeground(Color.WHITE);
-		playerLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		playerLabel.setBounds(14, 29, 55, 25);
-		setPlayerValue(0);
-		this.add(playerLabel);
-
 		JLabel emoStateLabel = new JLabel("<html>EmoState Interval:</html>");
 		emoStateLabel.setForeground(Color.WHITE);
 		emoStateLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -93,8 +72,6 @@ public class InteractivePanel extends JPanel{
 		this.add(chckbxAutoReset);
 
 		btnSend = new JButton("Send");
-		btnSend.setForeground(Color.WHITE);
-		btnSend.setBackground(Color.BLACK);
 		btnSend.setContentAreaFilled(false);
 		btnSend.setOpaque(true);
 		btnSend.addActionListener(new ActionListener() {
